@@ -1,14 +1,10 @@
-const initialState = {
-    players: []
-}
+import {combineReducers} from 'redux'
+import playersReducer from './playersReducer'
+import roomsReducer from './roomReducer'
 
-const playersReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "SETPLAYER":
-            return {...state, data: action.payload}
-        default:
-            return state
-    }
-}
+const allReducers = combineReducers({
+    players: playersReducer,
+    rooms: roomsReducer
+}) 
 
-export default playersReducer
+export default allReducers

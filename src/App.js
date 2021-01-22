@@ -4,6 +4,7 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import Room from './pages/Room'
 import GamePage from './pages/GamePage'
+import WaitingRoom from './pages/WaitingRoom'
 
 function App() {
   return (
@@ -22,7 +23,10 @@ function App() {
         <Route path="/room">
           <Room></Room>
         </Route>
-        <Route path="/game/:id">
+        <Route exact path="/lobby/:name">
+          <WaitingRoom></WaitingRoom>
+        </Route>
+        <Route exact path="/game/:name">
           <GamePage></GamePage>
         </Route>
       </Switch>
