@@ -23,7 +23,7 @@ const RegisterPage = () => {
                         </div>
                         <span>Already Have Account? <a href="/login" >Sign In</a></span>
                         <div className="form-group">
-                            <button className="btn-login mt-2 " variant="dark" type="submit">
+                            <button className="btn-login mt-2" variant="dark" type="submit">
                                 Register
                             </button>
                         </div>
