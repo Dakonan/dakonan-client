@@ -105,8 +105,9 @@ const makeMove = moveIndex => ({ player, board, isOver }) => {
     newBoard[playerHomeIndex] = newBoard[playerHomeIndex] + newBoard[oppositeIndex] + 1
     newBoard[currIndex] = 0
     newBoard[oppositeIndex] = 0
+    console.log(newBoard);
     return {
-      newBoard: newBoard,
+      board: newBoard,
       player: otherPlayer,
       message: ''
     }
