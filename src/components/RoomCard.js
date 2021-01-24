@@ -13,7 +13,7 @@ const RoomCard = ({rooms, username}) => {
             roomName
         }
         dispatch(joinRoom(payload))
-        history.push(`/lobby/${roomName}`)
+        history.push(`/game/${roomName}`)
     }
     
     return (
