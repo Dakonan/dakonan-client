@@ -14,20 +14,14 @@ function App() {
         <Route exact path="/">
           <MainPage></MainPage>
         </Route>
-        <Route path="/register">
-          <RegisterPage></RegisterPage>
-        </Route>
-        <Route path="/login">
-          <LoginPage></LoginPage>
-        </Route>
         <Route path="/room">
           <Room></Room>
         </Route>
-        <Route exact path="/lobby/:name">
-          <WaitingRoom></WaitingRoom>
-        </Route>
         <Route exact path="/game/:name">
           <GamePage></GamePage>
+        </Route>
+        <Route path="*">
+          <MainPage></MainPage>
         </Route>
       </Switch>
       </BrowserRouter>
