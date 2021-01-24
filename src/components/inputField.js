@@ -17,9 +17,9 @@ const InputField = ({handleSubmit, section}) => {
                 <input onChange={handleInputRoomName} type="text" />
                 {
                     section === 'join' ?
-                    <button type="submit" className="btn-primary">Search</button>
+                    <button type="submit" className="btn-dark">Search</button>
                     :
-                    <button type="submit" className="btn-primary">Create Room</button>
+                    <button type="submit" className="btn-warning">Create Room</button>
                 }
             </form>
         </div>

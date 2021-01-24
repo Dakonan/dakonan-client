@@ -26,7 +26,6 @@ const GamePage = () => {
   const loading = useSelector(state => state.rooms.loading)
   const [turn, setTurn] = useState(false)
   useEffect(() => {
-    console.log('test')
     dispatch(updateGameDetail())
   }, [turn])
 
