@@ -98,6 +98,7 @@ const makeMove = moveIndex => ({ player, board, isOver }) => {
     newBoard[otherPlayerHomeIndex] = newBoard[otherPlayerHomeIndex] + playerTotal
     newBoard = clearStones(newBoard)
     return {
+      player,
       board: newBoard,
       isOver: true,
       message: findWinner(newBoard)
