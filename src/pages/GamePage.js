@@ -63,7 +63,7 @@ const GamePage = () => {
         !loading ?
         <h1>Loading</h1>
         :
-        roomDetail.name ?
+        roomDetail.name  ?
         <>
         {/* <Header /> */}
 
@@ -101,7 +101,7 @@ const GamePage = () => {
       }
     </div>
       {
-        roomDetail && roomDetail.gameState.isOver == true ?
+        roomDetail.name && roomDetail.gameState.isOver == true ?
         <div className="d-flex justify-content-center">
           <FinishAnnouncement handleRematch={HandleRematch} message={roomDetail.gameState.message}></FinishAnnouncement>
         </div>

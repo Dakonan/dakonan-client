@@ -16,7 +16,7 @@ const findWinner = board => {
   const totalPlayer1 = board[getHomeIndex(0)]
   const totalPlayer2 = board[getHomeIndex(1)]
   return totalPlayer1 > totalPlayer2 
-    ? 'Player 1 wins! ' 
+    ? 'Player 1 wins!' 
     : totalPlayer2 > totalPlayer1
       ? 'Player 2 wins! '
       : 'Draw! '

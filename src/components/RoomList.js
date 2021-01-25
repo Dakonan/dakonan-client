@@ -13,7 +13,7 @@ const RoomList = ({handleCreateRoom}) => {
             <h3>Room List</h3>
         </div>
         <InputField section="create" handleSubmit={handleCreateRoom}></InputField>
-        <div className="row d-flex align-items-center shadow-lg mt-5 mx-auto">
+        <div className="row d-flex align-items-center shadow-lg mt-5 mx-auto" style={{maxHeight: '30vw', overflow: 'auto'}}>
             <RoomCard username={username} rooms={rooms}></RoomCard>
         </div>
     </div>
