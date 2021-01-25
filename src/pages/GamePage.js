@@ -34,9 +34,11 @@ const GamePage = () => {
     dispatch(updateGameDetail())
   }, [turn])
 
+  // console.log(roomDetail.gameState.board)
   function clickHandler (i) {
     const board = {...roomDetail.gameState}
     const newState = makeMove(i)(board)
+    console.log(i, newState)
     setTurn(!turn)
     dispatch(gameStart(newState, name))
   }

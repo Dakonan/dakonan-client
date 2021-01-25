@@ -1,4 +1,5 @@
 import { Motion, spring } from 'react-motion'
+import { Pebble } from '.'
 
 export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) {
   return (

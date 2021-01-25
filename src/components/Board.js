@@ -1,6 +1,6 @@
 import React from 'react'
-import MancalaBoard from '../assets/MancalaBoard.png'
-
+// import MancalaBoard from '../assets/MancalaBoard.png'
+import { BigHole, Hole } from '.'
 const Board = ({ board, clickHandler }) => {
 
   const boardWithIndexes = board.map((n, i) => ({ count: n, index: i }))
@@ -10,48 +10,43 @@ const Board = ({ board, clickHandler }) => {
 
   const player1Home = board[6]
   const player2Home = board[13]
-
+  // console.log(board)
   return (
-    <>
-    {/* <div style={{
-      position: 'absolute',
-      marginTop: '70px'
-    }}>
-    </div> */}
-      <div style={{position: 'absolute'}}>
-        <img src={MancalaBoard} style={{
-          maxWidth: '700px'    
-        }}/>
-
-      </div>
-    <div className="board">
-      <div className="home-2">
-        { player2Home }
-      </div>
-
-      <div className="holes-section">
-        <div className="holes-container-2">
-        	{player2Holes.reverse().map((hole, i) => (
-            <div className="hole" key={i} onClick={() => clickHandler(hole.index)}>
-              { hole.count }
-            </div>
-          ))}
+    <div className="board">      
+      <BigHole
+        className="big-bowl"
+        pebbles={player1Home}
+      />
+      <div>
+        <div className="d-flex">
+          {
+            player1Holes.map((holeObject, idx) => (
+              <Hole
+                bgColor="#f58634"
+                pebbles={holeObject.count}
+                key={"player1" + idx}
+                onClick={() => clickHandler(holeObject.index)}
+              />
+            ))
+          }
         </div>
-
-        <div className="holes-container-1">
-          {player1Holes.map((hole, i) => (
-            <div className="hole" key={i} onClick={() => clickHandler(hole.index)}>
-              { hole.count }
-            </div>
-          ))}
+        <div className="d-flex">
+          {
+            player2Holes.map((holeObject, idx) => (
+              <Hole bgColor="#eb596e"
+                pebbles={holeObject.count}
+                key={"player2" + idx}
+                onClick={() => clickHandler(holeObject.index)}
+              />
+            ))
+          }
         </div>
       </div>
-
-      <div className="home-1">
-        { player1Home }
-      </div>
+      <BigHole
+        className="big-bowl"
+        pebbles={player2Home}
+      />
     </div>
-    </>
   )
 }
 
