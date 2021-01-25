@@ -4,11 +4,13 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import Room from './pages/Room'
 import GamePage from './pages/GamePage'
+// import LeaderBoard from './components/LeaderBoard'
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        {/* <LeaderBoard /> */}
       <Switch>
         <Route exact path="/">
           <MainPage></MainPage>
