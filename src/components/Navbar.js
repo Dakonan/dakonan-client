@@ -2,7 +2,7 @@ import React from 'react'
 
 const NavbarTop = ({username}) => {
   return (
-    <nav class="navbar navbar-light bg-light">
+    <nav className="navbar navbar-light bg-light">
       <div>
         <h5>DAKONAN</h5>
       </div>

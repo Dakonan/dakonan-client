@@ -1,44 +1,84 @@
-import React from 'react'
-// import MancalaBoard from '../assets/MancalaBoard.png'
+import React, { useEffect, useState } from 'react'
 import { BigHole, Hole } from '.'
-const Board = ({ board, clickHandler }) => {
+import { range, set } from 'lodash'
 
-  const boardWithIndexes = board.map((n, i) => ({ count: n, index: i }))
+const Board = ({ board, clickHandler }) => {  
+  const [localBoard, setLocalBoard] = useState(board)
+  const [light, setLight] = useState(NaN)
 
-  const player1Holes = boardWithIndexes.slice(0, 6)
-  const player2Holes = boardWithIndexes.slice(7, 13).reverse()
+  useEffect(() => {
+    setLocalBoard(board)
+  }, [board])
 
-  const player1Home = board[6]
-  const player2Home = board[13]
-  // console.log(board)
+  const pebblesAdder = (clickedIndex, currentIndex) => {
+    if (clickedIndex < 6) {
+      setLocalBoard(localBoard => 
+        localBoard.map((num, i) => {
+          if (i === 13) return num
+          else if (i === currentIndex) return (num + 1)
+          return num
+        })
+      )
+    } else {
+      setLocalBoard(localBoard =>
+        localBoard.map((num, i) => {
+          if (i === 6) return num
+          else if (i === currentIndex) return (num + 1)
+          return num
+        })
+      )
+    }
+  }
+
+  const boardClickHandler = (index, number) => {
+    setLocalBoard(localBoard => localBoard.map((num, i) => {
+      if (i === index) return 0
+      return num
+    }))
+    
+    let idx = index + 1
+    let timeout = setInterval(() => {
+      if (number <= 0) {
+        setLight(NaN)
+        clearInterval(timeout)
+      }else if (idx !== index) {
+        setLight(idx)
+        pebblesAdder(index, idx)
+        number--
+        idx++
+      }
+      if (idx === 13 ) idx = 0
+    }, 1000)
+  }
+
   return (
-    <div className="board">      
+    <div className="board">
       <BigHole
         className="big-bowl"
-        pebbles={player2Home}
-        bgColor="#f58634"
+        pebbles={localBoard[13]}
+        bgColor={light === 13 ? "whitesmoke" : "#f58634"}
       />
       <div>
         <div className="d-flex">
           {
-            player2Holes.map((holeObject, idx) => (
+            localBoard.slice(7, 13).reverse().map((number, idx) => (
               <Hole
-                bgColor="#f58634"
-                pebbles={holeObject.count}
-                key={"player1" + idx}
-                onClick={() => clickHandler(holeObject.index)}
+                bgColor={light === 12-idx ? "whitesmoke" :"#f58634"}
+                pebbles={number}
+                key={"player2" + idx}
+                onClick={() => boardClickHandler(12-idx, number)}
               />
             ))
           }
         </div>
         <div className="d-flex">
           {
-            player1Holes.map((holeObject, idx) => (
+            localBoard.slice(0, 6).map((number, idx) => (
               <Hole 
-                bgColor="#eb596e"
-                pebbles={holeObject.count}
-                key={"player2" + idx}
-                onClick={() => clickHandler(holeObject.index)}
+                bgColor={light === idx ? "whitesmoke" : "#eb596e"}
+                pebbles={number}
+                key={"player1" + idx}
+                onClick={() => boardClickHandler(idx, number)}
               />
             ))
           }
@@ -46,8 +86,8 @@ const Board = ({ board, clickHandler }) => {
       </div>
       <BigHole
         className="big-bowl"
-        pebbles={player1Home}
-        bgColor="#eb596e"
+        pebbles={localBoard[6]}
+        bgColor={light === 6 ? "whitesmoke" : "#eb596e"}
       />
     </div>
   )
