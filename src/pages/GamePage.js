@@ -5,6 +5,9 @@ import StatusBar from '../components/StatusBar'
 
 import { makeMove, emptyHomes } from '../utils'
 
+import fullPageImage from '../assets/GameContainer.png'
+import decoration from '../assets/decoration.png'
+
 
 
 const START_AMOUNT = 4
@@ -36,9 +39,13 @@ class GamePage extends Component {
 
   render () {
     return (
-      <div className="App">
-
-        <Header />
+      <div className="App" style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor:'blue',
+        height: '100vh'
+      }}>
 
         <StatusBar
           player={this.state.player}
@@ -46,12 +53,28 @@ class GamePage extends Component {
           message={this.state.message}
         />
 
+        <div className="decoration">
+          <img src={decoration} />
+        </div>
+
+        <div className="fullPageImage" style={{
+          // backgroundColor: 'red'
+        }}>
+          <img src={fullPageImage} style={{
+            maxWidth: '1095px'
+          }}/>
+        </div>
+
         <Board
           board={this.state.board}
           clickHandler={this.clickHandler}
         />
 
-        <button onClick={this.resetHandler}>
+        <button onClick={this.resetHandler} style={{
+          position: 'absolute',
+          bottom: '57px',
+          zIndex: '5'
+        }}>
           Reset
         </button>
 

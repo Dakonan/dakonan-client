@@ -53,18 +53,21 @@ code {
 /* board */
 
 .board {
-  margin: 2em auto;
-  background: var(--board-colour);
-  width: 50%;
+  width: 92%;
   height: 4em;
-  padding: 1em;
+  padding: 2px;
   display: flex;
+  /* position: absolute; */
+  /* top: 45.6%;
+  left: 51.2%; */
+  /* transform: translate(-50%, -50%); */
+  z-index: 3;
 }
 
 .home {
-  width: 15%;
+  width: 12%;
   border-radius: 100%;
-  background: var(--hole-colour);
+  /* background: var(--hole-colour); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,6 +75,8 @@ code {
 
 .holes-section {
   width: 70%;
+  /* height: 60px; */
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -86,8 +91,45 @@ code {
   width: 2em;
   height: 1.5em;
   border-radius: 100%;
-  background: var(--hole-colour);
+  /* background: var(--hole-colour); */
+  /* background-color: red; */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* .fullPageImage {
+  background-color: red;
+  position: absolute;
+  top: 5px;
+  left: 230px;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+} */
+
+/* .fullPageImage img {
+  background-color: red;
+  height: 970px;
+} */
+
+.decoration img {
+  width: 1000px;
+  position: absolute;
+  z-index: 0;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  right: 0px;
+  bottom: 0px;
+}
+
+.rectangle {
+  border: 3px solid;
+  height: 42px;
+  width: 250px;
+  background-color: white;
+  position: absolute;
+  z-index: 2;
+  left: 22vh;
+  top: 68px;
 }
