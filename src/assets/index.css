@@ -53,6 +53,10 @@ code {
 .nav {
   z-index: 100;
 }
+.nav a {
+  text-decoration: none;
+  color: gold;
+}
 /* board */
 .rectangle {
   display: flex;

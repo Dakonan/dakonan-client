@@ -37,7 +37,7 @@ const RoomCard = ({rooms, username}) => {
                           room.users.length > 1 ?
                           <div className="m-3">
                             <p className="card-text m-0">{`player2`}</p>
-                            <p className="card-text m-0">{`${room.users[2]}`}</p>
+                            <p className="card-text m-0">{`${room.users[1]}`}</p>
                           </div>
                           :
                           ""
@@ -47,11 +47,11 @@ const RoomCard = ({rooms, username}) => {
                   ""
               }
               {
-                room ?
-                <button onClick={() => handleJoin(username, room.name)}>Join</button>
-                :
-                room.user.length >= 2 ?
-                <button className="btn btn-danger" onClick={() => handleJoin(username, room.name)}>Full</button>
+                // room ?
+                // <button onClick={() => handleJoin(username, room.name)}>Join</button>
+                // :
+                room.users.length === 2 ?
+                <button className="btn btn-danger">Full</button>
                 :
                 <button onClick={() => handleJoin(username, room.name)}>Join</button>
               }
