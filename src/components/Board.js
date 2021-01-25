@@ -1,4 +1,5 @@
 import React from 'react'
+import MancalaBoard from '../assets/MancalaBoard.png'
 
 const Board = ({ board, clickHandler }) => {
 
@@ -11,15 +12,25 @@ const Board = ({ board, clickHandler }) => {
   const player2Home = board[13]
 
   return (
-    <div className="board">
+    <>
+    {/* <div style={{
+      position: 'absolute',
+      marginTop: '70px'
+    }}>
+    </div> */}
+      <div style={{position: 'absolute'}}>
+        <img src={MancalaBoard} style={{
+          maxWidth: '700px'    
+        }}/>
 
-      <div className="home">
+      </div>
+    <div className="board">
+      <div className="home-2">
         { player2Home }
       </div>
 
       <div className="holes-section">
-
-        <div className="holes-container">
+        <div className="holes-container-2">
         	{player2Holes.reverse().map((hole, i) => (
             <div className="hole" key={i} onClick={() => clickHandler(hole.index)}>
               { hole.count }
@@ -27,21 +38,20 @@ const Board = ({ board, clickHandler }) => {
           ))}
         </div>
 
-        <div className="holes-container">
+        <div className="holes-container-1">
           {player1Holes.map((hole, i) => (
             <div className="hole" key={i} onClick={() => clickHandler(hole.index)}>
               { hole.count }
             </div>
           ))}
         </div>
-
       </div>
 
-      <div className="home">
+      <div className="home-1">
         { player1Home }
       </div>
-
     </div>
+    </>
   )
 }
 
