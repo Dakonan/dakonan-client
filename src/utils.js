@@ -16,7 +16,7 @@ const findWinner = board => {
   const totalPlayer1 = board[getHomeIndex(0)]
   const totalPlayer2 = board[getHomeIndex(1)]
   return totalPlayer1 > totalPlayer2 
-    ? 'Player 1 wins! ' 
+    ? 'Player 1 wins!' 
     : totalPlayer2 > totalPlayer1
       ? 'Player 2 wins! '
       : 'Draw! '
@@ -81,24 +81,22 @@ const makeMove = moveIndex => ({ player, board, isOver }) => {
   // no stones left
   if (noStones(newBoard)(player)) {
     // move stones to otherPlayer's pot
-    const otherPlayerTotal = playerTotalInPlay(otherPlayer)
+    const otherPlayerTotal = playerTotalInPlay(newBoard)(otherPlayer)
     newBoard[playerHomeIndex] = newBoard[playerHomeIndex] + otherPlayerTotal
     newBoard = clearStones(newBoard)
     return {
-      player,
       board: newBoard,
       isOver: true,
-      message: ''
+      message: findWinner(newBoard)
     }
   }
 
   if (noStones(newBoard)(otherPlayer)) {
     // move stones to otherPlayer's pot
-    const playerTotal = playerTotalInPlay(player)
+    const playerTotal = playerTotalInPlay(newBoard)(player)
     newBoard[otherPlayerHomeIndex] = newBoard[otherPlayerHomeIndex] + playerTotal
     newBoard = clearStones(newBoard)
     return {
-      player,
       board: newBoard,
       isOver: true,
       message: findWinner(newBoard)
@@ -111,7 +109,7 @@ const makeMove = moveIndex => ({ player, board, isOver }) => {
       player,
       isOver,
       board: newBoard,
-      message: 'you got point'
+      message: ''
     }
   }
 
@@ -123,6 +121,7 @@ const makeMove = moveIndex => ({ player, board, isOver }) => {
     newBoard[oppositeIndex] = 0
     console.log(newBoard);
     return {
+      isOver,
       board: newBoard,
       player: otherPlayer,
       message: ''
@@ -131,6 +130,7 @@ const makeMove = moveIndex => ({ player, board, isOver }) => {
 
   // else nothing special
   return {
+    isOver,
     board: newBoard,
     player: otherPlayer,
     message: ''

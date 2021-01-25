@@ -8,8 +8,8 @@ const StatusBar = ({ player, isOver, message }) => (
     top: '8.5vw',
     zIndex: 2
     }}>
-      
-    <div className="container bg-light"
+  
+    <div className="container bg-light" 
       style={{
         textAlign: 'center',
         width: '20vw',
