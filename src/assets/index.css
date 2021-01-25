@@ -159,3 +159,154 @@ code {
   left: 22vh;
   top: 68px;
 }
+
+/* LeaderBoard */
+
+.btn-leaderboard {
+  font-size: 1.2rem;
+  margin-right: 2rem;
+}
+/* .btn-leaderboard .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+.btn-leaderboard:hover .tooltiptext {
+  visibility: visible;
+} */
+
+.leaderboard {
+  width: 100% ;
+  /* margin: 5rem auto; */
+  border-radius: 1.5rem;
+  box-shadow: 2px 2px 16px 1px #aaa;
+  font-family: sans-serif;
+  border: 7px solid black;
+}
+
+.leaderboard a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.leaderboard header {
+  background-color: #eb8423;
+  color: white;
+  text-transform: uppercase;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  height: 14rem;
+  position: relative;
+}
+
+.leaderboard h1 {
+  font-size: 3rem;
+  line-height: 3rem;
+  position: absolute;
+  margin-left: 3rem;
+  top: 4rem;
+  text-align: left;
+}
+
+.leaderboard img {
+  height: 16rem;
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+}
+
+.leaderboard nav {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  font-size: 0.9rem;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    transparent 10%,
+    rgba(22, 22, 22, 0.5)
+  );
+}
+
+.leaderboard nav a {
+  padding-top: 1rem;
+  padding-bottom: 0.75rem;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.leaderboard nav a.active {
+  border-bottom: 4px solid #f05800;
+}
+
+.leaderboard nav a:first-child {
+  margin-left: 3rem;
+}
+
+.leaderboard nav a + a {
+  margin-left: 1rem;
+}
+
+.leaderboard table {
+  background-color: #000000;
+  color: #999;
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  overflow: hidden;
+}
+
+.leaderboard thead {
+  font-size: 0.7rem;
+  color: #eb8423;
+  text-transform: uppercase;
+}
+
+.leaderboard tbody .username {
+  color: #999;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.leaderboard tbody tr:nth-child(2n) {
+  background-color: white;
+}
+
+.leaderboard .username {
+  text-align: left;
+}
+
+.leaderboard .rank,
+.leaderboard .match,
+.leaderboard .winrate {
+  text-align: right;
+}
+
+.leaderboard .rank {
+  width: 4ch;
+  padding-left: 1rem;
+}
+
+.leaderboard .match,
+.leaderboard .winrate {
+  width: 8ch;
+}
+
+.leaderboard th {
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+.leaderboard td {
+  padding: 1rem 1rem;
+}
+.modal-content {
+  width: 30vw;
+  border-radius: 30px;
+}

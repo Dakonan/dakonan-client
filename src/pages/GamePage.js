@@ -10,17 +10,18 @@ import {useParams} from 'react-router-dom'
 import fullPageImage from '../assets/GameContainer.png'
 import decoration from '../assets/decoration.png'
 import NavbarTop from '../components/Navbar'
+import FinishAnnouncement from '../components/FinishAnnouncement'
 
 const socket = io('http://localhost:4000')
 
-// const START_AMOUNT = 4
+const START_AMOUNT = 4
 
-// const intialState = {
-//   player: 0,
-//   board: emptyHomes(Array(14).fill(START_AMOUNT)),
-//   isOver: false,
-//   message: ''
-// }
+const intialState = {
+  player: 0,
+  board: emptyHomes(Array(14).fill(START_AMOUNT)),
+  isOver: false,
+  message: ''
+}
 
 const GamePage = () => {
   const dispatch = useDispatch()
@@ -30,15 +31,20 @@ const GamePage = () => {
   const roomDetail = useSelector(state => state.rooms.detail)
   const loading = useSelector(state => state.rooms.loading)
   const [turn, setTurn] = useState(false)
+
   useEffect(() => {
     dispatch(updateGameDetail())
   }, [turn])
 
   function clickHandler (i) {
-    const board = {...roomDetail.gameState}
-    const newState = makeMove(i)(board)
+    const gameDetail = {...roomDetail.gameState}
+    const newState = makeMove(i)(gameDetail)
     setTurn(!turn)
     dispatch(gameStart(newState, name))
+  }
+
+  function HandleRematch () {
+    dispatch(gameStart(intialState, name))
   }
 
   return (
@@ -85,7 +91,7 @@ const GamePage = () => {
           board={roomDetail.gameState.board}
           clickHandler={clickHandler}
         />
-
+        {/* <p>{JSON.stringify(roomDetail)}</p> */}
         {/* <button onClick={resetHandler}>
           Reset
         </button> */}
@@ -94,6 +100,14 @@ const GamePage = () => {
         <h1>waiting for player 2</h1>
       }
     </div>
+      {
+        roomDetail && roomDetail.gameState.isOver == true ?
+        <div className="d-flex justify-content-center">
+          <FinishAnnouncement handleRematch={HandleRematch} message={roomDetail.gameState.message}></FinishAnnouncement>
+        </div>
+        :
+        ""
+      }
     </>
   );
 }

@@ -1,12 +1,16 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
+import LeaderBoard from './LeaderBoard'
 const NavbarTop = ({username}) => {
   return (
     <nav class="navbar navbar-light bg-light">
       <div>
-        <h5>DAKONAN</h5>
+        <Link to="/room">
+          <h5>DAKONAN</h5>
+        </Link>
       </div>
-      <div>
+      <div className="d-flex justify-content-between">
+        <LeaderBoard></LeaderBoard>
         <h5>{`Hi ${username.toUpperCase()}`}</h5>
       </div>
 
