@@ -7,6 +7,10 @@ import { makeMove, emptyHomes } from '../utils'
 import io from 'socket.io-client'
 import { gameStart, updateGameDetail } from '../redux/actions'
 import {useParams} from 'react-router-dom'
+import fullPageImage from '../assets/GameContainer.png'
+import decoration from '../assets/decoration.png'
+import NavbarTop from '../components/Navbar'
+
 const socket = io('http://localhost:4000')
 
 // const START_AMOUNT = 4
@@ -21,6 +25,7 @@ const socket = io('http://localhost:4000')
 const GamePage = () => {
   const dispatch = useDispatch()
   const {name} = useParams()
+  const username = useSelector(state => state.players.name)
   // const [state, setState] = useState(Object.assign({}, intialState))
   const roomDetail = useSelector(state => state.rooms.detail)
   const loading = useSelector(state => state.rooms.loading)
@@ -37,20 +42,44 @@ const GamePage = () => {
   }
 
   return (
-    <div className="App">
+    <>
+    <NavbarTop username={username}></NavbarTop>
+    <div className="App" style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'relative',
+      top: '5vh',
+      // backgroundColor:'blue',
+      height: '80vh'
+    }}>
       {
         !loading ?
         <h1>Loading</h1>
         :
         roomDetail.name ?
         <>
-        <Header />
+        {/* <Header /> */}
 
         <StatusBar
           player={roomDetail.gameState.player}
           isOver={roomDetail.gameState.isOver}
           message={roomDetail.gameState.message}
         />
+{/* 
+        <div className="decoration">
+          <img src={decoration} />
+        </div> */}
+
+        <div className="fullPageImage" style={{
+          // backgroundColor: 'red'
+        }}>
+          <img src={fullPageImage} style={{
+            maxWidth: '1095px',
+            height: '90vh',
+            width: '200vw '
+          }}/>
+        </div>
 
         <Board
           board={roomDetail.gameState.board}
@@ -64,8 +93,8 @@ const GamePage = () => {
         :
         <h1>waiting for player 2</h1>
       }
-      <p>{JSON.stringify(roomDetail)}</p>
     </div>
+    </>
   );
 }
 
