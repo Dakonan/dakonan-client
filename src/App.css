@@ -1,0 +1,42 @@
+.pebble {
+  border: 1px solid white;
+  border-radius: 60px;
+  width: 15px;
+  height: 15px;
+  /* margin: 2px; */
+}
+
+.bowl {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid whitesmoke;
+  border-radius: 89px;
+  width: 120px;
+  height: 120px;
+  padding: 5px;
+}
+.big-bowl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 120px;
+  width: 100px;
+  height: 200px;
+}
+.board {
+  position: absolute;
+  top: 25vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #121013;
+  height: 280px;
+  border-radius: 100px;
+}

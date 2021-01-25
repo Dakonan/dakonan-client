@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header'
-import Board from '../components/Board'
-import StatusBar from '../components/StatusBar'
+import { Header, Board, StatusBar, NavbarTop } from '../components'
 import {useDispatch, useSelector} from 'react-redux'
 import { makeMove, emptyHomes } from '../utils'
 import io from 'socket.io-client'
@@ -27,7 +25,6 @@ const GamePage = () => {
   const dispatch = useDispatch()
   const {name} = useParams()
   const username = useSelector(state => state.players.name)
-  // const [state, setState] = useState(Object.assign({}, intialState))
   const roomDetail = useSelector(state => state.rooms.detail)
   const loading = useSelector(state => state.rooms.loading)
   const [turn, setTurn] = useState(false)
@@ -37,6 +34,8 @@ const GamePage = () => {
   }, [turn])
 
   function clickHandler (i) {
+    const board = {...roomDetail.gameState}
+    const newState = makeMove(i)(board)
     const gameDetail = {...roomDetail.gameState}
     const newState = makeMove(i)(gameDetail)
     setTurn(!turn)
@@ -100,6 +99,7 @@ const GamePage = () => {
         <h1>waiting for player 2</h1>
       }
     </div>
+
       {
         roomDetail.name && roomDetail.gameState.isOver == true ?
         <div className="d-flex justify-content-center">

@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage'
 import Room from './pages/Room'
 import GamePage from './pages/GamePage'
 import WaitingRoom from './pages/WaitingRoom'
+import './App.css'
 
 function App() {
   return (

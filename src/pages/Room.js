@@ -14,28 +14,28 @@ const Room = () => {
   },[dispatch])
 
   const handleCreateRoom = (roomName) => {
-      let payload = {
-          roomName,
-          username
-      }
-      dispatch(createRoom(payload))
-      history.push(`/game/${roomName}`)
+    let payload = {
+      roomName,
+      username
+    }
+    dispatch(createRoom(payload))
+    history.push(`/game/${roomName}`)
   }
 
   return (
     <>
     <NavbarTop username={username}></NavbarTop>
     <div className="container">
-        <div className="container room-body">
-            <div className="row">
-                <div className='col-lg-5 col-sm-12'>
-                    <JoinBox></JoinBox>
-                </div>
-                <div className="col-lg-7 col-sm-12">
-                    <RoomList handleCreateRoom={handleCreateRoom}></RoomList>
-                </div>
-            </div>
+      <div className="container room-body">
+        <div className="row">
+          <div className='col-lg-5 col-sm-12'>
+            <JoinBox></JoinBox>
+          </div>
+          <div className="col-lg-7 col-sm-12">
+            <RoomList handleCreateRoom={handleCreateRoom}></RoomList>
         </div>
+      </div>
+      </div>
     </div>
     </>
   )
