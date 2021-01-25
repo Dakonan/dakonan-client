@@ -6,7 +6,7 @@ const Board = ({ board, clickHandler }) => {
   const boardWithIndexes = board.map((n, i) => ({ count: n, index: i }))
 
   const player1Holes = boardWithIndexes.slice(0, 6)
-  const player2Holes = boardWithIndexes.slice(7, 13)
+  const player2Holes = boardWithIndexes.slice(7, 13).reverse()
 
   const player1Home = board[6]
   const player2Home = board[13]
@@ -15,12 +15,13 @@ const Board = ({ board, clickHandler }) => {
     <div className="board">      
       <BigHole
         className="big-bowl"
-        pebbles={player1Home}
+        pebbles={player2Home}
+        bgColor="#f58634"
       />
       <div>
         <div className="d-flex">
           {
-            player1Holes.map((holeObject, idx) => (
+            player2Holes.map((holeObject, idx) => (
               <Hole
                 bgColor="#f58634"
                 pebbles={holeObject.count}
@@ -32,8 +33,9 @@ const Board = ({ board, clickHandler }) => {
         </div>
         <div className="d-flex">
           {
-            player2Holes.map((holeObject, idx) => (
-              <Hole bgColor="#eb596e"
+            player1Holes.map((holeObject, idx) => (
+              <Hole 
+                bgColor="#eb596e"
                 pebbles={holeObject.count}
                 key={"player2" + idx}
                 onClick={() => clickHandler(holeObject.index)}
@@ -44,7 +46,8 @@ const Board = ({ board, clickHandler }) => {
       </div>
       <BigHole
         className="big-bowl"
-        pebbles={player2Home}
+        pebbles={player1Home}
+        bgColor="#eb596e"
       />
     </div>
   )

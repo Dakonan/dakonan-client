@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header'
-import Board from '../components/Board'
-import StatusBar from '../components/StatusBar'
+import { Header, Board, StatusBar, NavbarTop } from '../components'
 import {useDispatch, useSelector} from 'react-redux'
 import { makeMove, emptyHomes } from '../utils'
 import io from 'socket.io-client'
@@ -9,7 +7,6 @@ import { gameStart, updateGameDetail } from '../redux/actions'
 import {useParams} from 'react-router-dom'
 import fullPageImage from '../assets/GameContainer.png'
 import decoration from '../assets/decoration.png'
-import NavbarTop from '../components/Navbar'
 
 const socket = io('http://localhost:4000')
 
@@ -26,7 +23,6 @@ const GamePage = () => {
   const dispatch = useDispatch()
   const {name} = useParams()
   const username = useSelector(state => state.players.name)
-  // const [state, setState] = useState(Object.assign({}, intialState))
   const roomDetail = useSelector(state => state.rooms.detail)
   const loading = useSelector(state => state.rooms.loading)
   const [turn, setTurn] = useState(false)
@@ -34,7 +30,6 @@ const GamePage = () => {
     dispatch(updateGameDetail())
   }, [turn])
 
-  // console.log(roomDetail.gameState.board)
   function clickHandler (i) {
     const board = {...roomDetail.gameState}
     const newState = makeMove(i)(board)

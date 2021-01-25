@@ -1,5 +1,4 @@
 import { Pebble } from '.'
-import { Motion, spring } from 'react-motion'
 
 export default function BigHole ({ bgColor = "whitesmoke", pebbles = 0 }) {
   return (

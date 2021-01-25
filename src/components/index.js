@@ -5,7 +5,7 @@ import Hole from './Hole'
 import inputField from './inputField'
 import JoinBox from './JoinBox'
 import ModalLogin from './ModalLogin'
-import Navbar from './Navbar'
+import NavbarTop from './Navbar'
 import Pebble from './Pebble'
 import RoomCard from './RoomCard'
 import RoomList from './RoomList'
@@ -19,7 +19,7 @@ export {
   inputField,
   JoinBox,
   ModalLogin,
-  Navbar,
+  NavbarTop,
   Pebble,
   RoomCard,
   RoomList,

@@ -1,7 +1,16 @@
-import { Motion, spring } from 'react-motion'
 import { Pebble } from '.'
+import { range } from 'lodash'
+
+const springConfig =  {stiffness: 120, damping: 14}
 
 export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) {
+
+  const pebblesOrganizer = (idx) => {
+    const row = idx % 4
+    const col = Math.floor(idx/4)
+    return { row, col }
+  }
+
   return (
     <div 
       className="bowl"
@@ -9,9 +18,11 @@ export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) 
       onClick={onClick}
     >
       {
-       pebbles
-        ? [...Array(pebbles)].map((_, key) => (
-          <Pebble key={"player1" + key} bgColor="#456990" />
+        pebbles
+        ? range(pebbles).map((_, idx) => (
+          <div className="col-1">
+            <Pebble />
+          </div>
         ))
         : null
       }
