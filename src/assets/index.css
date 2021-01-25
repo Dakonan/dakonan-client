@@ -50,44 +50,112 @@ code {
   }
 }
 
+.nav {
+  z-index: 100;
+}
 /* board */
-
-.board {
-  margin: 2em auto;
-  background: var(--board-colour);
-  width: 50%;
-  height: 4em;
-  padding: 1em;
+.rectangle {
   display: flex;
+  justify-content: center;
+}
+.board {
+  top: 0;
+  width: 92%;
+  height: 4em;
+  padding: 2px;
+  display: flex;
+  position: absolute;
+  z-index: 3;
 }
 
-.home {
-  width: 15%;
+.home-1 {
+  top: 19vw;
+  right: 20.5vw;
+  width: 12%;
+  position: absolute;
   border-radius: 100%;
-  background: var(--hole-colour);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 5;
+}
+.home-2 {
+  top: 19vw;
+  left: 20vw;
+  width: 12%;
+  position: absolute;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
 }
 
 .holes-section {
-  width: 70%;
+  position: absolute;
+  top: 14.5vw;
+  left: 30vw;
+  /* width: 50%; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 5;
 }
 
-.holes-container {
+.holes-container-1 {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  margin-top: 7.5vw;
 }
 
+.holes-container-2 {
+  display: flex;
+  justify-content: center;
+}
 .hole {
   width: 2em;
   height: 1.5em;
+  margin-right: 2.6rem;
   border-radius: 100%;
-  background: var(--hole-colour);
+  /* background: var(--hole-colour); */
+  /* background-color: red; */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* .fullPageImage {
+  background-color: red;
+  position: absolute;
+  top: 5px;
+  left: 230px;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+} */
+
+/* .fullPageImage img {
+  background-color: red;
+  height: 970px;
+} */
+
+.decoration img {
+  width: 1000px;
+  position: absolute;
+  z-index: 0;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  right: 0px;
+  bottom: 0px;
+}
+
+.rectangle {
+  border: 3px solid;
+  height: 42px;
+  width: 250px;
+  background-color: white;
+  position: absolute;
+  z-index: 2;
+  left: 22vh;
+  top: 68px;
 }
