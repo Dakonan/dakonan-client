@@ -8,7 +8,7 @@ const NavbarTop = ({username}) => {
     history.push('/')
   }
   return (
-    <nav class="navbar navbar-light bg-light">
+    <nav className="navbar navbar-light bg-light">
       <div>
         <Link to="/room">
           <h5>DAKONAN</h5>

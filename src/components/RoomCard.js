@@ -27,8 +27,8 @@ const RoomCard = ({rooms, username}) => {
             <div class="col-md-12">
             <div class="card-body ">
               <div className="d-flex justify-content-center">
-                <h4 class="card-title mr-2">{`${room.name}`}</h4>
-                <p class="card-text">{`(by ${room.admin})`}</p>
+                <h4 className="card-title mr-2">{`${room.name}`}</h4>
+                <p className="card-text">{`(by ${room.admin})`}</p>
               </div>
               {
                   room.users.length > 0 ?

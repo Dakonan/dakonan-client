@@ -1,32 +1,47 @@
 import { Pebble } from '.'
 import { range } from 'lodash'
-
-const springConfig =  {stiffness: 120, damping: 14}
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { pebblesOrganizer } from '../helpers'
+// const maxPebbleEachLayer = [0, 6, 10, 16, 17]
+// const baseRadius = 15
 
 export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) {
-  const pebblesOrganizer = (idx) => {
-    const row = idx % 4
-    const col = Math.floor(idx/4)
-    return { row, col }
+  const [scale, setScale] = useState(1)
+  
+  const clickHandler = () => {
+    setScale(1.5)
+    setTimeout(onClick, 500)
+    setTimeout(setScale, 300, 1)
   }
-
   return (
-    <div 
-      className="bowl"
-      style={{backgroundColor: bgColor}}
-      onClick={onClick}
+    <motion.div 
+      animate={{ scale }}
+      transition={{
+        type: "spring",
+        damping: 10,
+        stiffness: 200
+      }}
     >
-      {
-        pebbles
-        ? 
-        <div className="pebble-container" >
-        {range(pebbles).map((_, idx) => (
-            <Pebble idx={idx} />
-        ))
+      <div 
+        className="bowl"
+        style={{backgroundColor: bgColor}}
+        onClick={clickHandler}
+      >
+        {
+          pebbles
+          ? range(pebbles).map((_, idx) => (
+            <motion.div
+              animate={pebblesOrganizer(idx)}
+            >
+              <Pebble key={idx} 
+                isBigHole={false}
+              />
+            </motion.div>
+          ))
+          : null
         }
-        </div>
-        : null
-      }
-    </div>
+      </div>
+    </motion.div>
   )
 }
