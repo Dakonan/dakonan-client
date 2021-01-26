@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import { createPlayer } from '../redux/actions'
-import {Modal, Button} from 'react-bootstrap'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+
 const LoginPage = () => {
   const history = useHistory()
   const dispatch = useDispatch()
@@ -10,6 +12,7 @@ const LoginPage = () => {
     username: '',
     password: ''
   })
+
   const handleChange = (e) => {
     const name = e.target.name
     const value = e.target.value
@@ -24,13 +27,36 @@ const LoginPage = () => {
         username: formInput.username,
         password: formInput.password
     }
-    dispatch(createPlayer(payload))
-    history.push('/room')
+    axios({
+      url: `/login`,
+      method: 'POST',
+      data: payload
+    })
+      .then(res => {
+        localStorage.setItem('access_token', res.data.access_token)
+        localStorage.setItem('username', payload.username)
+        dispatch(createPlayer(payload))
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Login Success',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        history.push('/room')
+      })
+      .catch(err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message
+        })
+      })
   }
   return (
       <div>
         <div className="container">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <div className="form-group">
               <label >USERNAME</label>
               <input name="username" type="text" className="form-control" placeholder="Enter Your Username"

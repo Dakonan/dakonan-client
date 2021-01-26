@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 
 const JoinBox = () => {
   const [searchRoom, setSearchRoom] = useState('')
-  const username = useSelector(state => state.players.name)
+  const username = localStorage.username
   let rooms = useSelector(state => state.rooms.data)
   const targetRoom = rooms.filter(room => {
       return room.name.toLowerCase() === searchRoom.toLowerCase()

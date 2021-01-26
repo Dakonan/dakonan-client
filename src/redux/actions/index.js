@@ -1,6 +1,36 @@
-// import { useHistory } from 'react-router-dom'
 import io from 'socket.io-client'
+import axios from 'axios'
+import Swal from 'sweetalert2'
 const socket = io('http://localhost:4000')
+
+export const register = (payload) => (dispatch) => {
+  axios({
+    url: `/register`,
+    method: 'POST',
+    data: payload
+  })
+    .then(res => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Login Success',
+        showConfirmButton: false,
+        timer: 1000
+      })
+      dispatch(setPlayer(payload))
+    })
+    .catch(err => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: err.response.data.message,
+        showConfirmButton: false,
+        timer: 1000
+      })
+      console.log(err)
+    })
+
+}
 
 export const setPlayer = (payload) => {
   return {
@@ -9,7 +39,7 @@ export const setPlayer = (payload) => {
   }
 }
 export const getPlayer = () => () => {
-  
+
 }
 
 export const insertPlayerName = (payload) => {
@@ -88,14 +118,9 @@ export const setStart = () => {
   }
 }
 
-export const emitStartGame = (roomName) => (dispatch) => {
-  socket.emit('startGame', roomName)
-  dispatch(startGameAnnounce())
-}
-
 export const startGameAnnounce = () => (dispatch) => {
   socket.on('start-Game', (roomName) => {
-      dispatch(setStart())
+    dispatch(setStart())
   })
 }
 
@@ -106,8 +131,25 @@ export const gameStart = (state, roomName) => (dispatch) => {
 }
 
 export const updateGameDetail = () => (dispatch) => {
+  // console.log('di update game detail')
   socket.on('gameDetail', payload => {
-      dispatch(setRoomDetail(payload))
-      dispatch(doneLoading)
+    // console.log(payload, 'isi payload di game detail')
+    dispatch(setRoomDetail(payload))
+    dispatch(doneLoading)
   })
+}
+
+export const readyToPlay = (roomName) => (dispatch) => {
+  socket.emit('readyToPlay', roomName)
+  dispatch(updateGameDetail())
+}
+export const readyToRematch = (state, roomName) => (dispatch) => {
+  // console.log(state, roomName, 'di ready to rematch')
+  socket.emit('readyToRematch', state, roomName)
+  dispatch(updateGameDetail())
+}
+
+export const leaveRoom = (roomName, username) => (dispatch) => {
+  socket.emit('leaveRoom', roomName, username)
+  dispatch(getRoomDetail())
 }

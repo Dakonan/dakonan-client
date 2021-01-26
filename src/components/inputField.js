@@ -14,7 +14,7 @@ const InputField = ({handleSubmit, section}) => {
     return (
         <div className="d-flex justify-content-center">
             <form onSubmit={handleInputSubmit}>
-                <input onChange={handleInputRoomName} type="text" />
+                <input onChange={handleInputRoomName} type="text" required />
                 {
                     section === 'join' ?
                     <button type="submit" className="btn-dark">Search</button>
