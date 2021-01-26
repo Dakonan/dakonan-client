@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import { createPlayer } from '../redux/actions'
@@ -12,6 +12,7 @@ const LoginPage = () => {
     username: '',
     password: ''
   })
+
   const handleChange = (e) => {
     const name = e.target.name
     const value = e.target.value
@@ -32,14 +33,13 @@ const LoginPage = () => {
       data: payload
     })
       .then(res => {
-        console.log(res.data)
         localStorage.setItem('access_token', res.data.access_token)
         localStorage.setItem('username', payload.username)
         dispatch(createPlayer(payload))
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'Your work has been saved',
+          title: 'Login Success',
           showConfirmButton: false,
           timer: 1000
         })
@@ -56,7 +56,7 @@ const LoginPage = () => {
   return (
       <div>
         <div className="container">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <div className="form-group">
               <label >USERNAME</label>
               <input name="username" type="text" className="form-control" placeholder="Enter Your Username"

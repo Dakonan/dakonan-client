@@ -31,12 +31,6 @@ const RegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(allPlayer)
-    // let isTakenUsername
-    // isTakenUsername = allPlayer.findIndex(player => {
-    //   return player.username === formInput.username
-    // })
-
     let errorsMessage = false
     let newError = {
       title: false,
@@ -70,6 +64,7 @@ const RegisterPage = () => {
         username: formInput.username,
         password: formInput.password
       }
+      console.log(payload);
       dispatch(register(payload))
     }
 
