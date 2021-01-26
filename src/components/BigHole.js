@@ -1,4 +1,6 @@
 import { Pebble } from '.'
+import { motion } from 'framer-motion'
+import { pebblesOrganizer } from '../helpers'
 
 export default function BigHole ({ bgColor = "whitesmoke", pebbles = 0 }) {
   return (
@@ -6,11 +8,15 @@ export default function BigHole ({ bgColor = "whitesmoke", pebbles = 0 }) {
       {
        pebbles
         ? [...Array(pebbles)].map((_, key) => (
-          <Pebble 
-            key={"player1" + key}
-            bgColor="#456990"
-            idx={_}
-          />
+          <motion.div
+            animate={pebblesOrganizer(key)}
+          >
+            <Pebble 
+              key={key}
+              bgColor="#456990"
+              isBigHole={true}
+            />
+          </motion.div>
         ))
         : null
       }
