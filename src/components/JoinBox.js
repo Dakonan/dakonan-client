@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import InputField from './inputField'
+import { useState } from 'react'
+import InputField from './InputField'
 import RoomCard from './RoomCard'
 import {useSelector} from 'react-redux'
 

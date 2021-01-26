@@ -1,12 +1,10 @@
-import React, { useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { createRoom, updateRoom } from '../redux/actions'
-import RoomList from '../components/RoomList'
-import JoinBox from '../components/JoinBox'
+import { useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { createRoom, updateRoom, updatedRoom } from '../redux/actions'
+import { RoomList, JoinBox, NavbarTop, CustomButton } from '../components'
 import { useHistory } from 'react-router-dom'
-import NavbarTop from '../components/Navbar'
 import Swal from 'sweetalert2'
-import { updatedRoom } from '../redux/actions'
+
 const Room = () => {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -50,7 +48,6 @@ const Room = () => {
     }
 
   }
-    
 
   return (
     <>
@@ -59,10 +56,10 @@ const Room = () => {
       <div className="container room-body">
         <div className="row">
           <div className='col-lg-5 col-sm-12'>
-            <JoinBox></JoinBox>
+            <JoinBox />
           </div>
           <div className="col-lg-7 col-sm-12">
-            <RoomList handleCreateRoom={handleCreateRoom}></RoomList>
+            <RoomList handleCreateRoom={handleCreateRoom} />
         </div>
       </div>
       </div>

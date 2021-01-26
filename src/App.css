@@ -32,3 +32,9 @@
   height: 280px;
   border-radius: 100px;
 }
+.anchor-wrapper:hover {
+  cursor: pointer;
+}
+.btn-logout:hover {
+  cursor: pointer;
+}

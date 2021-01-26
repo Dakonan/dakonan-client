@@ -1,8 +1,7 @@
 import BigHole from './BigHole'
 import Board from './Board'
-import Header from './Header'
 import Hole from './Hole'
-import inputField from './inputField'
+import InputField from './InputField'
 import JoinBox from './JoinBox'
 import ModalLogin from './ModalLogin'
 import NavbarTop from './Navbar'
@@ -11,14 +10,17 @@ import RoomCard from './RoomCard'
 import RoomList from './RoomList'
 import StatusBar from './StatusBar'
 import CustomButton from './CustomButton'
+import AnchorWrapper from './AnchorWrapper'
+import LeaderBoard from './LeaderBoard'
 
 export {
+  LeaderBoard,
+  AnchorWrapper,
   CustomButton,
   BigHole,
   Board,
-  Header,
   Hole,
-  inputField,
+  InputField,
   JoinBox,
   ModalLogin,
   NavbarTop,

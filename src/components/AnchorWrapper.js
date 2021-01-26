@@ -3,21 +3,26 @@ import { motion } from 'framer-motion'
 const button = {
   rest: { scale: 1 },
   hover: { scale: 1.3 },
-  pressed: { scale: 2 }
+  pressed: { 
+    scale: 2, 
+    rotate: 360,
+    transition: { duration: 0.4 } }
 };
 
-export default function CustomButton ({ style, onClick, children, className }) {
+export default function AnchorWrapper ({
+  className, style, children, onClick
+}) {
   return (
-    <motion.button
+     <motion.div
       variants={button}
       initial="rest"
       whileHover="hover"
       whileTap="pressed"
       onClick={onClick}
       style={style}
-      className={className}
+      className={`${className} anchor-wrapper`}
     >
       { children }
-    </motion.button>
+    </motion.div>
   )
 }
