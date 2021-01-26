@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import { createPlayer } from '../redux/actions'
-import {Modal, Button} from 'react-bootstrap'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 

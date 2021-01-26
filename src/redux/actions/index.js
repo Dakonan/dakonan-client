@@ -3,7 +3,6 @@ import axios from 'axios'
 const socket = io('http://localhost:4000')
 
 export const register = (payload) => (dispatch) => {
-  console.log('di register')
   axios({
     url: `/register`,
     method: 'POST',
