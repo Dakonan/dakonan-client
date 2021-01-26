@@ -1,11 +1,11 @@
-const indexes = [0, 6, 14, 16, 17]
 const baseRadius = 15
-const maxPebbleEachLayer = []
+const angleDivider = [0, 6, 12, 17, 10]
+const indexes = [0, 6, 18, 35, 17]
 
 const angleGenerator = (idx, radius) => {
   const layer = radius / baseRadius
-  const orderInThatLayer = maxPebbleEachLayer[layer] - idx
-  const angle = (360 * orderInThatLayer) / maxPebbleEachLayer[layer]
+  const orderInThatLayer = angleDivider[layer] - idx
+  const angle = (360 * orderInThatLayer) / angleDivider[layer]
   return angle
 }
 
@@ -15,7 +15,6 @@ const radiusGenerator = (idx) => {
   else if (idx <= indexes[2]) layer = 2
   else if (idx <= indexes[3]) layer = 3
   else layer = 4
-  
   return layer * baseRadius
 }
 

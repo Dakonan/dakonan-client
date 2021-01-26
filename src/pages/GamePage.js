@@ -80,6 +80,7 @@ const GamePage = () => {
         <Board
           board={roomDetail.gameState.board}
           clickHandler={clickHandler}
+            roomDetail={roomDetail}
         />
         {/* <p>{JSON.stringify(roomDetail)}</p> */}
         {/* <button onClick={resetHandler}>
