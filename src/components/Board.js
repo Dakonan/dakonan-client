@@ -1,9 +1,10 @@
+import { set } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { BigHole, Hole } from '.'
 
 const Board = ({ board, clickHandler }) => {  
   const [localBoard, setLocalBoard] = useState(board)
-  const [light, setLight] = useState(NaN)
+  const [light, setLight] = useState([]) //array of index where holes have white background
 
   useEffect(() => {
     setLocalBoard(board)
@@ -21,7 +22,6 @@ const Board = ({ board, clickHandler }) => {
       setLocalBoard(localBoard =>
         localBoard.map((num, i) => {
           if (i === currentIndex && i !== 6) {
-            console.log('tambah satu', currentIndex, i)
             return num + 1
           }
           return num
@@ -32,21 +32,66 @@ const Board = ({ board, clickHandler }) => {
 
   const lightController = (nextIndex, number) => {
     const index = nextIndex - 1
+
     const timeout = setInterval(() => {
       if (number <= 0) {
-        setLight(NaN)
-        clickHandler(index)
+        setLight([])
+        clickHandler(index) //request to server
         clearInterval(timeout)
-      }else if (nextIndex !== index) {
-        setLight(nextIndex)
+      } else if (number === 1) {
+        if (couldHijack(index, nextIndex)) {
+          const homeIndex = index < 6 ? 6 : 13
+          const hijackedIndex = 12 - nextIndex
+          setLight([homeIndex, hijackedIndex, nextIndex])
+          setTimeout(() => {
+            hijacker(nextIndex, hijackedIndex, homeIndex)
+            number--
+          }, 600)
+        } else {
+          setLight([nextIndex])
+          setTimeout(() => {
+            pebblesAdder(index, nextIndex)
+            number--
+          }, 600)
+        } 
+      } else {
+        setLight([nextIndex])
         setTimeout(() => {
           pebblesAdder(index, nextIndex)
           number--
           nextIndex++
-        }, 600);
+        }, 600)
       }
       if (nextIndex === 14 ) nextIndex = 0
     }, 1000)
+  }
+  
+
+  const couldHijack = (clickedIndex, lastIndex) => {
+   const allowedIndexToHijack = clickedIndex < 6
+      ? [7, 8, 9, 10, 11, 12]
+      : [0, 1, 2, 3, 4, 5]
+    // list of allowed index to hijact
+    if (!allowedIndexToHijack.includes(lastIndex) && !localBoard[lastIndex]) return true
+    return false
+  }
+
+  const hijacker = (nextIndex, hijackedIndex, homeIndex) => {
+    const currentPlayerNumber = localBoard[nextIndex]
+    const enemyNumber = localBoard[hijackedIndex]
+
+    setLocalBoard(localBoard => 
+      localBoard.map((num, idx) => {
+        if (idx === hijackedIndex || idx === nextIndex) {
+          return 0
+        }
+        else if (idx == homeIndex) {
+          return localBoard[homeIndex] + currentPlayerNumber + enemyNumber
+        } else {
+          return num
+        }
+      })
+    )    
   }
 
   const boardClickHandler = (index, number) => {
@@ -54,16 +99,7 @@ const Board = ({ board, clickHandler }) => {
       if (i === index) return 0
       return num
     }))
-    
-    if (number === 1) {
-      let idx = index < 6 ? 6 : 13
-      setLight(idx)
-      setTimeout(() => { pebblesAdder(index, idx) }, 600)
-      clickHandler(index)
-    } else if (number > 1) {
-      lightController(index + 1, number)
-    }
-    
+    lightController(index + 1, number)
   }
 
   return (
@@ -71,14 +107,14 @@ const Board = ({ board, clickHandler }) => {
       <BigHole
         className="big-bowl"
         pebbles={localBoard[13]}
-        bgColor={light === 13 ? "whitesmoke" : "#f58634"}
+        bgColor={light.includes(13) ? "whitesmoke" : "#f58634"}
       />
       <div>
         <div className="d-flex">
           {
             localBoard.slice(7, 13).reverse().map((number, idx) => (
               <Hole
-                bgColor={light === 12-idx ? "whitesmoke" :"#f58634"}
+                bgColor={light.includes(12-idx) ? "whitesmoke" :"#f58634"}
                 pebbles={number}
                 key={"player2" + idx}
                 onClick={() => boardClickHandler(12-idx, number)}
@@ -90,7 +126,7 @@ const Board = ({ board, clickHandler }) => {
           {
             localBoard.slice(0, 6).map((number, idx) => (
               <Hole 
-                bgColor={light === idx ? "whitesmoke" : "#eb596e"}
+                bgColor={light.includes(idx) ? "whitesmoke" : "#eb596e"}
                 pebbles={number}
                 key={"player1" + idx}
                 onClick={() => boardClickHandler(idx, number)}
@@ -102,7 +138,7 @@ const Board = ({ board, clickHandler }) => {
       <BigHole
         className="big-bowl"
         pebbles={localBoard[6]}
-        bgColor={light === 6 ? "whitesmoke" : "#eb596e"}
+        bgColor={light.includes(6) ? "whitesmoke" : "#eb596e"}
       />
     </div>
   )
