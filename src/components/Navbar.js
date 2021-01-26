@@ -16,7 +16,7 @@ const NavbarTop = ({username}) => {
       </div>
       <div className="d-flex justify-content-between">
         <LeaderBoard></LeaderBoard>
-        <h5>{`${username.toLowerCase()}`}</h5>
+        {/* <h5>{`${username.toLowerCase()}`}</h5> */}
         <div onClick={() => logout()} className="btn-logout">
         <i class="fas fa-sign-out-alt"></i>
         <span className="tooltiptext">logout</span>

@@ -70,6 +70,7 @@ const RegisterPage = () => {
         username: formInput.username,
         password: formInput.password
       }
+      console.log(payload);
       dispatch(register(payload))
     }
 
