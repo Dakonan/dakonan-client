@@ -39,12 +39,11 @@ const LoginPage = () => {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'Your work has been saved',
+          title: 'Login Success',
           showConfirmButton: false,
           timer: 1000
         })
         history.push('/room')
-
       })
       .catch(err => {
         Swal.fire({

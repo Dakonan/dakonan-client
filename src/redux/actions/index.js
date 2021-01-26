@@ -1,5 +1,6 @@
 import io from 'socket.io-client'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 const socket = io('http://localhost:4000')
 
 export const register = (payload) => (dispatch) => {
@@ -9,9 +10,23 @@ export const register = (payload) => (dispatch) => {
     data: payload
   })
     .then(res => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Login Success',
+        showConfirmButton: false,
+        timer: 1000
+      })
       dispatch(setPlayer(payload))
     })
     .catch(err => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: err.response.data.message,
+        showConfirmButton: false,
+        timer: 1000
+      })
       console.log(err)
     })
 
