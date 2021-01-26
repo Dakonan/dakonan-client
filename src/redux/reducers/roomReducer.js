@@ -1,6 +1,7 @@
 const initialState = {
   data: [],
   detail: {},
+  leaderBoard: [],
   loading: true,
   start: false
 }
@@ -16,6 +17,8 @@ const roomsReducer = (state = initialState, action) => {
           return {...state, loading: true}
       case "DONELOADING":
           return {...state, loading: false}
+      case "GETLEADERBOARD":
+          return {...state, leaderBoard: action.payload}
       default: 
           return state
   }

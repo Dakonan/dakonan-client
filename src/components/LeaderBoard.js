@@ -1,16 +1,24 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {getLeaderBoard} from '../redux/actions'
 import {Modal, Button} from 'react-bootstrap'
 
-
 const LeaderBoard = () => {
+const dispatch = useDispatch()
 const [show, setShow] = useState(false);
 const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
+const handleShow = () => setShow(true)
+const leaderBoard = useSelector(state => state.rooms.leaderBoard)
+
+useEffect(() => {
+  dispatch(getLeaderBoard())
+  // console.log(leaderBoard)
+}, [show])
 
 return (
   <>
   <div className="btn-leaderboard" onClick={handleShow}>
-      <i class="fas fa-medal"></i>
+      <i className="fas fa-medal"></i>
       <span>leaderboard</span>
   </div>
   {/* <Button variant="primary">
@@ -18,7 +26,7 @@ return (
   </Button> */}
 
   <Modal show={show} onHide={handleClose}>
-    <div class="leaderboard">
+    <div className="leaderboard">
     <header>
       <h1><strong>Leader Board</strong></h1>
       {/* <img src="https://i.imgur.com/xUSrEpd.png" alt=""></img> */}
@@ -26,55 +34,25 @@ return (
     <table>
       <thead>
         <tr>
-          <th class="rank"></th>
-          <th class="username">Username</th>
-          <th class="match">Match</th>
-          <th class="winrate">Winrate</th>
+          <th className="rank"></th>
+          <th className="username">Username</th>
+          <th className="match">Match</th>
+          <th className="winrate">Winrate</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="rank">1</td>
-          <td class="username">Bagus</td>
-          <td class="match">testMatch</td>
-          <td class="winrate">70%</td>
-        </tr>
-        <tr>
-          <td class="rank">2</td>
-          <td class="username">Temon</td>
-          <td class="match">testMatch</td>
-          <td class="winrate">70%</td>
-        </tr>
-        <tr>
-          <td class="rank">4</td>
-          <td class="username">Ucup</td>
-          <td class="match">testMatch</td>
-          <td class="winrate">70%</td>
-        </tr>
-        <tr>
-          <td class="rank">5</td>
-          <td class="username">Ucup</td>
-          <td class="match">testMatch</td>
-          <td class="winrate">70%</td>
-        </tr>
-        <tr>
-          <td class="rank">6</td>
-          <td class="username">Ucup</td>
-          <td class="match">testMatch</td>
-          <td class="winrate">70%</td>
-        </tr>
-        <tr>
-          <td class="rank">7</td>
-          <td class="username">Ucup</td>
-          <td class="match">testMatch</td>
-          <td class="winrate">70%</td>
-        </tr>
-        <tr>
-          <td class="rank">8</td>
-          <td class="username">Ucup</td>
-          <td class="match">testMatch</td>
-          <td class="winrate">70%</td>
-        </tr>
+        {
+          leaderBoard.map((data, index) => {
+            return (
+              <tr>
+                <td className="rank">{index+1}</td>
+                <td className="username">{data.username}</td>
+                <td className="match">{data.matchCount}</td>
+                <td className="winrate">{data.winRate}%</td>
+              </tr>
+            )
+          })
+        }
       </tbody>
     </table>
   </div>
