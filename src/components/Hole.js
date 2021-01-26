@@ -1,11 +1,10 @@
 import { Pebble } from '.'
 import { range } from 'lodash'
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) {
   const [scale, setScale] = useState(1)
-  const [pos, setPos] = useState({ x: 0, y: 0 })
 
   const pebblesOrganizer = (idx) => {
     const row = idx % 4
@@ -17,17 +16,6 @@ export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) 
     setTimeout(onClick, 500)
     setTimeout(setScale, 300, 1)
   }
-
-  useEffect(() => {
-    if (pos.x !== 0 || pos.y !== 0) {
-      setTimeout(setPos, 500, {x: 0, y: 0})
-    }
-  }, [pos])
-
-  useEffect(() => {
-    setPos({x: Math.random() * 3, y: Math.random() * 3})
-  }, [])
-
   return (
     <motion.div 
       animate={{ scale }}
@@ -42,17 +30,13 @@ export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) 
         style={{backgroundColor: bgColor}}
         onClick={clickHandler}
       >
-      <motion.div 
-        animate={{ translateX: pos.x, translateY: pos.y }}
-      >
         {
           pebbles
           ? range(pebbles).map((_, idx) => (
-            <Pebble />
+            <Pebble key={idx + toString(8)} />
           ))
           : null
         }
-      </motion.div>
       </div>
     </motion.div>
   )
