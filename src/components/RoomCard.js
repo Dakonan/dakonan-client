@@ -52,9 +52,23 @@ const RoomCard = ({rooms, username}) => {
               }
               {
                 room.users.length === 2 ?
-                <button className="btn btn-danger">Full</button>
+                <button style={{
+                  backgroundColor: '#red',
+                  borderRadius: '20px',
+                  width: '80px',
+                  height: '40px',
+                  color: 'black',
+                  border: '3px solid black'
+                }} className="btn btn-danger">Full</button>
                 :
-              <button onClick={() => handleJoin(username, room.name)}>Join</button>
+              <button style={{
+                backgroundColor: '#ffc107',
+                borderRadius: '20px',
+                width: '80px',
+                height: '40px',
+                color: 'black',
+                border: '3px solid black'
+              }} onClick={() => handleJoin(username, room.name)}>Join</button>
               }
             </div>
             </div>

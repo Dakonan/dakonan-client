@@ -1,5 +1,6 @@
 import React from 'react'
 import ModalLogin from '../components/ModalLogin'
+import LeaderBoard from '../components/LeaderBoard'
 
 import man from '../assets/man.png'
 import logo from '../assets/logo.png'
@@ -30,7 +31,7 @@ const MainPage = () => {
             <a href="#"><img src={logo} class="logo"/></a>
             <ul>
                 <li><a href="#">How to Play</a></li>
-                <li><a href="#">Leader Board</a></li>
+                <li><a href="#"><LeaderBoard></LeaderBoard></a></li>
                 <li><a href="#">About Us</a></li>
             </ul>
         </header>
