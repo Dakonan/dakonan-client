@@ -3,18 +3,41 @@ import axios from 'axios'
 const socket = io('http://localhost:4000')
 
 export const register = (payload) => (dispatch) => {
+  // console.log(payload, 'dari register<<<<<')
   axios({
     url: `/register`,
     method: 'POST',
     data: payload
   })
     .then(res => {
+      console.log(res, 'berhasil post!')
       dispatch(setPlayer(payload))
     })
     .catch(err => {
       console.log(err)
     })
 
+}
+
+export const getLeaderBoard = () => (dispatch) => {
+  axios({
+      url: `/leaderboard`,
+      method: 'GET',
+    })
+      .then(res => {
+        // console.log(res.data, 'ini dari leaderboard')
+        dispatch(setLeaderBoard(res.data))
+      })
+      .catch(err => {
+        console.log(err, 'error di leaderboard')
+      })
+}
+
+export const setLeaderBoard = (payload) => {
+  return {
+    type: 'GETLEADERBOARD',
+    payload
+  }
 }
 
 export const setPlayer = (payload) => {
@@ -123,6 +146,7 @@ export const gameStart = (state, roomName) => (dispatch) => {
 export const updateGameDetail = () => (dispatch) => {
   socket.on('gameDetail', payload => {
       dispatch(setRoomDetail(payload))
+      // console.log(payload, 'payload dari game detail')
       dispatch(doneLoading)
   })
 }

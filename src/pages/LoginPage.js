@@ -43,9 +43,7 @@ const LoginPage = () => {
           showConfirmButton: false,
           timer: 1000
         })
-        setInterval(() => {
-          history.push('/room')
-        }, 1000);
+        history.push('/room')
       })
       .catch(err => {
         Swal.fire({
