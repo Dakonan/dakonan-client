@@ -11,7 +11,7 @@ export default function BigHole ({ bgColor = "whitesmoke", pebbles = 0 }) {
           <motion.div
             animate={pebblesOrganizer(key)}
           >
-            <Pebble 
+            <Pebble
               key={key}
               bgColor="#456990"
               isBigHole={true}

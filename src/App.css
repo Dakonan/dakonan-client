@@ -5,34 +5,27 @@
   width: 15px;
   height: 15px;
   /* margin: 2px; */
-  
-.pebble-container {
+}
+/* .pebble-container {
   width: 130px;
   height: 90px;
-  /* background-color: #121013; */
+  background-color: #121013;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   padding: 1rem;
   justify-content: center;
   align-items: center;
-}
+} */
 
-.pebble img {
+/* .pebble img {
   width: 1.4vw;
   height: 1.4vw;
-}
+} */
 
 .bowl {
   position: relative;
   cursor: pointer;
-  /* display: flex;
-  flex-wrap: wrap-reverse;
-  flex-direction: row; */
-  /* justify-content: center; */
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
   border: 1px solid whitesmoke;
   border-radius: 100%;
   width: 120px;
@@ -40,12 +33,6 @@
   padding: 0px;
 }
 .big-bowl {
-  /* display: flex;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center; */
   border: 1px solid black;
   border-radius: 100%;
   width: 200px;

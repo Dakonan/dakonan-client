@@ -66,12 +66,11 @@ const Board = ({ board, clickHandler }) => {
     }, 1000)
   }
   
-
   const couldHijack = (clickedIndex, lastIndex) => {
    const allowedIndexToHijack = clickedIndex < 6
       ? [7, 8, 9, 10, 11, 12]
       : [0, 1, 2, 3, 4, 5]
-    // list of allowed index to hijact
+    // list of allowed index to hijack
     if (!allowedIndexToHijack.includes(lastIndex) && !localBoard[lastIndex]) return true
     return false
   }
