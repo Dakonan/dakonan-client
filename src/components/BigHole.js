@@ -6,7 +6,11 @@ export default function BigHole ({ bgColor = "whitesmoke", pebbles = 0 }) {
       {
        pebbles
         ? [...Array(pebbles)].map((_, key) => (
-          <Pebble key={"player1" + key} bgColor="#456990" />
+          <Pebble 
+            key={"player1" + key}
+            bgColor="#456990"
+            idx={_}
+          />
         ))
         : null
       }

@@ -5,12 +5,7 @@ import { useState } from 'react'
 
 export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) {
   const [scale, setScale] = useState(1)
-
-  const pebblesOrganizer = (idx) => {
-    const row = idx % 4
-    const col = Math.floor(idx/4)
-    return { row, col }
-  }
+  
   const clickHandler = () => {
     setScale(1.5)
     setTimeout(onClick, 500)
@@ -33,7 +28,7 @@ export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) 
         {
           pebbles
           ? range(pebbles).map((_, idx) => (
-            <Pebble key={idx + toString(8)} />
+            <Pebble key={idx}  idx={idx} />
           ))
           : null
         }
