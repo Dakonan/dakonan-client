@@ -5,10 +5,19 @@ import RoomList from '../components/RoomList'
 import JoinBox from '../components/JoinBox'
 import { useHistory } from 'react-router-dom'
 import NavbarTop from '../components/Navbar'
+import Swal from 'sweetalert2'
+import { updatedRoom } from '../redux/actions'
 const Room = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const username = localStorage.username
+  let rooms = useSelector(state => state.rooms.data)
+  
+  useEffect(() => {
+    dispatch(updatedRoom())
+    console.log(rooms,' di use effect room')
+  }, [rooms])
+
   useEffect(() => {
       dispatch(updateRoom())
   },[dispatch])
@@ -21,13 +30,27 @@ const Room = () => {
   }, [])
 
   const handleCreateRoom = (roomName) => {
-    let payload = {
-      roomName,
-      username
+    let isAlreadyUsed
+    isAlreadyUsed = rooms.findIndex(room => {
+      return room.name === roomName
+    })
+    if(isAlreadyUsed === -1 || !roomName) {
+      let payload = {
+        roomName,
+        username
+      }
+      dispatch(createRoom(payload))
+      history.push(`/game/${roomName}`)
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Room Name Already Used'
+      })
     }
-    dispatch(createRoom(payload))
-    history.push(`/game/${roomName}`)
+
   }
+    
 
   return (
     <>
