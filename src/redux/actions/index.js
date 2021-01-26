@@ -118,14 +118,9 @@ export const setStart = () => {
   }
 }
 
-export const emitStartGame = (roomName) => (dispatch) => {
-  socket.emit('startGame', roomName)
-  dispatch(startGameAnnounce())
-}
-
 export const startGameAnnounce = () => (dispatch) => {
   socket.on('start-Game', (roomName) => {
-      dispatch(setStart())
+    dispatch(setStart())
   })
 }
 
@@ -136,8 +131,25 @@ export const gameStart = (state, roomName) => (dispatch) => {
 }
 
 export const updateGameDetail = () => (dispatch) => {
+  // console.log('di update game detail')
   socket.on('gameDetail', payload => {
-      dispatch(setRoomDetail(payload))
-      dispatch(doneLoading)
+    // console.log(payload, 'isi payload di game detail')
+    dispatch(setRoomDetail(payload))
+    dispatch(doneLoading)
   })
+}
+
+export const readyToPlay = (roomName) => (dispatch) => {
+  socket.emit('readyToPlay', roomName)
+  dispatch(updateGameDetail())
+}
+export const readyToRematch = (state, roomName) => (dispatch) => {
+  // console.log(state, roomName, 'di ready to rematch')
+  socket.emit('readyToRematch', state, roomName)
+  dispatch(updateGameDetail())
+}
+
+export const leaveRoom = (roomName, username) => (dispatch) => {
+  socket.emit('leaveRoom', roomName, username)
+  dispatch(getRoomDetail())
 }

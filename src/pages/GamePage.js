@@ -3,10 +3,11 @@ import { Header, Board, StatusBar, NavbarTop } from '../components'
 import {useDispatch, useSelector} from 'react-redux'
 import { makeMove, emptyHomes } from '../utils'
 import io from 'socket.io-client'
-import { gameStart, updateGameDetail } from '../redux/actions'
+import { gameStart, readyToRematch, updateGameDetail } from '../redux/actions'
 import {useParams} from 'react-router-dom'
 import fullPageImage from '../assets/GameContainer.png'
 import FinishAnnouncement from '../components/FinishAnnouncement'
+import WaitingRoom from './WaitingRoom'
 
 const socket = io('http://localhost:4000')
 
@@ -39,7 +40,8 @@ const GamePage = () => {
   }
 
   function HandleRematch () {
-    dispatch(gameStart(intialState, name))
+    dispatch(readyToRematch(intialState, name))
+    // dispatch(gameStart(intialState, name))
   }
 
   return (
@@ -58,7 +60,7 @@ const GamePage = () => {
         !loading ?
         <h1>Loading</h1>
         :
-        roomDetail.name  ?
+        roomDetail.name && roomDetail.ready[0] === true && roomDetail.ready[1] === true  ?
         <>
         {/* <Header /> */}
 
@@ -85,7 +87,7 @@ const GamePage = () => {
         </button> */}
         </>
         :
-        <h1>waiting for player 2</h1>
+        <WaitingRoom></WaitingRoom>
       }
     </div>
 

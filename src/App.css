@@ -1,6 +1,6 @@
 .pebble-container {
-  width: 90px;
-  height: 80px;
+  width: 130px;
+  height: 90px;
   /* background-color: #121013; */
   display: flex;
   flex-wrap: wrap;
@@ -20,7 +20,7 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   border: 1px solid whitesmoke;
   border-radius: 100%;
   width: 120px;
