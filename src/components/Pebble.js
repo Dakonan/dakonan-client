@@ -25,7 +25,7 @@ export default function Pebble ({ bgColor = "black", isBigHole }) {
     <motion.div 
       animate={{ 
         opacity: 1,
-        x: isBigHole ? 50 : pos.x,
+        x: isBigHole ? 80 : pos.x,
         y: isBigHole ? 90 : pos.y
       }}
       initial={{opacity: 0}}
