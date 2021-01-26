@@ -8,7 +8,7 @@ import NavbarTop from '../components/Navbar'
 const Room = () => {
   const dispatch = useDispatch()
   const history = useHistory()
-  const username = useSelector(state => state.players.name)
+  const username = localStorage.username
   useEffect(() => {
       dispatch(updateRoom())
   },[dispatch])

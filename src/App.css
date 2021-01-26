@@ -1,37 +1,57 @@
-.pebble {
-  border: 1px solid white;
-  border-radius: 60px;
-  width: 15px;
-  height: 15px;
-  /* margin: 2px; */
+.pebble-container {
+  width: 90px;
+  height: 80px;
+  /* background-color: #121013; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.pebble img {
+  width: 1.4vw;
+  height: 1.4vw;
 }
 
 .bowl {
+  position: relative;
   cursor: pointer;
   display: flex;
-  flex-wrap: wrap-reverse;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   border: 1px solid whitesmoke;
-  border-radius: 89px;
+  border-radius: 100%;
   width: 120px;
   height: 120px;
-  padding: 5px;
+  padding: 0px;
 }
 .big-bowl {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  border-radius: 120px;
-  width: 100px;
+  border-radius: 100%;
+  width: 200px;
   height: 200px;
+}
+.big-bowl-container {
+  position: relative;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  padding: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .board {
   position: absolute;
-  top: 25vh;
+  top: 19vh;
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -6,6 +6,10 @@ import { joinRoom } from '../redux/actions'
 const RoomCard = ({rooms, username}) => {
   const dispatch = useDispatch()
   const history = useHistory()
+  let availableRooms = []
+  availableRooms = rooms.filter(room => {
+    return room.users.length === 1
+  }) 
 
   const handleJoin = (username, roomName) => {
       const payload = {
@@ -17,7 +21,7 @@ const RoomCard = ({rooms, username}) => {
   }
   
   return (
-      rooms.map((room, index) => (
+      availableRooms.map((room, index) => (
         <div key={index} class="card m-1 w-100" >
           <div class="row no-gutters text-dark">
             <div class="col-md-12">
@@ -47,13 +51,10 @@ const RoomCard = ({rooms, username}) => {
                   ""
               }
               {
-                // room ?
-                // <button onClick={() => handleJoin(username, room.name)}>Join</button>
-                // :
                 room.users.length === 2 ?
                 <button className="btn btn-danger">Full</button>
                 :
-                <button onClick={() => handleJoin(username, room.name)}>Join</button>
+              <button onClick={() => handleJoin(username, room.name)}>Join</button>
               }
             </div>
             </div>

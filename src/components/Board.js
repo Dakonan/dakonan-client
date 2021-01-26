@@ -16,14 +16,14 @@ const Board = ({ board, clickHandler }) => {
       <BigHole
         className="big-bowl"
         pebbles={player2Home}
-        bgColor="#f58634"
+        bgColor="#f0ad4e"
       />
       <div>
         <div className="d-flex">
           {
             player2Holes.map((holeObject, idx) => (
               <Hole
-                bgColor="#f58634"
+                bgColor="#f0ad4e"
                 pebbles={holeObject.count}
                 key={"player1" + idx}
                 onClick={() => clickHandler(holeObject.index)}
@@ -35,7 +35,7 @@ const Board = ({ board, clickHandler }) => {
           {
             player1Holes.map((holeObject, idx) => (
               <Hole 
-                bgColor="#eb596e"
+                bgColor="#eb00a8"
                 pebbles={holeObject.count}
                 key={"player2" + idx}
                 onClick={() => clickHandler(holeObject.index)}
@@ -47,7 +47,7 @@ const Board = ({ board, clickHandler }) => {
       <BigHole
         className="big-bowl"
         pebbles={player1Home}
-        bgColor="#eb596e"
+        bgColor="#eb00a8"
       />
     </div>
   )

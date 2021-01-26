@@ -172,20 +172,7 @@ code {
   font-size: 1.2rem;
   margin-right: 2rem;
 }
-/* .btn-leaderboard .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: absolute;
-  z-index: 1;
-}
-.btn-leaderboard:hover .tooltiptext {
-  visibility: visible;
-} */
+
 
 .leaderboard {
   width: 100% ;
@@ -315,4 +302,26 @@ code {
 .modal-content {
   width: 30vw;
   border-radius: 30px;
+}
+
+/* logout button */
+.btn-logout {
+  font-size: 1.2rem;
+   margin-left: 1rem  ;
+}
+.btn-logout .tooltiptext {
+  visibility: hidden;
+  width: 5rem;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 2.5rem;
+  right: 1.5rem;
+}
+.btn-logout:hover .tooltiptext {
+  visibility: visible;
 }

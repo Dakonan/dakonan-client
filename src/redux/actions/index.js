@@ -1,6 +1,21 @@
-// import { useHistory } from 'react-router-dom'
 import io from 'socket.io-client'
+import axios from 'axios'
 const socket = io('http://localhost:4000')
+
+export const register = (payload) => (dispatch) => {
+  axios({
+    url: `/register`,
+    method: 'POST',
+    data: payload
+  })
+    .then(res => {
+      dispatch(setPlayer(payload))
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+}
 
 export const setPlayer = (payload) => {
   return {
@@ -9,7 +24,7 @@ export const setPlayer = (payload) => {
   }
 }
 export const getPlayer = () => () => {
-  
+
 }
 
 export const insertPlayerName = (payload) => {

@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import { createPlayer } from '../redux/actions'
-import {Modal, Button} from 'react-bootstrap'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+
 const LoginPage = () => {
   const history = useHistory()
   const dispatch = useDispatch()
@@ -24,8 +26,34 @@ const LoginPage = () => {
         username: formInput.username,
         password: formInput.password
     }
-    dispatch(createPlayer(payload))
-    history.push('/room')
+    axios({
+      url: `/login`,
+      method: 'POST',
+      data: payload
+    })
+      .then(res => {
+        console.log(res.data)
+        localStorage.setItem('access_token', res.data.access_token)
+        localStorage.setItem('username', payload.username)
+        dispatch(createPlayer(payload))
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        setInterval(() => {
+          history.push('/room')
+        }, 1000);
+      })
+      .catch(err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.response.data.message
+        })
+      })
   }
   return (
       <div>
