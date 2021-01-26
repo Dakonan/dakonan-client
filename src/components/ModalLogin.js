@@ -14,8 +14,16 @@ const ModalLogin = () => {
   }
   return (
       <>
-      <Button variant="primary" onClick={handleShow}>
-          PLAY
+      <Button style={{
+          backgroundColor: '#eb8423',
+          borderRadius: '20px',
+          width: '100px',
+          height: '55px',
+          color: 'white',
+          border: '3px solid black'
+        }}
+          onClick={handleShow}>
+          Play
       </Button>
 
       <Modal show={show} onHide={handleClose}>
