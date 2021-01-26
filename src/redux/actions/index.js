@@ -108,6 +108,7 @@ export const gameStart = (state, roomName) => (dispatch) => {
 export const updateGameDetail = () => (dispatch) => {
   socket.on('gameDetail', payload => {
       dispatch(setRoomDetail(payload))
+      console.log(payload, "dari action");
       dispatch(doneLoading)
   })
 }
