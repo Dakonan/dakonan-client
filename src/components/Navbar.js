@@ -1,7 +1,12 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import LeaderBoard from './LeaderBoard'
 const NavbarTop = ({username}) => {
+  const history = useHistory() 
+  const logout = () => {
+    localStorage.clear()
+    history.push('/')
+  }
   return (
     <nav class="navbar navbar-light bg-light">
       <div>
@@ -12,8 +17,11 @@ const NavbarTop = ({username}) => {
       <div className="d-flex justify-content-between">
         <LeaderBoard></LeaderBoard>
         <h5>{`Hi ${username.toUpperCase()}`}</h5>
+        <div onClick={() => logout()} className="btn-logout">
+        <i class="fas fa-sign-out-alt"></i>
+        <span className="tooltiptext">logout</span>
+        </div>
       </div>
-
     </nav>
   )
 }

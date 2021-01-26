@@ -1,0 +1,62 @@
+.pebble-container {
+  width: 90px;
+  height: 80px;
+  /* background-color: #121013; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.pebble img {
+  width: 1.4vw;
+  height: 1.4vw;
+}
+
+.bowl {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid whitesmoke;
+  border-radius: 100%;
+  width: 120px;
+  height: 120px;
+  padding: 0px;
+}
+.big-bowl {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+}
+.big-bowl-container {
+  position: relative;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  padding: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.board {
+  position: absolute;
+  top: 19vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #121013;
+  height: 280px;
+  border-radius: 100px;
+}
