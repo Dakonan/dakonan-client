@@ -1,5 +1,6 @@
-const maxPebbleEachLayer = [0, 6, 10, 16, 17]
+const indexes = [0, 6, 14, 16, 17]
 const baseRadius = 15
+const maxPebbleEachLayer = []
 
 const angleGenerator = (idx, radius) => {
   const layer = radius / baseRadius
@@ -10,9 +11,9 @@ const angleGenerator = (idx, radius) => {
 
 const radiusGenerator = (idx) => {
   let layer = 0
-  if (idx <= maxPebbleEachLayer[1]) layer = 1
-  else if (idx <= maxPebbleEachLayer[2]) layer = 2
-  else if (idx <= maxPebbleEachLayer[3]) layer = 3
+  if (idx <= indexes[1]) layer = 1
+  else if (idx <= indexes[2]) layer = 2
+  else if (idx <= indexes[3]) layer = 3
   else layer = 4
   
   return layer * baseRadius
@@ -33,7 +34,5 @@ const pebblesOrganizer = (idx) => {
 }
 
 export {
-  radiusGenerator,
-  angleGenerator,
   pebblesOrganizer
 }
