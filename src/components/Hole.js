@@ -26,9 +26,10 @@ export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) 
           pebbles
           ? range(pebbles).map((_, idx) => (
             <motion.div
-              animate={pebblesOrganizer(idx)}
+              animate={pebblesOrganizer(idx, pebbles)}
+              key={idx + "hole"}
             >
-              <Pebble key={idx} 
+              <Pebble
                 isBigHole={false}
               />
             </motion.div>

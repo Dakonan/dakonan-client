@@ -1,11 +1,12 @@
 const baseRadius = 15
 const angleDivider = [0, 6, 12, 17, 10]
-const indexes = [0, 6, 18, 35, 17]
+const indexes = [1, 6, 18, 35]
 
-const angleGenerator = (idx, radius) => {
+const angleGenerator = (idx, radius, dividers) => {
+  console.log(dividers)
   const layer = radius / baseRadius
   const orderInThatLayer = angleDivider[layer] - idx
-  const angle = (360 * orderInThatLayer) / angleDivider[layer]
+  const angle = (360 * orderInThatLayer) / dividers[layer]
   return angle
 }
 
@@ -18,12 +19,25 @@ const radiusGenerator = (idx) => {
   return layer * baseRadius
 }
 
-const pebblesOrganizer = (idx) => {
+const getDividers = (number) => {
+  let arr = [] //array of pebbles quantity per layer
+  indexes.forEach(id => {
+    if (id < number) {
+      arr.push(id)
+    }
+    else if (arr.reduce((a, b) => a + b) < number) {
+      arr.push(number - arr[arr.length - 1])
+    }
+  })
+  return arr
+}
+const pebblesOrganizer = (idx, number) => {
   const pi = Math.PI
   if (!idx) return {x: 0, y: 0}
   else {
     const radius = radiusGenerator(idx)
-    const theta = angleGenerator(idx, radius)
+    const dividers = getDividers(number)
+    const theta = angleGenerator(idx, radius, dividers)
     const radian  = (theta * pi / 180)
     return { 
       x: radius * Math.sin(radian),

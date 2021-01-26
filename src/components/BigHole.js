@@ -9,7 +9,7 @@ export default function BigHole ({ bgColor = "whitesmoke", pebbles = 0 }) {
        pebbles
         ? [...Array(pebbles)].map((_, key) => (
           <motion.div
-            animate={pebblesOrganizer(key)}
+            animate={pebblesOrganizer(key, pebbles)}
           >
             <Pebble
               key={key}

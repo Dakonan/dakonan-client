@@ -47,8 +47,8 @@ const WaitingRoom = () => {
         </>
         :
         <>
-        <h1>WAITING FOR OTHER PLAYER</h1>
-        <button onClick={() => handlePlayerLeave(name, username)} className="btn- btn-danger w-25">Leave Room</button>
+          <h1>WAITING FOR OTHER PLAYER</h1>
+          <CustomButton onClick={() => handlePlayerLeave(name, username)} className="btn- btn-danger w-25">Leave Room</CustomButton>
         </>
       }
     </div>
