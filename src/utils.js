@@ -38,28 +38,6 @@ const belongsTo = player => index => {
 
 const makeMove = moveIndex => ({ player, board, isOver }) => {
 
-  if ((moveIndex + 1) % 7 === 0) {
-    return { 
-      player,
-      board,
-      isOver,
-      message: 'bad move' }
-  }
-  if (Math.floor(moveIndex / 7) !== player) {
-    return { 
-      player,
-      board,
-      isOver,
-      message: 'wrong player' }
-  }
-  if (!board[moveIndex] || isOver){
-    return { 
-      player,
-      board,
-      isOver,
-      message: 'no stones!' }
-  }
-
   const otherPlayer = 1 - player
 
   const playerHomeIndex = getHomeIndex(player)
@@ -77,6 +55,33 @@ const makeMove = moveIndex => ({ player, board, isOver }) => {
     numStones = numStones - 1
     newBoard[currIndex] = newBoard[currIndex] + 1
   }
+
+  // no stones left in player cups at players turn
+    // bug fixing
+    if (player === 1 && board.slice(player * 6 + 1, player * 6 + 7).reduce(sum) === 0) {
+      console.log(player);
+      console.log(board);
+      console.log(board.slice(player * 6 + 1, player * 6 + 6).reduce(sum), 'hiha');
+      return {
+        player: otherPlayer,
+        board,
+        isOver: true,
+        message: findWinner(board)
+      }
+    }
+
+    if (player === 0 && board.slice(player * 6, player * 6 + 6).reduce(sum) === 0) {
+      console.log(player);
+      console.log(board);
+      console.log(board.slice(player * 6 + 1, player * 6 + 6).reduce(sum), 'hiha');
+      return {
+        player: otherPlayer,
+        board,
+        isOver: true,
+        message: findWinner(board)
+      }
+    }
+  
 
   // no stones left
   if (noStones(newBoard)(player)) {
@@ -126,6 +131,34 @@ const makeMove = moveIndex => ({ player, board, isOver }) => {
       message: ''
     }
   }
+
+  if ((moveIndex + 1) % 7 === 0) {
+    return { 
+      player,
+      board,
+      isOver,
+      message: 'bad move' }
+  }
+  if (Math.floor(moveIndex / 7) !== player) {
+    console.log(board.slice(otherPlayer * 6, otherPlayer * 6 + 6).reduce(sum));
+    return { 
+      player,
+      board,
+      isOver,
+      message: 'wrong player' }
+  }
+  if (!board[moveIndex] || isOver){
+    console.log(player);
+    console.log(board);
+    console.log(board.slice(player * 6 + 1, player * 6 + 7).reduce(sum));
+    return { 
+      player,
+      board,
+      isOver,
+      message: 'no stones!' }
+  }
+
+
 
   // else nothing special
   return {
