@@ -4,7 +4,7 @@ import RoomCard from './RoomCard'
 import {useSelector} from 'react-redux'
 
 const RoomList = ({handleCreateRoom}) => {
-  const username = useSelector(state => state.players.name)
+  const username = localStorage.username
   let rooms = useSelector(state => state.rooms.data)
 
   return (

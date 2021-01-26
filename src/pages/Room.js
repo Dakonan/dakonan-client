@@ -13,6 +13,13 @@ const Room = () => {
       dispatch(updateRoom())
   },[dispatch])
 
+  useEffect(() => {
+    let isLoggedIn = localStorage.access_token
+    if(!isLoggedIn) {
+      history.push('/')
+    }
+  }, [])
+
   const handleCreateRoom = (roomName) => {
     let payload = {
       roomName,
