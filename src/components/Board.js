@@ -32,6 +32,7 @@ const Board = ({ board, clickHandler }) => {
 
   const lightController = (nextIndex, number) => {
     const index = nextIndex - 1
+    const timeDelay = 300
 
     const timeout = setInterval(() => {
       if (number <= 0) {
@@ -46,13 +47,13 @@ const Board = ({ board, clickHandler }) => {
           setTimeout(() => {
             hijacker(nextIndex, hijackedIndex, homeIndex)
             number--
-          }, 600)
+          }, timeDelay)
         } else {
           setLight([nextIndex])
           setTimeout(() => {
             pebblesAdder(index, nextIndex)
             number--
-          }, 600)
+          }, timeDelay)
         } 
       } else {
         setLight([nextIndex])
@@ -60,7 +61,7 @@ const Board = ({ board, clickHandler }) => {
           pebblesAdder(index, nextIndex)
           number--
           nextIndex++
-        }, 600)
+        }, timeDelay)
       }
       if (nextIndex === 14 ) nextIndex = 0
     }, 1000)

@@ -1,30 +1,26 @@
 import { Pebble } from '.'
 import { range } from 'lodash'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import { pebblesOrganizer } from '../helpers'
 
+const button = {
+  rest: { scale: 1 },
+  hover: { scale: 1.3 },
+  pressed: { scale: 2 }
+};
+
 export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) {
-  const [scale, setScale] = useState(1)
-  
-  const clickHandler = () => {
-    setScale(1.5)
-    setTimeout(onClick, 500)
-    setTimeout(setScale, 300, 1)
-  }
   return (
     <motion.div 
-      animate={{ scale }}
-      transition={{
-        type: "spring",
-        damping: 10,
-        stiffness: 200
-      }}
+      variants={button}
+      initial="rest"
+      whileHover="hover"
+      whileTap="pressed"
+      onClick={onClick}
     >
       <div 
         className="bowl"
         style={{backgroundColor: bgColor}}
-        onClick={clickHandler}
       >
         {
           pebbles
