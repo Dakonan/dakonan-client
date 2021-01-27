@@ -5,7 +5,6 @@ import { register } from '../redux/actions'
 
 const RegisterPage = () => {
   const dispatch = useDispatch()
-  // const allPlayer = useSelector(state => state.players.allPlayer)
   const [formInput, setFormInput] = useState({
     email: '',
     username: '',

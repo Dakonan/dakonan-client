@@ -11,7 +11,6 @@ const FinishAnnouncement = ({message, handleRematch}) => {
   const history = useHistory()
   const roomDetail = useSelector(state => state.rooms.detail)
   const loginUser = localStorage.getItem('username')
-  const {name} = useParams()
 
   useEffect(() => {
     if (roomDetail.gameState.message === 'Player 1 wins!') {
@@ -132,10 +131,9 @@ const FinishAnnouncement = ({message, handleRematch}) => {
           width: '7.5em',
           zIndex: '3'
         }} >Rematch</button>
+        <Link to="/room">
+          <button style={{
 
-          <button 
-          onClick={() => handlePlayerLeave(name, loginUser)}
-          style={{
           marginRight: '15px',
           backgroundColor: '#c70079',
           border: '4px solid #581845',
@@ -144,7 +142,7 @@ const FinishAnnouncement = ({message, handleRematch}) => {
           width: '10.5em',
           zIndex: '5'
         }}>Back to room</button>
-
+        </Link>
       </div>
       <img src={bluefire} class="bluefire" />
     </div>
