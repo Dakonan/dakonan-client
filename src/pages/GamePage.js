@@ -1,19 +1,16 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { Header, Board, StatusBar, NavbarTop } from '../components'
-import {useDispatch, useSelector} from 'react-redux'
+import { useEffect, useState, useRef } from 'react'
+import { Board, StatusBar, NavbarTop, FinishAnnouncement, VideoCall } from '../components'
+import { useDispatch, useSelector } from 'react-redux'
 import { makeMove, emptyHomes } from '../utils'
 import io from 'socket.io-client'
 import Peer from "simple-peer";
 import { gameStart, readyToRematch, updateGameDetail } from '../redux/actions'
 import {useParams, useHistory} from 'react-router-dom'
 import fullPageImage from '../assets/GameContainer.png'
-import FinishAnnouncement from '../components/FinishAnnouncement'
 import WaitingRoom from './WaitingRoom'
 import microphone from '../Icons/microphone.svg'
 import microphonestop from '../Icons/microphone-stop.svg'
-import VideoCall from '../components/WebRTC'
 import rootServer from '../config'
-import { PageWrapper } from '../components'
 
 const socket = io(rootServer)
 const START_AMOUNT = 4
@@ -29,7 +26,7 @@ const Video = (props) => {
 
   useEffect(() => {
       props.peer.on("stream", stream => {
-          ref.current.srcObject = stream;
+        ref.current.srcObject = stream;
       })
   }, []);
 
@@ -58,7 +55,7 @@ const GamePage = () => {
   const roomName = name;
 
   // useEffect(() => {
-  //   socketRef.current = io.connect("http://localhost:4000");
+  //   socketRef.current = io.connect(rootServer);
   //   socketRef.current.on("yourID", (id) => {
   //     setUserID(id);
   //   });
@@ -210,8 +207,6 @@ const GamePage = () => {
       justifyContent: 'center',
       alignItems: 'center',
       position: 'relative',
-      // top: '11vh',
-      // backgroundColor:'blue',
       height: '100vh'
     }}>
       {
@@ -240,10 +235,6 @@ const GamePage = () => {
           clickHandler={clickHandler}
           roomDetail={roomDetail}
         />
-        {/* <p>{JSON.stringify(roomDetail)}</p> */}
-        {/* <button onClick={resetHandler}>
-          Reset
-        </button> */}
         <VideoCall></VideoCall>
         </>
         :

@@ -1,12 +1,13 @@
-import React, {useEffect,useRef, useState} from 'react'
+import { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
 import Peer from "simple-peer";
 import microphone from '../Icons/microphone.svg'
 import microphonestop from '../Icons/microphone-stop.svg'
 import { useHistory, useParams } from 'react-router-dom';
+import rootServer from '../config'
 
 
-const socket = io('https://dakonan-server.herokuapp.com')
+const socket = io(rootServer)
 // const socket = io('http://localhost:4000')
 
 const Video = (props) => {
@@ -41,7 +42,7 @@ const VideoCall = () => {
   const peersRef = useRef([]);
   const roomName = name;
   useEffect(() => {
-      socketRef.current = io.connect("https://dakonan-server.herokuapp.com");
+      socketRef.current = io.connect(rootURL);
       socketRef.current.on("yourID", (id) => {
         setUserID(id);
       });

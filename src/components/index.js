@@ -16,8 +16,10 @@ import FinishAnnouncement from './FinishAnnouncement'
 import HowToPlay from './HowToPlay'
 import PageWrapper from './PageWrapper'
 import RowWrapper from './RowWrapper'
+import VideoCall from './WebRTC'
 
 export {
+  VideoCall,
   RowWrapper,
   HowToPlay,
   PageWrapper,
