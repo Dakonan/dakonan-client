@@ -20,9 +20,7 @@ const Video = (props) => {
   }, []);
 
   return (
-    <div>
-      <video style={{width: "80px", height: '80px'}} playsInline autoPlay ref={ref}></video>
-    </div>
+      <video playsInline autoPlay ref={ref}></video>
       // <StyledVideo playsInline autoPlay ref={ref} />
   );
 }
@@ -109,6 +107,11 @@ const VideoCall = () => {
       const peer = new Peer({
         initiator: true,
         trickle: false,
+        config: {
+          iceServers: [
+          { url: 'stun:stun.l.google.com:19302' },
+          { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username: 'webrtc@live.com' }
+        ]},
         stream
       });
   
@@ -127,12 +130,7 @@ const VideoCall = () => {
       const peer = new Peer({
         initiator: false,
         trickle: false,
-        config: {
-          iceServers: [
-          { url: 'stun:stun.l.google.com:19302' },
-          { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username: 'webrtc@live.com' }
-        ]},
-        stream,
+        stream
       });
   
       peer.on("signal", (signal) => {
@@ -171,19 +169,21 @@ const VideoCall = () => {
         <img style={{width: "25px", position: "absolute", left: 0, bottom: 7}} src={microphone} alt="Mute audio"/>
       </span>
     }
+
     return (
-      <div style={{position: "absolute", zIndex: 100, top: "-15px", width: "700px", display: "flex", justifyContent: "space-between"}}>
-      <div>
-        <video style={{width: "170px", marginRight: "300px"}} muted ref={userVideo} autoPlay playsInline></video>
+      <>
+      <div className="vid-player">
+        <video muted ref={userVideo} autoPlay playsInline></video>
         {audioControl}
       </div>
+      <div className="vid-enemy">
       {peers.map((peer) => {
         if (peer.peerID !== userID) {
           return <Video key={peer.peerID} peer={peer.peer} />;
         }
       })}
-      {/* <Video p/> */}
-    </div>
+      </div>
+    </>
     )
 }
 

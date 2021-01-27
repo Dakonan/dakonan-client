@@ -25,26 +25,28 @@ const StatusBar = ({ player, isOver, message }) => {
         borderRadius: '10px',
         borderStyle: 'solid',
         fontFamily: 'monospace',
+        fontSize: 28,
         fontWeight: 'bold'
         }}>
-      Player { player + 1 } : {roomDetail.users[player]}'s turn.
+      {roomDetail.users[player]}'s turn.
     </div>
 
     <div className="container bg-light" 
       style={{
-        textAlign: 'left',
+        textAlign: 'center',
         fontWeight: 'bold',
         fontFamily: 'monospace',
-        width: '20vw',
-        height: '5vw',
+        width: '25vw',
+        height: '4vw',
         borderRadius: '10px',
         borderStyle: 'solid',
         color: 'black',
-        marginTop: '39.5vh'
+        marginTop: '25.6vh',
+        fontSize: 20
       }}
-    >
-    <p className="m-0">{`Player1 (Pink): ${roomDetail.users[0]}`}</p>
-    <p>{`Player2 (Orange): ${roomDetail.users[1]}`}</p>
+    > 
+    <p className="m-0">{`Player1 (Pink) ${roomDetail.users[0]}`}</p>
+    <p>{`Player2 (Orange) ${roomDetail.users[1]}`}</p>
     </div>
   </div>
   </>

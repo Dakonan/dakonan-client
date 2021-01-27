@@ -16,16 +16,17 @@ const JoinBox = () => {
       setSearchRoom(input)
   }
   return (
-    <div  className="container bg-warning h-100 d-inline-block p-3"
+    <div  className="container h-100 d-inline-block p-3"
     style={{
+      backgroundColor: '#ffc107',
       borderRadius: '25px',
-      border: '6px solid',
+      border: '8px solid #073b4c',
       minHeight: '35vh',
     }}
     >
       <>
       <div>
-          <h3>JOIN ROOM</h3>
+          <h3 style={{ color: '#073b4c'}}><strong>JOIN ROOM</strong></h3>
       </div>
       <InputField section="join" handleSubmit={handleSearch}></InputField>
       <div className="mt-2">

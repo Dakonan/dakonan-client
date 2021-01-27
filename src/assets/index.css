@@ -491,3 +491,25 @@ section {
   z-index: 2;
   border-radius: 0px 0px 20px 20px;
 }
+
+.vid-player {
+  position: absolute;
+  z-index: 100;
+  left: 25vw;
+  bottom: 5.5vh;
+}
+.vid-player Video {
+  height: 15vh;
+  width: 11vw;
+}
+
+.vid-enemy {
+  position: absolute;
+  z-index: 100;
+  right: 13vw;
+  top: 4.1vh;
+}
+.vid-enemy Video {
+  height: 15vh;
+  width: 11vw;
+}

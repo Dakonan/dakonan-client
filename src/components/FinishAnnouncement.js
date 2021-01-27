@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useParams, useHistory} from 'react-router-dom'
+import {Link, useParams, useHistory} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import bluefire from '../assets/bluefire.gif'
@@ -132,7 +132,6 @@ const FinishAnnouncement = ({message, handleRematch}) => {
           width: '7.5em',
           zIndex: '3'
         }} >Rematch</button>
-
           <button 
           onClick={() => handlePlayerLeave(name, loginUser)}
           style={{
@@ -144,7 +143,6 @@ const FinishAnnouncement = ({message, handleRematch}) => {
           width: '10.5em',
           zIndex: '5'
         }}>Back to room</button>
-
       </div>
       <img src={bluefire} class="bluefire" />
     </div>

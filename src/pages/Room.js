@@ -1,10 +1,8 @@
 import React, { useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { createRoom, updateRoom } from '../redux/actions'
-import RoomList from '../components/RoomList'
-import JoinBox from '../components/JoinBox'
+import { RoomList, JoinBox, NavbarTop} from '../components'
 import { useHistory } from 'react-router-dom'
-import NavbarTop from '../components/Navbar'
 import Swal from 'sweetalert2'
 import { updatedRoom } from '../redux/actions'
 import dakonan from '../assets/dakonan.png'
@@ -57,7 +55,7 @@ const Room = () => {
   return (
     <>
       <section style={{
-        backgroundColor: 'blue',
+        backgroundColor: '#118ab2',
         padding: '0px 20px',
         backgroundImage: `url(${stars})`,
         backgroundSize: '50%',
