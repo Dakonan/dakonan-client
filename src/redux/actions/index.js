@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-const socket = io('http://localhost:4000')
+const socket = io('https://dakonan-server.herokuapp.com')
 
 export const register = (payload) => (dispatch) => {
   // console.log(payload, 'dari register<<<<<')
