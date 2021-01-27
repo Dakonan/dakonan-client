@@ -1,19 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { getPlayer, register } from '../redux/actions'
+import { CustomButton } from '../components'
+import { register } from '../redux/actions'
 
 const RegisterPage = () => {
   const dispatch = useDispatch()
-  const allPlayer = useSelector(state => state.players.allPlayer)
   const [formInput, setFormInput] = useState({
     email: '',
     username: '',
     password: ''
   })
-
-  useEffect(() => {
-    console.log(allPlayer, 'di use effect')
-  }, [])
 
   const [errors, setErrors] = useState({
     email: false,
@@ -33,11 +29,9 @@ const RegisterPage = () => {
     e.preventDefault()
     let errorsMessage = false
     let newError = {
-      title: false,
-      overview: false,
-      poster_path: false,
-      popularity: false,
-      tags: false
+      email: false,
+      username: false,
+      password: false,
   }
 
     if(formInput.email.length === 0 || formInput.email.trim().length === 0) {
@@ -58,63 +52,56 @@ const RegisterPage = () => {
     }
 
     if (formInput.email && formInput.username && formInput.password.length >= 6) {
-      console.log('sukses regis')
       const payload = {
         email: formInput.email,
         username: formInput.username,
         password: formInput.password
       }
-      console.log(payload);
       dispatch(register(payload))
     }
-
-
   }
 
   return (
     <div>
       <div className="container">
         <form onSubmit={handleSubmit}>
-        <div class="form-group">
-                <label >Email</label>
-                <input name="email" onChange={handleChange} type="email" class="form-control" placeholder="Enter Your Username"/>
-                {
-                  errors.email ?
-                  <div className="error-email">
-                    <span>{errors.email}</span>
-                  </div>
-                  :
-                  ''
-                }
+        <div className="form-group">
+          <label >Email</label>
+          <input name="email" onChange={handleChange} type="email" className="form-control" placeholder="Enter Your Username"/>
+          {
+            errors.email ?
+            <div className="error-email">
+              <span>{errors.email}</span>
             </div>
-            <div class="form-group">
-                <label >USERNAME</label>
-                <input name="username" onChange={handleChange} type="text" class="form-control" placeholder="Enter Your Username"/>
-                {
-                  errors.username ?
-                  <div className="error-username">
-                    <span>{errors.username}</span>
-                  </div>
-                  :
-                  ''
-                }
-            </div>
-            <div class="form-group">
-                <label >PASSWORD</label>
-                <input name="password" onChange={handleChange} type="password" class="form-control" placeholder="Enter Your Username"/>
-                {
-                  errors.password ?
-                  <div className="error-password">
-                    <span>{errors.password}</span>
-                  </div>
-                  :
-                  ''
-                }
+            : null
+          }
+          </div>
+            <div className="form-group">
+              <label >USERNAME</label>
+              <input name="username" onChange={handleChange} type="text" className="form-control" placeholder="Enter Your Username"/>
+              {
+                errors.username ?
+                <div className="error-username">
+                  <span>{errors.username}</span>
+                </div>
+                : null
+              }
             </div>
             <div className="form-group">
-                <button className="btn btn-dark mt-2" type="submit">
-                    Register
-                </button>
+              <label >PASSWORD</label>
+              <input name="password" onChange={handleChange} type="password" className="form-control" placeholder="Enter Your Username"/>
+              {
+                errors.password ?
+                <div className="error-password">
+                  <span>{errors.password}</span>
+                </div>
+                : null
+              }
+            </div>
+            <div className="form-group">
+              <CustomButton className="btn btn-dark mt-2" type="submit">
+                Register
+              </CustomButton>
             </div>
         </form>
       </div>

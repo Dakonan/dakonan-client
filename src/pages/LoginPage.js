@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import {useDispatch} from 'react-redux'
-import {useHistory} from 'react-router-dom'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { createPlayer } from '../redux/actions'
+import { CustomButton } from '../components'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
@@ -24,8 +25,8 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const payload = {
-        username: formInput.username,
-        password: formInput.password
+      username: formInput.username,
+      password: formInput.password
     }
     axios({
       url: `/login`,
@@ -54,27 +55,27 @@ const LoginPage = () => {
       })
   }
   return (
-      <div>
-        <div className="container">
-          <form onSubmit={(e) => handleSubmit(e)}>
-            <div className="form-group">
-              <label >USERNAME</label>
-              <input name="username" type="text" className="form-control" placeholder="Enter Your Username"
-              onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label >PASSWORD</label>
-              <input name="password" type="password" className="form-control" placeholder="Enter Your Username"
-              onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <button className="btn-dark mt-2" type="submit">Login</button>
-            </div>
-          </form>
-        </div>
+    <div>
+      <div className="container">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="form-group">
+            <label >USERNAME</label>
+            <input name="username" type="text" className="form-control" placeholder="Enter Your Username"
+            onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label >PASSWORD</label>
+            <input name="password" type="password" className="form-control" placeholder="Enter Your Username"
+            onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <CustomButton className="btn-dark mt-2" type="submit">Login</CustomButton>
+          </div>
+        </form>
       </div>
+    </div>
     )
 }
 
