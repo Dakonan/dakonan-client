@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useParams, useHistory} from 'react-router-dom'
+import {Link, useParams, useHistory} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import bluefire from '../assets/bluefire.gif'

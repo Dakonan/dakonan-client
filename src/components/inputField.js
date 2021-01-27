@@ -15,12 +15,12 @@ const InputField = ({handleSubmit, section}) => {
   return (
     <div className="d-flex justify-content-center">
       <form onSubmit={handleInputSubmit}>
-        <input onChange={handleInputRoomName} type="text" required />
+        <input style={{borderRadius: '12px 0 0 12px'}} onChange={handleInputRoomName} type="text" required />
         {
           section === 'join' ?
-          <CustomButton type="submit" className="btn-dark">Search</CustomButton>
+          <CustomButton type="submit" className="btn-dark" style={{borderRadius: '0px 12px 12px 0px', backgroundColor: '#073b4c'}}>Search</CustomButton>
           :
-          <CustomButton type="submit" className="btn-warning">Create Room</CustomButton>
+          <CustomButton type="submit" className="btn-warning" style={{borderRadius: '0px 12px 12px 0px', backgroundColor: '#ffc107'}}>Create Room</CustomButton>
         }
       </form>
     </div>
