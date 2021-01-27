@@ -481,3 +481,13 @@ section {
   border-radius: 25px;
   background-color: #ffc107;
 } */
+
+.bluefire {
+  position: absolute;
+  height: 28vw;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  border-radius: 0px 0px 20px 20px;
+}

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import InputField from './InputField'
+import InputField from './inputField'
 import RoomCard from './RoomCard'
 import {useDispatch, useSelector} from 'react-redux'
 import { updatedRoom } from '../redux/actions'
@@ -12,6 +12,7 @@ const RoomList = ({handleCreateRoom, rooms}) => {
   useEffect(() => {
     dispatch(updatedRoom())
   }, [rooms])
+  
 
   return (
     <div className="container bg-dark h-100 d-inline-block p-3 text-white" 

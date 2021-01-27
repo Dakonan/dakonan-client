@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createRoom, updateRoom, updatedRoom } from '../redux/actions'
 import { RoomList, JoinBox, NavbarTop } from '../components'
 import { useHistory } from 'react-router-dom'
+import NavbarTop from '../components/Navbar'
 import Swal from 'sweetalert2'
+import { updatedRoom } from '../redux/actions'
 import dakonan from '../assets/dakonan.png'
 import stars from '../assets/stars.gif'
 
@@ -48,8 +50,7 @@ const Room = () => {
         text: 'Room Name Already Used'
       })
     }
-
-  }    
+  }  
   return (
     <>
       <section style={{

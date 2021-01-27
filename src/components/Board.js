@@ -1,3 +1,4 @@
+import { set } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { BigHole, Hole } from '.'
 
@@ -31,27 +32,30 @@ const Board = ({ board, clickHandler, roomDetail }) => {
 
   const lightController = (nextIndex, number) => {
     const index = nextIndex - 1
-    const timeDelay = 300
 
     const timeout = setInterval(() => {
       if (number <= 0) {
+        setLight([])
         clickHandler(index) //request to server
         clearInterval(timeout)
       } else if (number === 1) {
         if (couldHijack(index, nextIndex)) {
           const homeIndex = index < 6 ? 6 : 13
           const hijackedIndex = 12 - nextIndex
+          setLight([homeIndex, hijackedIndex, nextIndex])
           setTimeout(() => {
             hijacker(nextIndex, hijackedIndex, homeIndex)
             number--
           }, timeDelay)
         } else {
+          setLight([nextIndex])
           setTimeout(() => {
             pebblesAdder(index, nextIndex)
             number--
           }, timeDelay)
         } 
       } else {
+        setLight([nextIndex])
         setTimeout(() => {
           pebblesAdder(index, nextIndex)
           number--
@@ -62,11 +66,12 @@ const Board = ({ board, clickHandler, roomDetail }) => {
     }, 800)
   }
   
+
   const couldHijack = (clickedIndex, lastIndex) => {
    const allowedIndexToHijack = clickedIndex < 6
       ? [7, 8, 9, 10, 11, 12]
       : [0, 1, 2, 3, 4, 5]
-    // list of allowed index to hijack
+    // list of allowed index to hijact
     if (!allowedIndexToHijack.includes(lastIndex) && !localBoard[lastIndex]) return true
     return false
   }
@@ -102,7 +107,7 @@ const Board = ({ board, clickHandler, roomDetail }) => {
       <BigHole
         className="big-bowl"
         pebbles={localBoard[13]}
-        bgColor={"#f58634"}
+        bgColor={light.includes(13) ? "whitesmoke" : "#f58634"}
       />
       <div>
         {
@@ -193,7 +198,7 @@ const Board = ({ board, clickHandler, roomDetail }) => {
       <BigHole
         className="big-bowl"
         pebbles={localBoard[6]}
-        bgColor={"#eb596e"}
+        bgColor={light.includes(6) ? "whitesmoke" : "#eb596e"}
       />
     </div>
   )
