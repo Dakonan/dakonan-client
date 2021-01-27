@@ -1,6 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-const StatusBar = ({ player, isOver, message }) => (
+
+const StatusBar = ({ player, isOver, message }) => {
+
+  const roomDetail = useSelector(state => state.rooms.detail)
+
+  return (
+
   <>
   <div className="container-status" 
     style={{
@@ -17,7 +24,7 @@ const StatusBar = ({ player, isOver, message }) => (
         borderRadius: '10px',
         borderStyle: 'solid'
         }}>
-      Player { player + 1 }'s turn.
+      Player { player + 1 } : {roomDetail.users[player]}'s turn.
     </div>
 
     <div className="container bg-light" 
@@ -35,6 +42,8 @@ const StatusBar = ({ player, isOver, message }) => (
     </div>
   </div>
   </>
-)
+  )
+} 
+
 
 export default StatusBar

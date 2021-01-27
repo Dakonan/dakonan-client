@@ -9,6 +9,7 @@ import fullPageImage from '../assets/GameContainer.png'
 import FinishAnnouncement from '../components/FinishAnnouncement'
 import WaitingRoom from './WaitingRoom'
 
+// const socket = io('https://dakonan-server.herokuapp.com')
 const socket = io('http://localhost:4000')
 
 const START_AMOUNT = 4
