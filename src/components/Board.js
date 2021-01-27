@@ -59,7 +59,6 @@ const Board = ({ board, clickHandler, roomDetail }) => {
       if (nextIndex === 14 ) nextIndex = 0
     }, 1000)
   }
-  
 
   const couldHijack = (clickedIndex, lastIndex) => {
    const allowedIndexToHijack = clickedIndex < 6
@@ -89,11 +88,13 @@ const Board = ({ board, clickHandler, roomDetail }) => {
   }
 
   const boardClickHandler = (index, number) => {
-    setLocalBoard(localBoard => localBoard.map((num, i) => {
-      if (i === index) return 0
-      return num
-    }))
-    lightController(index + 1, number)
+    if (!isNaN(index) && !isNaN(number)) {
+      setLocalBoard(localBoard => localBoard.map((num, i) => {
+        if (i === index) return 0
+        return num
+      }))
+      lightController(index + 1, number)
+    }
   }
 
   return (
@@ -104,90 +105,39 @@ const Board = ({ board, clickHandler, roomDetail }) => {
         bgColor="#f58634"
       />
       <div>
+        <div className="d-flex">
         {
-          username === roomDetail.users[0] ?
-          <div className="d-flex">
-            {
-              localBoard.slice(7, 13).reverse().map((number, idx) => (
-                <Hole
-                  bgColor="#f58634"
-                  pebbles={number}
-                  key={"player2" + idx}
-                  // onClick={() => boardClickHandler(12-idx, number)}
-                />
-              ))
-            }
-          </div>
-          :
-          roomDetail.gameState.player === 1 ?
-          <div className="d-flex">
-          {
-            localBoard.slice(7, 13).reverse().map((number, idx) => (
-              <Hole
-                bgColor="#f58634"
-                pebbles={number}
-                key={"player2" + idx}
-                onClick={() => boardClickHandler(12-idx, number)}
-              />
-            ))
-          }
-          </div>
-          :
-          <div className="d-flex">
-          {
-            localBoard.slice(7, 13).reverse().map((number, idx) => (
-              <Hole
-                bgColor="#f58634"
-                pebbles={number}
-                key={"player2" + idx}
-                // onClick={() => boardClickHandler(12-idx, number)}
-              />
-            ))
-          }
-          </div>
+          localBoard.slice(7, 13).reverse().map((number, idx) => (
+            <Hole
+              bgColor="#f58634"
+              pebbles={number}
+              key={"player2" + idx}
+              onClick={() => {
+                username === roomDetail.users[0] || roomDetail.gameState.player !== 1
+                ? boardClickHandler()
+                : boardClickHandler(12 - idx, number)
+              }}
+            />
+          ))
         }
+        </div>
+        <div className="d-flex">
         {
-          username === roomDetail.users[1] ?
-            <div className="d-flex">
-              {
-                localBoard.slice(0, 6).map((number, idx) => (
-                  <Hole 
-                    bgColor="#eb596e"
-                    pebbles={number}
-                    key={"player1" + idx}
-                    // onClick={() => boardClickHandler(idx, number)}
-                  />
-                ))
-              }
-            </div>
-            :
-            roomDetail.gameState.player === 0 ?
-            <div className="d-flex">
-            {
-              localBoard.slice(0, 6).map((number, idx) => (
-                <Hole 
-                  bgColor="#eb596e"
-                  pebbles={number}
-                  key={"player1" + idx}
-                  onClick={() => boardClickHandler(idx, number)}
-                />
-              ))
-            }
-            </div>
-            :
-            <div className="d-flex">
-            {
-              localBoard.slice(0, 6).map((number, idx) => (
-                <Hole 
-                  bgColor="#eb596e"
-                  pebbles={number}
-                  key={"player1" + idx}
-                  // onClick={() => boardClickHandler(idx, number)}
-                />
-              ))
-            }
-            </div>
+          localBoard.slice(0, 6).map((number, idx) => (
+            <Hole 
+              bgColor="#eb596e"
+              pebbles={number}
+              key={"player1" + idx}
+              onClick={() => {
+                username === roomDetail.users[1] || roomDetail.gameState.player !== 0
+                ? boardClickHandler()
+                : boardClickHandler(idx, number)
+              
+              }}
+            />
+          ))
         }
+        </div>
       </div>
       <BigHole
         className="big-bowl"
