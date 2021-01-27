@@ -11,7 +11,7 @@ const button = {
 };
 
 export default function Hole ({ 
-  bgColor = "whitesmoke", 
+  bgColor = "#f6f5f5", 
   pebbles = 0, 
   onClick 
 }) {
@@ -19,7 +19,7 @@ export default function Hole ({
   useEffect(() => {
     controls.start({
       backgroundColor: "#f4f5db", 
-      transition: { duration: 3 }
+      transition: { duration: 0.4 }
     })
     setTimeout(() => {
       controls.stop()
@@ -48,9 +48,7 @@ export default function Hole ({
               animate={pebblesOrganizer(idx, pebbles)}
               key={idx + "hole"}
             >
-              <Pebble
-                isBigHole={false}
-              />
+              <Pebble isBigHole={false}/>
             </motion.div>
           ))
           : null

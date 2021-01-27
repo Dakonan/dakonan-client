@@ -3,12 +3,12 @@ import { motion, useAnimation } from 'framer-motion'
 import { pebblesOrganizer } from '../helpers'
 import { useEffect } from 'react'
 
-export default function BigHole ({ bgColor = "whitesmoke", pebbles = 0 }) {
+export default function BigHole ({ bgColor = "#f6f5f5", pebbles = 0 }) {
   const controls = useAnimation()
   useEffect(() => {
     controls.start({
       backgroundColor: "#f4f5db", 
-      transition: { duration: 3 }
+      transition: { duration: 0.4 }
     })
     setTimeout(() => {
       controls.stop()
