@@ -6,8 +6,8 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
-    "framer-motion": "^3.2.2-rc.1",
     "axios": "^0.21.1",
+    "framer-motion": "^3.2.2-rc.1",
     "lodash": "^4.17.20",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
@@ -17,6 +17,7 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "simple-peer": "^9.9.3",
     "socket.io-client": "^2.3.0",
     "sweetalert2": "^10.13.3",
     "web-vitals": "^0.2.4"
