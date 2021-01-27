@@ -39,7 +39,7 @@ return (
       {
         leaderBoard.map((data, index) => {
           return (
-            <tr>
+            <tr key={index + "leaderboard"}>
               <td className="rank">{index+1}</td>
               <td className="username">{data.username}</td>
               <td className="match">{data.matchCount}</td>

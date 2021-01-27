@@ -1,15 +1,33 @@
 import { Pebble } from '.'
 import { range } from 'lodash'
-import { motion } from 'framer-motion'
+import { useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
 import { pebblesOrganizer } from '../helpers'
 
 const button = {
   rest: { scale: 1 },
   hover: { scale: 1.3 },
-  pressed: { scale: 2 }
+  pressed: { scale: 1.8 }
 };
 
-export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) {
+export default function Hole ({ 
+  bgColor = "whitesmoke", 
+  pebbles = 0, 
+  onClick 
+}) {
+  const controls = useAnimation()
+  useEffect(() => {
+    controls.start({
+      backgroundColor: "#f4f5db", 
+      transition: { duration: 3 }
+    })
+    setTimeout(() => {
+      controls.stop()
+      controls.start({ backgroundColor: bgColor })
+    }, 500)
+
+  }, [pebbles])
+
   return (
     <motion.div 
       variants={button}
@@ -18,9 +36,10 @@ export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) 
       whileTap="pressed"
       onClick={onClick}
     >
-      <div 
+      <motion.div 
         className="bowl"
-        style={{backgroundColor: bgColor}}
+        initial={{backgroundColor: "#f4f5db"}}
+        animate={controls}
       >
         {
           pebbles
@@ -36,7 +55,7 @@ export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) 
           ))
           : null
         }
-      </div>
+      </motion.div>
     </motion.div>
   )
 }

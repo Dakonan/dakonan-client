@@ -13,7 +13,6 @@ const Room = () => {
   
   useEffect(() => {
     dispatch(updatedRoom())
-    console.log(rooms,' di use effect room')
   }, [rooms])
 
   useEffect(() => {

@@ -3,8 +3,7 @@ import { BigHole, Hole } from '.'
 
 const Board = ({ board, clickHandler }) => {  
   const [localBoard, setLocalBoard] = useState(board)
-  const [light, setLight] = useState([]) //array of index where holes have white background
-
+  
   useEffect(() => {
     setLocalBoard(board)
   }, [board])
@@ -35,27 +34,23 @@ const Board = ({ board, clickHandler }) => {
 
     const timeout = setInterval(() => {
       if (number <= 0) {
-        setLight([])
         clickHandler(index) //request to server
         clearInterval(timeout)
       } else if (number === 1) {
         if (couldHijack(index, nextIndex)) {
           const homeIndex = index < 6 ? 6 : 13
           const hijackedIndex = 12 - nextIndex
-          setLight([homeIndex, hijackedIndex, nextIndex])
           setTimeout(() => {
             hijacker(nextIndex, hijackedIndex, homeIndex)
             number--
           }, timeDelay)
         } else {
-          setLight([nextIndex])
           setTimeout(() => {
             pebblesAdder(index, nextIndex)
             number--
           }, timeDelay)
         } 
       } else {
-        setLight([nextIndex])
         setTimeout(() => {
           pebblesAdder(index, nextIndex)
           number--
@@ -106,38 +101,38 @@ const Board = ({ board, clickHandler }) => {
       <BigHole
         className="big-bowl"
         pebbles={localBoard[13]}
-        bgColor={light.includes(13) ? "whitesmoke" : "#f58634"}
+        bgColor={"#f58634"}
       />
       <div>
         <div className="d-flex">
-          {
-            localBoard.slice(7, 13).reverse().map((number, idx) => (
-              <Hole
-                bgColor={light.includes(12-idx) ? "whitesmoke" :"#f58634"}
-                pebbles={number}
-                key={"player2" + idx}
-                onClick={() => boardClickHandler(12-idx, number)}
-              />
-            ))
-          }
+        {
+          localBoard.slice(7, 13).reverse().map((number, idx) => (
+            <Hole
+              bgColor="#f58634"
+              pebbles={number}
+              key={"player2" + idx}
+              onClick={() => boardClickHandler(12-idx, number)}
+            />
+          ))
+        }
         </div>
         <div className="d-flex">
-          {
-            localBoard.slice(0, 6).map((number, idx) => (
-              <Hole 
-                bgColor={light.includes(idx) ? "whitesmoke" : "#eb596e"}
-                pebbles={number}
-                key={"player1" + idx}
-                onClick={() => boardClickHandler(idx, number)}
-              />
-            ))
-          }
+        {
+          localBoard.slice(0, 6).map((number, idx) => (
+            <Hole 
+              bgColor={"#eb596e"}
+              pebbles={number}
+              key={"player1" + idx}
+              onClick={() => boardClickHandler(idx, number)}
+            />
+          ))
+        }
         </div>
       </div>
       <BigHole
         className="big-bowl"
         pebbles={localBoard[6]}
-        bgColor={light.includes(6) ? "whitesmoke" : "#eb596e"}
+        bgColor={"#eb596e"}
       />
     </div>
   )

@@ -66,9 +66,9 @@ const RegisterPage = () => {
     <div>
       <div className="container">
         <form onSubmit={handleSubmit}>
-        <div class="form-group">
+        <div className="form-group">
           <label >Email</label>
-          <input name="email" onChange={handleChange} type="email" class="form-control" placeholder="Enter Your Username"/>
+          <input name="email" onChange={handleChange} type="email" className="form-control" placeholder="Enter Your Username"/>
           {
             errors.email ?
             <div className="error-email">
@@ -77,9 +77,9 @@ const RegisterPage = () => {
             : null
           }
           </div>
-            <div class="form-group">
+            <div className="form-group">
               <label >USERNAME</label>
-              <input name="username" onChange={handleChange} type="text" class="form-control" placeholder="Enter Your Username"/>
+              <input name="username" onChange={handleChange} type="text" className="form-control" placeholder="Enter Your Username"/>
               {
                 errors.username ?
                 <div className="error-username">
@@ -88,9 +88,9 @@ const RegisterPage = () => {
                 : null
               }
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <label >PASSWORD</label>
-              <input name="password" onChange={handleChange} type="password" class="form-control" placeholder="Enter Your Username"/>
+              <input name="password" onChange={handleChange} type="password" className="form-control" placeholder="Enter Your Username"/>
               {
                 errors.password ?
                 <div className="error-password">

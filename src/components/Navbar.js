@@ -15,7 +15,7 @@ const NavbarTop = ({username}) => {
         <LeaderBoard />
         <h5>{`${username.toLowerCase()}`}</h5>
         <div onClick={() => logout()} className="btn-logout">
-          <i class="fas fa-sign-out-alt"></i>
+          <i className="fas fa-sign-out-alt"></i>
           <span className="tooltiptext">logout</span>
         </div>
       </div>

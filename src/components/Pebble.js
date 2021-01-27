@@ -9,8 +9,8 @@ export default function Pebble ({ bgColor = "black", isBigHole }) {
   return (
     <motion.div 
       animate={{ 
-        x: isBigHole ? 80 : 50,
-        y: isBigHole ? 90 : 50,
+        x: isBigHole ? 80 : 51,
+        y: isBigHole ? 90 : 51,
         transition: {
           duration: 0.55
         }
