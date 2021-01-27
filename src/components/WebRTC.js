@@ -6,8 +6,8 @@ import microphonestop from '../Icons/microphone-stop.svg'
 import { useHistory, useParams } from 'react-router-dom';
 
 
-// const socket = io('https://dakonan-server.herokuapp.com')
-const socket = io('http://localhost:4000')
+const socket = io('https://dakonan-server.herokuapp.com')
+// const socket = io('http://localhost:4000')
 
 const Video = (props) => {
   const ref = useRef();
@@ -22,7 +22,6 @@ const Video = (props) => {
   return (
     <div>
       <video style={{width: "80px", height: '80px'}} playsInline autoPlay ref={ref}></video>
-      <p>{username}</p>
     </div>
       // <StyledVideo playsInline autoPlay ref={ref} />
   );
@@ -42,7 +41,7 @@ const VideoCall = () => {
   const peersRef = useRef([]);
   const roomName = name;
   useEffect(() => {
-      socketRef.current = io.connect("http://localhost:4000");
+      socketRef.current = io.connect("https://dakonan-server.herokuapp.com");
       socketRef.current.on("yourID", (id) => {
         setUserID(id);
       });
@@ -95,7 +94,6 @@ const VideoCall = () => {
           });
   
           socketRef.current.on("user-disconnected", (id) => {
-            console.log(id, "disconnected")
             const peerObj = peersRef.current.find((p) => p.peerID === id);
             if (peerObj) {
               peerObj.peer.destroy();
@@ -111,7 +109,7 @@ const VideoCall = () => {
       const peer = new Peer({
         initiator: true,
         trickle: false,
-        stream,
+        stream
       });
   
       peer.on("signal", (signal) => {
@@ -129,6 +127,11 @@ const VideoCall = () => {
       const peer = new Peer({
         initiator: false,
         trickle: false,
+        config: {
+          iceServers: [
+          { url: 'stun:stun.l.google.com:19302' },
+          { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username: 'webrtc@live.com' }
+        ]},
         stream,
       });
   
