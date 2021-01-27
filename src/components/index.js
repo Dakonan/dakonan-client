@@ -12,8 +12,10 @@ import StatusBar from './StatusBar'
 import CustomButton from './CustomButton'
 import AnchorWrapper from './AnchorWrapper'
 import LeaderBoard from './LeaderBoard'
+import JoinCard from './JoinCard'
 
 export {
+  JoinCard,
   LeaderBoard,
   AnchorWrapper,
   CustomButton,

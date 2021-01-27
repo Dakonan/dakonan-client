@@ -1,7 +1,5 @@
 const baseRadius = 17
-// const maxPebbles = [1, 6, 21, 20, 21]
 const maxPebbles = [1, 6, 14, 27 ]
-
 
 const angleGenerator = (idx, radius, dividers) => {
   const layer = radius / baseRadius
