@@ -1,21 +1,11 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { joinRoom, updateRoom } from '../redux/actions'
+import { joinRoom } from '../redux/actions'
 
-const RoomCard = ({username}) => {
+const RoomCard = ({rooms, username}) => {
   const dispatch = useDispatch()
   const history = useHistory()
-  let rooms = useSelector(state => state.rooms.data)
-
-  useEffect(() => {
-    dispatch(updateRoom())
-  }, [dispatch])
-  
-  let availableRooms = []
-  availableRooms = rooms.filter(room => {
-    return room.users.length === 1
-  }) 
 
   const handleJoin = (username, roomName) => {
       const payload = {
@@ -27,7 +17,7 @@ const RoomCard = ({username}) => {
   }
   
   return (
-      availableRooms.map((room, index) => (
+      rooms.map((room, index) => (
         <div key={index} class="card m-1 w-100" >
           <div class="row no-gutters text-dark">
             <div class="col-md-12">

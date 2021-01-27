@@ -6,7 +6,7 @@ const Board = ({ board, clickHandler, roomDetail }) => {
   const [localBoard, setLocalBoard] = useState(board)
   const [light, setLight] = useState([]) //array of index where holes have white background
   const username = localStorage.username
-
+  
   useEffect(() => {
     setLocalBoard(board)
   }, [board])
@@ -47,13 +47,13 @@ const Board = ({ board, clickHandler, roomDetail }) => {
           setTimeout(() => {
             hijacker(nextIndex, hijackedIndex, homeIndex)
             number--
-          }, 600)
+          }, 500)
         } else {
           setLight([nextIndex])
           setTimeout(() => {
             pebblesAdder(index, nextIndex)
             number--
-          }, 600)
+          }, 500)
         } 
       } else {
         setLight([nextIndex])
@@ -61,7 +61,7 @@ const Board = ({ board, clickHandler, roomDetail }) => {
           pebblesAdder(index, nextIndex)
           number--
           nextIndex++
-        }, 600)
+        }, 500)
       }
       if (nextIndex === 14 ) nextIndex = 0
     }, 1000)

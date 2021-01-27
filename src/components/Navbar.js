@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import LeaderBoard from './LeaderBoard'
+import logo from '../assets/logo.png'
+
 const NavbarTop = ({username}) => {
   const history = useHistory() 
   const logout = () => {
@@ -8,13 +10,27 @@ const NavbarTop = ({username}) => {
     history.push('/')
   }
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light" style={{
+      padding: '25px 60px',
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      display: "flex",
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      zIndex: '1',
+      }}>
       <div>
         <Link to="/room">
-          <h5>DAKONAN</h5>
+        <img src={logo} class="logo" style={{
+          maxWidth: '70px'
+        }}/>
         </Link>
       </div>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between" style={{
+        color: 'white'
+        }}>
         <LeaderBoard></LeaderBoard>
         <h5>{`${username.toLowerCase()}`}</h5>
         <div onClick={() => logout()} className="btn-logout">

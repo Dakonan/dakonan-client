@@ -7,6 +7,9 @@ import { useHistory } from 'react-router-dom'
 import NavbarTop from '../components/Navbar'
 import Swal from 'sweetalert2'
 import { updatedRoom } from '../redux/actions'
+import dakonan from '../assets/dakonan.png'
+import stars from '../assets/stars.gif'
+
 const Room = () => {
   const dispatch = useDispatch()
   const history = useHistory()
@@ -14,8 +17,8 @@ const Room = () => {
   let rooms = useSelector(state => state.rooms.data)
   
   useEffect(() => {
+    console.log(rooms, 'di room page')
     dispatch(updatedRoom())
-    console.log(rooms,' di use effect room')
   }, [rooms])
 
   useEffect(() => {
@@ -51,22 +54,47 @@ const Room = () => {
 
   }
     
-
   return (
     <>
-    <NavbarTop username={username}></NavbarTop>
-    <div className="container">
-      <div className="container room-body">
-        <div className="row">
-          <div className='col-lg-5 col-sm-12'>
-            <JoinBox></JoinBox>
+      <section style={{
+        backgroundColor: 'blue',
+        padding: '0px 20px',
+        backgroundImage: `url(${stars})`,
+        backgroundSize: '50%',
+        backgroundRepeat: 'repeat',
+        display: 'flex', justifyContent: 'space-between'
+      }}>
+      
+      <NavbarTop username={username}></NavbarTop>
+      
+
+      <div className="col-12">
+        <div className="row room-body justify-content-center"
+        style={{
+          // backgroundColor: 'red',
+        }}
+        >
+          {/* <div className='col-1' style={{backgroundColor: 'red'}}></div> */}
+          <div className="row col-8 justify-content-center">
+            <div className="col-12">
+              <img src={dakonan} class="dakonan" style={{
+                maxWidth: '180px',
+                paddingBottom: '20px',
+                // paddingTop: '20px',
+                filter: 'drop-shadow(2px 2px 0 black) drop-shadow(-2px 2px 0 black)'
+              }}/>
+            </div>
+              <div className='col-lg-5 col-sm-12'>
+                <JoinBox></JoinBox>
+              </div>
+            <div className="col-lg-7 col-sm-12">
+              <RoomList rooms={rooms} handleCreateRoom={handleCreateRoom}></RoomList>
           </div>
-          <div className="col-lg-7 col-sm-12">
-            <RoomList handleCreateRoom={handleCreateRoom}></RoomList>
+        </div>
+        {/* <div className='col-1' style={{backgroundColor: 'red'}}></div> */}
         </div>
       </div>
-      </div>
-    </div>
+      </section>
     </>
   )
 }
