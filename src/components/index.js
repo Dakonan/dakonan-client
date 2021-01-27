@@ -13,8 +13,14 @@ import CustomButton from './CustomButton'
 import AnchorWrapper from './AnchorWrapper'
 import LeaderBoard from './LeaderBoard'
 import FinishAnnouncement from './FinishAnnouncement'
+import HowToPlay from './HowToPlay'
+import PageWrapper from './PageWrapper'
+import RowWrapper from './RowWrapper'
 
 export {
+  RowWrapper,
+  HowToPlay,
+  PageWrapper,
   FinishAnnouncement,
   LeaderBoard,
   AnchorWrapper,

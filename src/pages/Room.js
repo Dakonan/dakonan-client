@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { createRoom, updateRoom } from '../redux/actions'
-import { RoomList, JoinBox, NavbarTop} from '../components'
+import { RoomList, JoinBox, NavbarTop, PageWrapper } from '../components'
 import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { updatedRoom } from '../redux/actions'
@@ -49,11 +49,10 @@ const Room = () => {
         text: 'Room Name Already Used'
       })
     }
-
   }
     
   return (
-    <>
+    <PageWrapper key="room">
       <section style={{
         backgroundColor: '#118ab2',
         padding: '0px 20px',
@@ -62,25 +61,11 @@ const Room = () => {
         backgroundRepeat: 'repeat',
         display: 'flex', justifyContent: 'space-between'
       }}>
-      
       <NavbarTop username={username}></NavbarTop>
-      
-
       <div className="col-12">
-        <div className="row room-body justify-content-center"
-        style={{
-          // backgroundColor: 'red',
-        }}
-        >
-          {/* <div className='col-1' style={{backgroundColor: 'red'}}></div> */}
+        <div className="row room-body justify-content-center">
           <div className="row col-10 justify-content-center">
             <div className="col-12">
-              {/* <img src={dakonan} class="dakonan" style={{
-                maxWidth: '180px',
-                paddingBottom: '20px',
-                // paddingTop: '20px',
-                filter: 'drop-shadow(2px 2px 0 black) drop-shadow(-2px 2px 0 black)'
-              }}/> */}
             </div>
               <div className='col-lg-5 col-sm-12'>
                 <JoinBox></JoinBox>
@@ -89,11 +74,10 @@ const Room = () => {
               <RoomList rooms={rooms} handleCreateRoom={handleCreateRoom}></RoomList>
           </div>
         </div>
-        {/* <div className='col-1' style={{backgroundColor: 'red'}}></div> */}
         </div>
       </div>
       </section>
-    </>
+    </PageWrapper>
   )
 }
 export default Room

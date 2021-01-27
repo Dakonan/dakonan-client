@@ -13,11 +13,10 @@ import microphone from '../Icons/microphone.svg'
 import microphonestop from '../Icons/microphone-stop.svg'
 import VideoCall from '../components/WebRTC'
 import rootServer from '../config'
+import { PageWrapper } from '../components'
 
 const socket = io(rootServer)
-
 const START_AMOUNT = 4
-
 const intialState = {
   player: 0,
   board: emptyHomes(Array(14).fill(START_AMOUNT)),
@@ -204,7 +203,7 @@ const GamePage = () => {
   // }
 
   return (
-    <div className="bg-warning h-100" style={{  height: '170vh'}}>
+    <div key="game-page" className="bg-warning h-100" style={{  height: '170vh'}}>
     <NavbarTop username={username}></NavbarTop>
     <div className="App bg-warning h-100" style={{
       display: 'flex',

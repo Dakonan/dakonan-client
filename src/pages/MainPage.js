@@ -1,15 +1,13 @@
 import React from 'react'
-import { ModalLogin, AnchorWrapper } from '../components'
+import { ModalLogin, AnchorWrapper, HowToPlay, PageWrapper } from '../components'
 import { motion } from 'framer-motion'
 import man from '../assets/man.png'
 import logo from '../assets/logo.png'
 import fire from '../assets/fire.gif'
-import HowToPlay from '../components/HowToPlay'
-
 
 const MainPage = () => {
   return (
-  <>
+  <PageWrapper key={"main-page"}>
     <section>
       <img src={fire} className="fire" />
       <div className="circle"></div>
@@ -35,11 +33,11 @@ const MainPage = () => {
           <ModalLogin></ModalLogin>
         </motion.div>
         <div className="imgBox">
-            <img src={man} className="man" />
+          <img src={man} className="man" />
         </div>            
       </div>
     </section>
-  </>
+  </PageWrapper>
   )
 }
 

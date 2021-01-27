@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { leaveRoom, readyToPlay } from '../redux/actions'
@@ -23,7 +23,6 @@ const WaitingRoom = () => {
     history.push('/room')
   }
   return (
-    
     <section style={{
       backgroundColor: 'purple',
       padding: '0px 20px',
@@ -80,9 +79,7 @@ const WaitingRoom = () => {
         </div>
         </>
       }
-      {/* <p>{JSON.stringify(roomDetail)}</p> */}
     </div>
-      {/* <img src={manhead} class="manhead" /> */}
     </section>
     
   )
