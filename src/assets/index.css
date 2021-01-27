@@ -491,3 +491,46 @@ section {
   z-index: 2;
   border-radius: 0px 0px 20px 20px;
 }
+
+/* how to play */
+
+.btn-howtoplay {
+  font-size: 1.2rem;
+  margin-right: 2rem;
+}
+
+.howtoplay {
+  width: 42vw;
+  /* margin: 5rem auto; */
+  border-radius: 1.5rem;
+  box-shadow: 2px 2px 16px 1px #aaa;
+  font-family: sans-serif;
+  border: 7px solid #264653;
+  background-color: #2a9d8f;
+}
+
+.howtoplay .even {
+  background-color: #f4a261;
+}
+
+.howtoplay .odd {
+  background-color: #e76f51;
+}
+
+.howtoplay table {
+  background-color: #000000;
+  color: white;
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  overflow: hidden;
+}
+
+.howtoplay th {
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+.howtoplay td {
+  padding: 1rem 1rem;
+}
