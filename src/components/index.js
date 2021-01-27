@@ -10,6 +10,7 @@ import Pebble from './Pebble'
 import RoomCard from './RoomCard'
 import RoomList from './RoomList'
 import StatusBar from './StatusBar'
+import HowToPlay from './HowToPlay'
 
 export {
   BigHole,
@@ -23,5 +24,6 @@ export {
   Pebble,
   RoomCard,
   RoomList,
-  StatusBar
+  StatusBar,
+  HowToPlay
 }

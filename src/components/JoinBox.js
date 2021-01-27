@@ -30,7 +30,7 @@ const JoinBox = () => {
         <RoomCard username={username} rooms={targetRoom} ></RoomCard>
       </div>
       {/* <div className='yellow'></div> */}
-      <img src={manblue} class="manblue" />
+      {/* <img src={manblue} class="manblue" /> */}
     </div>
   )
 }
