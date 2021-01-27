@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import man from '../assets/man.png'
 import logo from '../assets/logo.png'
 import fire from '../assets/fire.gif'
+import HowToPlay from '../components/HowToPlay'
 
 
 const MainPage = () => {
@@ -15,9 +16,10 @@ const MainPage = () => {
       <header className='headerMainPage'>
         <a href="#"><img src={logo} className="logo"/></a>
         <ul>
-          <li><AnchorWrapper><a href="#">How to Play</a></AnchorWrapper></li>
+          <li><AnchorWrapper><a href="#">
+            <HowToPlay></HowToPlay>
+            </a></AnchorWrapper></li>
           <li><AnchorWrapper><a href="#">Leader Board</a></AnchorWrapper></li>
-          <li><AnchorWrapper><a href="#">About Us</a></AnchorWrapper></li>
         </ul>
       </header>
       <div className="content">

@@ -13,8 +13,6 @@ const FinishAnnouncement = ({message, handleRematch}) => {
   const loginUser = localStorage.getItem('username')
 
   useEffect(() => {
-    console.log(roomDetail)
-
     if (roomDetail.gameState.message === 'Player 1 wins!') {
       if (loginUser === roomDetail.users[0]) {
         axios({

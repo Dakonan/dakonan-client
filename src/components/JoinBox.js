@@ -23,24 +23,16 @@ const JoinBox = () => {
       minHeight: '35vh',
     }}
     >
-      {
-        rooms.length > 0 ?
-        <>
-        <div>
-            <h3>JOIN ROOM</h3>
-        </div>
-        <InputField section="join" handleSubmit={handleSearch}></InputField>
-        <div className="mt-2">
-          <JoinCard rooms={targetRoom} username={username}></JoinCard>
-          {/* <RoomCard username={username} rooms={targetRoom} ></RoomCard> */}
-        </div>
-        </>
-        :
-        ''
-      }
-      <div className="mt-4">
-        <img src={manblue} class="manblue" />
+      <>
+      <div>
+          <h3>JOIN ROOM</h3>
       </div>
+      <InputField section="join" handleSubmit={handleSearch}></InputField>
+      <div className="mt-2">
+        <JoinCard rooms={targetRoom} username={username}></JoinCard>
+        {/* <RoomCard username={username} rooms={targetRoom} ></RoomCard> */}
+      </div>
+      </>
     </div>
   )
 }
