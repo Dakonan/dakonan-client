@@ -1,10 +1,11 @@
 import io from 'socket.io-client'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+
+// const socket = io('https://dakonan-server.herokuapp.com')
 const socket = io('http://localhost:4000')
 
 export const register = (payload) => (dispatch) => {
-  // console.log(payload, 'dari register<<<<<')
   axios({
     url: `/register`,
     method: 'POST',
@@ -14,7 +15,7 @@ export const register = (payload) => (dispatch) => {
       Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: 'Login Success',
+        title: 'Register Success',
         showConfirmButton: false,
         timer: 1000
       })
