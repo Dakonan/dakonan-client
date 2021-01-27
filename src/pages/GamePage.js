@@ -52,9 +52,9 @@ const GamePage = () => {
       justifyContent: 'center',
       alignItems: 'center',
       position: 'relative',
-      top: '4vh',
+      // top: '4vh',
       // backgroundColor:'blue',
-      height: '80vh'
+      height: '100vh'
     }}>
       {
         !loading ?
