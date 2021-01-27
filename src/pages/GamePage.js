@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Header, Board, StatusBar, NavbarTop } from '../components'
+import { Board, StatusBar, NavbarTop } from '../components'
 import {useDispatch, useSelector} from 'react-redux'
 import { makeMove, emptyHomes } from '../utils'
 import io from 'socket.io-client'
@@ -209,7 +209,6 @@ const GamePage = () => {
       alignItems: 'center',
       position: 'relative',
       top: '4vh',
-      // backgroundColor:'blue',
       height: '80vh'
     }}>
       {
@@ -218,8 +217,6 @@ const GamePage = () => {
         :
         roomDetail.name && roomDetail.ready[0] === true && roomDetail.ready[1] === true  ?
         <>
-        {/* <Header /> */}
-
         <StatusBar
           player={roomDetail.gameState.player}
           isOver={roomDetail.gameState.isOver}
@@ -238,10 +235,6 @@ const GamePage = () => {
           clickHandler={clickHandler}
           roomDetail={roomDetail}
         />
-        {/* <p>{JSON.stringify(roomDetail)}</p> */}
-        {/* <button onClick={resetHandler}>
-          Reset
-        </button> */}
         </>
         :
         <WaitingRoom></WaitingRoom>
@@ -257,7 +250,6 @@ const GamePage = () => {
           return <Video key={peer.peerID} peer={peer.peer} />;
         }
       })}
-      {/* <Video p/> */}
     </div>
       {
         roomDetail.name && roomDetail.gameState.isOver == true ?

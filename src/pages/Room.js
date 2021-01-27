@@ -1,15 +1,11 @@
 import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createRoom, updateRoom, updatedRoom } from '../redux/actions'
-import { RoomList, JoinBox, NavbarTop, CustomButton } from '../components'
+import { RoomList, JoinBox, NavbarTop } from '../components'
 import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
-<<<<<<< HEAD
-=======
-import { updatedRoom } from '../redux/actions'
 import dakonan from '../assets/dakonan.png'
 import stars from '../assets/stars.gif'
->>>>>>> 54fa77739c0902ffd411af7ba4cd3986ee2c334a
 
 const Room = () => {
   const dispatch = useDispatch()
@@ -53,22 +49,7 @@ const Room = () => {
       })
     }
 
-  }
-<<<<<<< HEAD
-
-  return (
-    <>
-    <NavbarTop username={username}></NavbarTop>
-    <div className="container">
-      <div className="container room-body">
-        <div className="row">
-          <div className='col-lg-5 col-sm-12'>
-            <JoinBox />
-          </div>
-          <div className="col-lg-7 col-sm-12">
-            <RoomList handleCreateRoom={handleCreateRoom} />
-=======
-    
+  }    
   return (
     <>
       <section style={{
@@ -81,21 +62,14 @@ const Room = () => {
       }}>
       
       <NavbarTop username={username}></NavbarTop>
-      
 
       <div className="col-12">
-        <div className="row room-body justify-content-center"
-        style={{
-          // backgroundColor: 'red',
-        }}
-        >
-          {/* <div className='col-1' style={{backgroundColor: 'red'}}></div> */}
+        <div className="row room-body justify-content-center">
           <div className="row col-8 justify-content-center">
             <div className="col-12">
               <img src={dakonan} class="dakonan" style={{
                 maxWidth: '180px',
                 paddingBottom: '20px',
-                // paddingTop: '20px',
                 filter: 'drop-shadow(2px 2px 0 black) drop-shadow(-2px 2px 0 black)'
               }}/>
             </div>
@@ -106,8 +80,6 @@ const Room = () => {
               <RoomList rooms={rooms} handleCreateRoom={handleCreateRoom}></RoomList>
           </div>
         </div>
-        {/* <div className='col-1' style={{backgroundColor: 'red'}}></div> */}
->>>>>>> 54fa77739c0902ffd411af7ba4cd3986ee2c334a
         </div>
       </div>
       </section>
