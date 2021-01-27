@@ -55,7 +55,7 @@ const Room = () => {
   return (
     <>
       <section style={{
-        backgroundColor: 'blue',
+        backgroundColor: '#118ab2',
         padding: '0px 20px',
         backgroundImage: `url(${stars})`,
         backgroundSize: '50%',
