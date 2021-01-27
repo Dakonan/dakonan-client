@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Header, Board, StatusBar, NavbarTop } from '../components'
+import { Board, StatusBar, NavbarTop, FinishAnnouncement } from '../components'
 import {useDispatch, useSelector} from 'react-redux'
 import { makeMove, emptyHomes } from '../utils'
 import io from 'socket.io-client'
@@ -7,13 +7,12 @@ import Peer from "simple-peer";
 import { gameStart, readyToRematch, updateGameDetail } from '../redux/actions'
 import {useParams, useHistory} from 'react-router-dom'
 import fullPageImage from '../assets/GameContainer.png'
-import FinishAnnouncement from '../components/FinishAnnouncement'
 import WaitingRoom from './WaitingRoom'
 import microphone from '../Icons/microphone.svg'
 import microphonestop from '../Icons/microphone-stop.svg'
 
-const socket = io('https://dakonan-server.herokuapp.com')
-// const socket = io('http://localhost:4000')
+// const socket = io('https://dakonan-server.herokuapp.com')
+const socket = io('http://localhost:4000')
 
 const START_AMOUNT = 4
 
