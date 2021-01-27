@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import {useParams, useHistory} from 'react-router-dom'
+import React, { useEffect} from 'react'
+import { useHistory, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import bluefire from '../assets/bluefire.gif'
 import Swal from 'sweetalert2'
-import {leaveRoom} from '../redux/actions/index'
+import { leaveRoom } from '../redux/actions/index'
 
 const FinishAnnouncement = ({message, handleRematch}) => {
   const dispatch = useDispatch()

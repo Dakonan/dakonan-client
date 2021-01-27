@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import store from './redux/store'
 import axios from 'axios'
+import rootServer from './config'
 
-axios.defaults.baseURL = 'https://dakonan-server.herokuapp.com'
-// axios.defaults.baseURL = 'http://localhost:4000'
+axios.defaults.baseURL = rootServer
 
 ReactDOM.render(
   <React.StrictMode>
