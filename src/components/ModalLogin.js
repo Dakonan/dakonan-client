@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
-import {Modal, Button} from 'react-bootstrap'
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
-const ModalLogin = () => {
+import { useState } from 'react'
+import { Modal } from 'react-bootstrap'
+import { CustomButton, AnchorWrapper } from '.'
+import { LoginPage, RegisterPage }from '../pages';
 
+
+const ModalLogin = () => {
   const [page, setPage] = useState('login')
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -14,7 +15,7 @@ const ModalLogin = () => {
   }
   return (
       <>
-      <Button style={{
+      <CustomButton style={{
           backgroundColor: '#eb8423',
           borderRadius: '20px',
           width: '100px',
@@ -24,24 +25,19 @@ const ModalLogin = () => {
         }}
           onClick={handleShow}>
           Play
-      </Button>
+      </CustomButton>
 
       <Modal show={show} onHide={handleClose}>
           <Modal.Header className="bg-dark d-flex justify-content-">
-              <div onClick={() => handlePage('login')} className={page === 'login' ? " text-danger w-50 text-center" : "text-white w-50 text-center"}>
+              <AnchorWrapper onClick={() => handlePage('login')} className={page === 'login' ? " text-danger w-50 text-center" : "text-white w-50 text-center"}>
                   LOGIN
-              </div>
-              <div onClick={() => handlePage('register')} className={page === 'register' ? "text-danger w-50 text-center" : "text-white w-50 text-center"}>
+              </AnchorWrapper>
+              <AnchorWrapper onClick={() => handlePage('register')} className={page === 'register' ? "text-danger w-50 text-center" : "text-white w-50 text-center"}>
                   REGISTER
-              </div>
+              </AnchorWrapper>
           </Modal.Header>
           <Modal.Body>
-              {
-                  page === 'login' ?
-                  <LoginPage></LoginPage>
-                  :
-                  <RegisterPage></RegisterPage>
-              }
+            { page === 'login' ? <LoginPage /> : <RegisterPage />}
           </Modal.Body>
       </Modal>
       </>

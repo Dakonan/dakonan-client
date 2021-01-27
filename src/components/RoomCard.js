@@ -28,10 +28,10 @@ const RoomCard = ({username}) => {
   
   return (
       availableRooms.map((room, index) => (
-        <div key={index} class="card m-1 w-100" >
-          <div class="row no-gutters text-dark">
-            <div class="col-md-12">
-            <div class="card-body ">
+        <div key={index} className="card m-1 w-100" >
+          <div className="row no-gutters text-dark">
+            <div className="col-md-12">
+            <div className="card-body ">
               <div className="d-flex justify-content-center">
                 <h4 className="card-title mr-2">{`${room.name}`}</h4>
                 <p className="card-text">{`(by ${room.admin})`}</p>

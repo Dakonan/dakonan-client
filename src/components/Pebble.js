@@ -1,37 +1,24 @@
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-
-const randomize = () => {
-  const constant = 30
-  const rand = Math.random()
-  let result
-  Math.floor(rand * 10) % 2
-  ? result = rand * -constant
-  : result = rand * constant
-
-  return result
-}
+import { useEffect } from 'react'
+import { motion, usePresence } from 'framer-motion'
 
 export default function Pebble ({ bgColor = "black", isBigHole }) {
-  const [pos, setPos] = useState({
-    x: randomize(), 
-    y: randomize()
-  })
- 
-
+  const [ iamHere, removePebble ] = usePresence()
   useEffect(() => {
-    if (pos.x !== 0 || pos.y !== 0) {
-      setTimeout(setPos, 500, {x: 45, y: 45})
-    }
-  }, [pos])
+    !iamHere && setTimeout(removePebble, 400)
+  }, [iamHere])
   return (
     <motion.div 
       animate={{ 
-        opacity: 1,
-        x: isBigHole ? 40 : pos.x,
-        y: isBigHole ? 80 : pos.y
+        x: isBigHole ? 80 : 51,
+        y: isBigHole ? 90 : 51,
+        transition: {
+          duration: 0.55
+        }
       }}
-      initial={{opacity: 0}}
+      initial={{
+        x: 0,
+        y: 0
+      }}
     >
       <div className="pebble" 
         style={{backgroundColor: bgColor}}

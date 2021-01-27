@@ -1,47 +1,59 @@
 import { Pebble } from '.'
 import { range } from 'lodash'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
 import { pebblesOrganizer } from '../helpers'
-// const maxPebbleEachLayer = [0, 6, 10, 16, 17]
-// const baseRadius = 15
 
-export default function Hole ({ bgColor = "whitesmoke", pebbles = 0, onClick }) {
-  const [scale, setScale] = useState(1)
-  
-  const clickHandler = () => {
-    setScale(1.5)
-    setTimeout(onClick, 500)
-    setTimeout(setScale, 300, 1)
-  }
+const button = {
+  rest: { scale: 1 },
+  hover: { scale: 1.3 },
+  pressed: { scale: 1.8 }
+};
+
+export default function Hole ({ 
+  bgColor = "#f6f5f5", 
+  pebbles = 0, 
+  onClick 
+}) {
+  const controls = useAnimation()
+  useEffect(() => {
+    controls.start({
+      backgroundColor: "#f4f5db", 
+      transition: { duration: 0.4 }
+    })
+    setTimeout(() => {
+      controls.stop()
+      controls.start({ backgroundColor: bgColor })
+    }, 500)
+
+  }, [pebbles])
+
   return (
     <motion.div 
-      animate={{ scale }}
-      transition={{
-        type: "spring",
-        damping: 10,
-        stiffness: 200
-      }}
+      variants={button}
+      initial="rest"
+      whileHover="hover"
+      whileTap="pressed"
+      onClick={onClick}
     >
-      <div 
+      <motion.div 
         className="bowl"
-        style={{backgroundColor: bgColor}}
-        onClick={clickHandler}
+        initial={{backgroundColor: "#f4f5db"}}
+        animate={controls}
       >
         {
           pebbles
           ? range(pebbles).map((_, idx) => (
             <motion.div
-              animate={pebblesOrganizer(idx)}
+              animate={pebblesOrganizer(idx, pebbles)}
+              key={idx + "hole"}
             >
-              <Pebble key={idx} 
-                isBigHole={false}
-              />
+              <Pebble isBigHole={false}/>
             </motion.div>
           ))
           : null
         }
-      </div>
+      </motion.div>
     </motion.div>
   )
 }
