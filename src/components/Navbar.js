@@ -1,5 +1,9 @@
+import React from 'react''
 import { Link, useHistory } from 'react-router-dom'
 import { LeaderBoard, AnchorWrapper } from '.'
+import logo from '../assets/logo.png'
+
+
 const NavbarTop = ({username}) => {
   const history = useHistory() 
   const logout = () => {
