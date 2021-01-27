@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import LeaderBoard from './LeaderBoard'
-import logo from '../assets/logo.png'
+// import logo from '../assets/logo.png'
+import dakonan from '../assets/dakonan.png'
 
 const NavbarTop = ({username}) => {
   const history = useHistory() 
@@ -23,8 +24,8 @@ const NavbarTop = ({username}) => {
       }}>
       <div>
         <Link to="/room">
-        <img src={logo} class="logo" style={{
-          maxWidth: '70px'
+        <img src={dakonan} class="logo" style={{
+          maxWidth: '150px'
         }}/>
         </Link>
       </div>

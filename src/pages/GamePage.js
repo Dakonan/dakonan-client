@@ -11,9 +11,10 @@ import FinishAnnouncement from '../components/FinishAnnouncement'
 import WaitingRoom from './WaitingRoom'
 import microphone from '../Icons/microphone.svg'
 import microphonestop from '../Icons/microphone-stop.svg'
+import VideoCall from '../components/WebRTC'
 
-const socket = io('https://dakonan-server.herokuapp.com')
-// const socket = io('http://localhost:4000')
+// const socket = io('https://dakonan-server.herokuapp.com')
+const socket = io('http://localhost:4000')
 
 const START_AMOUNT = 4
 
@@ -57,105 +58,105 @@ const GamePage = () => {
   const peersRef = useRef([]);
   const roomName = name;
 
-  useEffect(() => {
-    socketRef.current = io.connect("http://localhost:4000");
-    socketRef.current.on("yourID", (id) => {
-      setUserID(id);
-    });
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then((stream) => {
-        setStream(stream)
-        userVideo.current.srcObject = stream;
-        let id
-        socketRef.current.emit("inRoom", ({roomName, id}));
-        socketRef.current.on("all users", (users) => {
-          const peers = [];
-          users.forEach((userID) => {
-            const peer = createPeer(userID, socketRef.current.id, stream);
-            peersRef.current.push({
-              peerID: userID,
-              peer,
-            });
-            peers.push({
-              peerID: userID,
-              peer,
-            });
-          });
-          setPeers(peers);
-        });
+  // useEffect(() => {
+  //   socketRef.current = io.connect("http://localhost:4000");
+  //   socketRef.current.on("yourID", (id) => {
+  //     setUserID(id);
+  //   });
+  //   navigator.mediaDevices
+  //     .getUserMedia({ video: true, audio: true })
+  //     .then((stream) => {
+  //       setStream(stream)
+  //       userVideo.current.srcObject = stream;
+  //       let id
+  //       socketRef.current.emit("inRoom", ({roomName, id}));
+  //       socketRef.current.on("all users", (users) => {
+  //         const peers = [];
+  //         users.forEach((userID) => {
+  //           const peer = createPeer(userID, socketRef.current.id, stream);
+  //           peersRef.current.push({
+  //             peerID: userID,
+  //             peer,
+  //           });
+  //           peers.push({
+  //             peerID: userID,
+  //             peer,
+  //           });
+  //         });
+  //         setPeers(peers);
+  //       });
 
-        socketRef.current.on("user joined", (payload) => {
-          const peer = addPeer(payload.signal, payload.callerID, stream);
-          peersRef.current.push({
-            peerID: payload.callerID,
-            peer,
-          });
+  //       socketRef.current.on("user joined", (payload) => {
+  //         const peer = addPeer(payload.signal, payload.callerID, stream);
+  //         peersRef.current.push({
+  //           peerID: payload.callerID,
+  //           peer,
+  //         });
 
-          const peerObj = {
-            peer,
-            peerID: payload.callerID,
-          };
+  //         const peerObj = {
+  //           peer,
+  //           peerID: payload.callerID,
+  //         };
 
-          setPeers((users) => [...users, peerObj]);
-        });
+  //         setPeers((users) => [...users, peerObj]);
+  //       });
 
-        socketRef.current.on("leave-room-client", payload => {
-          setPeers(payload)
-          console.log(payload, "leave room client")
-        })
+  //       socketRef.current.on("leave-room-client", payload => {
+  //         setPeers(payload)
+  //         console.log(payload, "leave room client")
+  //       })
 
-        socketRef.current.on("receiving returned signal", (payload) => {
-          const item = peersRef.current.find((p) => p.peerID === payload.id);
-          item.peer.signal(payload.signal);
-        });
+  //       socketRef.current.on("receiving returned signal", (payload) => {
+  //         const item = peersRef.current.find((p) => p.peerID === payload.id);
+  //         item.peer.signal(payload.signal);
+  //       });
 
-        socketRef.current.on("user-disconnected", (id) => {
-          console.log(id, "disconnected")
-          const peerObj = peersRef.current.find((p) => p.peerID === id);
-          if (peerObj) {
-            peerObj.peer.destroy();
-          }
-          const peers = peersRef.current.filter((p) => p.peerID !== id);
-          peersRef.current = peers;
-          setPeers(peers);
-        });
-      });
-  }, []);
+  //       socketRef.current.on("user-disconnected", (id) => {
+  //         console.log(id, "disconnected")
+  //         const peerObj = peersRef.current.find((p) => p.peerID === id);
+  //         if (peerObj) {
+  //           peerObj.peer.destroy();
+  //         }
+  //         const peers = peersRef.current.filter((p) => p.peerID !== id);
+  //         peersRef.current = peers;
+  //         setPeers(peers);
+  //       });
+  //     });
+  // }, []);
 
-  const createPeer = (userToSignal, callerID, stream) => {
-    const peer = new Peer({
-      initiator: true,
-      trickle: false,
-      stream,
-    });
+  // const createPeer = (userToSignal, callerID, stream) => {
+  //   const peer = new Peer({
+  //     initiator: true,
+  //     trickle: false,
+  //     stream,
+  //   });
 
-    peer.on("signal", (signal) => {
-      socketRef.current.emit("sending signal", {
-        userToSignal,
-        callerID,
-        signal,
-      });
-    });
+  //   peer.on("signal", (signal) => {
+  //     socketRef.current.emit("sending signal", {
+  //       userToSignal,
+  //       callerID,
+  //       signal,
+  //     });
+  //   });
 
-    return peer;
-  };
+  //   return peer;
+  // };
 
-  const addPeer = (inComingSignal, callerID, stream) => {
-    const peer = new Peer({
-      initiator: false,
-      trickle: false,
-      stream,
-    });
+  // const addPeer = (inComingSignal, callerID, stream) => {
+  //   const peer = new Peer({
+  //     initiator: false,
+  //     trickle: false,
+  //     stream,
+  //   });
 
-    peer.on("signal", (signal) => {
-      socketRef.current.emit("returning signal", { signal, callerID });
-    });
+  //   peer.on("signal", (signal) => {
+  //     socketRef.current.emit("returning signal", { signal, callerID });
+  //   });
 
-    peer.signal(inComingSignal);
+  //   peer.signal(inComingSignal);
 
-    return peer;
-  };
+  //   return peer;
+  // };
 
   useEffect(() => {
     dispatch(updateGameDetail())
@@ -173,46 +174,46 @@ const GamePage = () => {
     // dispatch(gameStart(intialState, name))
   }
 
-  const handleMoveRoom = () => {
-    let newUsers = peers.filter(peer => peer.peerID !== userID)
-    const payload = {
-      roomName,
-      newUsers
-    }
-    socketRef.current.emit("leave-room", payload)
-    history.push("/room")
-    // console.log("haloo")
-  };
+  // const handleMoveRoom = () => {
+  //   let newUsers = peers.filter(peer => peer.peerID !== userID)
+  //   const payload = {
+  //     roomName,
+  //     newUsers
+  //   }
+  //   socketRef.current.emit("leave-room", payload)
+  //   history.push("/room")
+  //   // console.log("haloo")
+  // };
 
-  function toggleMuteAudio(){
-    if(stream){
-      setAudioMuted(!audioMuted)
-      stream.getAudioTracks()[0].enabled = audioMuted
-    }
-  }
+  // function toggleMuteAudio(){
+  //   if(stream){
+  //     setAudioMuted(!audioMuted)
+  //     stream.getAudioTracks()[0].enabled = audioMuted
+  //   }
+  // }
 
-  let audioControl;
-  if(audioMuted){
-    audioControl=<span className="iconContainer" onClick={()=>toggleMuteAudio()}>
-      <img style={{width: "25px", position: "absolute", left: 0, bottom: 7}} src={microphonestop} alt="Unmute audio"/>
-    </span>
-  } else {
-    audioControl=<span className="iconContainer" onClick={()=>toggleMuteAudio()}>
-      <img style={{width: "25px", position: "absolute", left: 0, bottom: 7}} src={microphone} alt="Mute audio"/>
-    </span>
-  }
+  // let audioControl;
+  // if(audioMuted){
+  //   audioControl=<span className="iconContainer" onClick={()=>toggleMuteAudio()}>
+  //     <img style={{width: "25px", position: "absolute", left: 0, bottom: 7}} src={microphonestop} alt="Unmute audio"/>
+  //   </span>
+  // } else {
+  //   audioControl=<span className="iconContainer" onClick={()=>toggleMuteAudio()}>
+  //     <img style={{width: "25px", position: "absolute", left: 0, bottom: 7}} src={microphone} alt="Mute audio"/>
+  //   </span>
+  // }
 
   return (
-    <>
+    <div className="bg-warning h-100" style={{  height: '170vh'}}>
     <NavbarTop username={username}></NavbarTop>
-    <div className="App" style={{
+    <div className="App bg-warning h-100" style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       position: 'relative',
-      top: '4vh',
+      top: '11vh',
       // backgroundColor:'blue',
-      height: '80vh'
+      height: '90vh'
     }}>
       {
         !loading ?
@@ -244,22 +245,11 @@ const GamePage = () => {
         {/* <button onClick={resetHandler}>
           Reset
         </button> */}
+        <VideoCall></VideoCall>
         </>
         :
         <WaitingRoom></WaitingRoom>
       }
-    </div>
-    <div style={{position: "absolute", zIndex: 100, top: "-15px", width: "700px", display: "flex", justifyContent: "space-between"}}>
-      <div>
-        <video style={{width: "170px", marginRight: "300px"}} muted ref={userVideo} autoPlay playsInline></video>
-        {audioControl}
-      </div>
-      {peers.map((peer) => {
-        if (peer.peerID !== userID) {
-          return <Video key={peer.peerID} peer={peer.peer} />;
-        }
-      })}
-      {/* <Video p/> */}
     </div>
       {
         roomDetail.name && roomDetail.gameState.isOver == true ?
@@ -269,7 +259,7 @@ const GamePage = () => {
         :
         ""
       }
-    </>
+    </div>
   );
 }
 

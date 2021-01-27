@@ -75,14 +75,14 @@ const Room = () => {
         }}
         >
           {/* <div className='col-1' style={{backgroundColor: 'red'}}></div> */}
-          <div className="row col-8 justify-content-center">
+          <div className="row col-10 justify-content-center">
             <div className="col-12">
-              <img src={dakonan} class="dakonan" style={{
+              {/* <img src={dakonan} class="dakonan" style={{
                 maxWidth: '180px',
                 paddingBottom: '20px',
                 // paddingTop: '20px',
                 filter: 'drop-shadow(2px 2px 0 black) drop-shadow(-2px 2px 0 black)'
-              }}/>
+              }}/> */}
             </div>
               <div className='col-lg-5 col-sm-12'>
                 <JoinBox></JoinBox>
