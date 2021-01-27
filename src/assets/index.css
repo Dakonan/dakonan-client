@@ -462,6 +462,15 @@ section {
   border-radius: 0 0 0 25px;
 }
 
+.manhead {
+  position: absolute;
+  height: 40vw;
+  /* width: 100vw; */
+  left: 25vh;
+  bottom: -34vh;
+  z-index: 0;
+}
+
 /* .yellow {
   position: absolute;
   min-height: 8vw;

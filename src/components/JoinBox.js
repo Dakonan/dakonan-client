@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import InputField from './inputField'
-import RoomCard from './RoomCard'
+import JoinCard from './JoinCard'
 import {useSelector} from 'react-redux'
 import manblue from '../assets/manblue.png'
 
@@ -19,18 +19,28 @@ const JoinBox = () => {
     <div  className="container bg-warning h-100 d-inline-block p-3"
     style={{
       borderRadius: '25px',
-      border: '6px solid'
+      border: '6px solid',
+      minHeight: '35vh',
     }}
     >
-      <div>
-          <h3>JOIN ROOM</h3>
+      {
+        rooms.length > 0 ?
+        <>
+        <div>
+            <h3>JOIN ROOM</h3>
+        </div>
+        <InputField section="join" handleSubmit={handleSearch}></InputField>
+        <div className="mt-2">
+          <JoinCard rooms={targetRoom} username={username}></JoinCard>
+          {/* <RoomCard username={username} rooms={targetRoom} ></RoomCard> */}
+        </div>
+        </>
+        :
+        ''
+      }
+      <div className="mt-4">
+        <img src={manblue} class="manblue" />
       </div>
-      <InputField section="join" handleSubmit={handleSearch}></InputField>
-      <div className="mt-5">
-        <RoomCard username={username} rooms={targetRoom} ></RoomCard>
-      </div>
-      {/* <div className='yellow'></div> */}
-      <img src={manblue} class="manblue" />
     </div>
   )
 }

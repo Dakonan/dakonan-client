@@ -4,10 +4,10 @@ import RoomCard from './RoomCard'
 import {useDispatch, useSelector} from 'react-redux'
 import { updatedRoom } from '../redux/actions'
 
-const RoomList = ({handleCreateRoom}) => {
+const RoomList = ({handleCreateRoom, rooms}) => {
   const dispatch = useDispatch()
   const username = localStorage.username
-  let rooms = useSelector(state => state.rooms.data)
+  // let rooms = useSelector(state => state.rooms.data)
   
   useEffect(() => {
     dispatch(updatedRoom())

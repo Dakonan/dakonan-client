@@ -17,8 +17,8 @@ const Room = () => {
   let rooms = useSelector(state => state.rooms.data)
   
   useEffect(() => {
+    console.log(rooms, 'di room page')
     dispatch(updatedRoom())
-    console.log(rooms,' di use effect room')
   }, [rooms])
 
   useEffect(() => {
@@ -82,16 +82,13 @@ const Room = () => {
                 paddingBottom: '20px',
                 // paddingTop: '20px',
                 filter: 'drop-shadow(2px 2px 0 black) drop-shadow(-2px 2px 0 black)'
-
               }}/>
             </div>
-
-
-            <div className='col-lg-5 col-sm-12'>
-              <JoinBox></JoinBox>
-            </div>
+              <div className='col-lg-5 col-sm-12'>
+                <JoinBox></JoinBox>
+              </div>
             <div className="col-lg-7 col-sm-12">
-              <RoomList handleCreateRoom={handleCreateRoom}></RoomList>
+              <RoomList rooms={rooms} handleCreateRoom={handleCreateRoom}></RoomList>
           </div>
         </div>
         {/* <div className='col-1' style={{backgroundColor: 'red'}}></div> */}
