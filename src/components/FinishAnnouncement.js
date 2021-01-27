@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import {Link, useParams, useHistory} from 'react-router-dom'
+import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import {Link, useHistory } from 'react-router-dom'
+import { leaveRoom } from '../redux/actions/index'
 import axios from 'axios'
 import bluefire from '../assets/bluefire.gif'
 import Swal from 'sweetalert2'
-import {leaveRoom} from '../redux/actions/index'
 import winGif from '../assets/win.gif'
 import loseGif from '../assets/lose.gif'
 

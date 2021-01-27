@@ -23,7 +23,7 @@ return (
       <div className="col-12" >
         <h1 className="mb-4" style={{color: '#e9c46a', webkitTextStroke: '1.5px black', fontSize: '70px'}}><strong>How to Play</strong></h1>
         <h4 style={{color: '#e9c46a', webkitTextStroke: '1px black', fontSize: '30px'}}><strong>For 2 Players</strong></h4>
-        <p className="mb-4">Mancala is an ancient family of board games, and there are numerous variants. This is a version of the basic game, known as two-rank Mancala and also known as Kalah.</p>
+        <p className="mb-4">Dakon (also known as Dhakon, Cangklok, Mancala, etc) is an ancient family of board games, and there are numerous variants.</p>
         <h4 style={{color: '#e9c46a', webkitTextStroke: '1px black', fontSize: '30px'}}><strong>Gameplay</strong></h4>
         <table className="mb-5">
           <tbody>
@@ -37,11 +37,11 @@ return (
             </tr>
             <tr className="odd">
               <td style={{textAlign: 'left', minWidth: '2em'}}>3</td>
-              <td style={{textAlign: 'left'}} className="username">If you run into your own Mancala (store), deposit one piece in it. If you run into your opponent's Mancala, skip it and continue moving to the next pocket.</td>
+              <td style={{textAlign: 'left'}} className="username">If you run into your own Dakon (store), deposit one piece in it. If you run into your opponent's Dakon, skip it and continue moving to the next pocket.</td>
             </tr>
             <tr className="even">
               <td style={{textAlign: 'left', minWidth: '2em'}} >4</td>
-              <td style={{textAlign: 'left'}} className="username">If the last piece you drop is in your own Mancala, you take another turn.</td>
+              <td style={{textAlign: 'left'}} className="username">If the last piece you drop is in your own Dakon, you take another turn.</td>
             </tr>
             <tr className="odd">
               <td style={{textAlign: 'left', minWidth: '2em'}}>5</td>
@@ -49,11 +49,11 @@ return (
             </tr>
             <tr className="even">
               <td style={{textAlign: 'left', minWidth: '2em'}} >6</td>
-              <td style={{textAlign: 'left'}} className="username">Always place all captured pieces in your Mancala (store).</td>
+              <td style={{textAlign: 'left'}} className="username">Always place all captured pieces in your Dakon (store).</td>
             </tr>
             <tr className="odd">
               <td style={{textAlign: 'left', minWidth: '2em'}}>7</td>
-              <td style={{textAlign: 'left'}} className="username">The game ends when all six pockets on one side of the Mancala board are empty.</td>
+              <td style={{textAlign: 'left'}} className="username">The game ends when all six pockets on one side of the Dakon board are empty.</td>
             </tr>
             <tr className="even">
               <td style={{textAlign: 'left', minWidth: '2em'}} >8</td>
@@ -61,7 +61,7 @@ return (
             </tr>
             <tr className="odd">
               <td style={{textAlign: 'left', minWidth: '2em'}}>9</td>
-              <td style={{textAlign: 'left'}} className="username">Count all the pieces in each Mancala. The winner is the player with the most pieces.</td>
+              <td style={{textAlign: 'left'}} className="username">Count all the pieces in each Dakon. The winner is the player with the most pieces.</td>
             </tr>
 
           </tbody>

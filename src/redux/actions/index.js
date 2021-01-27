@@ -1,9 +1,9 @@
 import io from 'socket.io-client'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import rootServer from '../../config'
 
-const socket = io('https://dakonan-server.herokuapp.com')
-// const socket = io('http://localhost:4000')
+const socket = io(rootServer)
 
 export const register = (payload) => (dispatch) => {
   axios({
@@ -154,9 +154,7 @@ export const gameStart = (state, roomName) => (dispatch) => {
 }
 
 export const updateGameDetail = () => (dispatch) => {
-  // console.log('di update game detail')
   socket.on('gameDetail', payload => {
-    // console.log(payload, 'isi payload di game detail')
     dispatch(setRoomDetail(payload))
     dispatch(doneLoading)
   })
@@ -167,7 +165,6 @@ export const readyToPlay = (roomName) => (dispatch) => {
   dispatch(updateGameDetail())
 }
 export const readyToRematch = (state, roomName) => (dispatch) => {
-  // console.log(state, roomName, 'di ready to rematch')
   socket.emit('readyToRematch', state, roomName)
   dispatch(updateGameDetail())
 }
