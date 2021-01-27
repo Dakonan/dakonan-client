@@ -15,7 +15,7 @@ export const register = (payload) => (dispatch) => {
       Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: 'Login Success',
+        title: 'Register Success',
         showConfirmButton: false,
         timer: 1000
       })
