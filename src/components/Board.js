@@ -78,7 +78,7 @@ const Board = ({ board, clickHandler, roomDetail }) => {
         if (idx === hijackedIndex || idx === nextIndex) {
           return 0
         }
-        else if (idx == homeIndex) {
+        else if (idx === homeIndex) {
           return localBoard[homeIndex] + currentPlayerNumber + enemyNumber
         } else {
           return num

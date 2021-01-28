@@ -24,7 +24,7 @@ const NavbarTop = ({username}) => {
       }}>
       <div>
         <Link to="/room">
-        <img src={dakonan} className="logo" style={{
+        <img src={dakonan} class="logo" alt="dakonan" style={{
           maxWidth: '150px'
         }}/>
         </Link>

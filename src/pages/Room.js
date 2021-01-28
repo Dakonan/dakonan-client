@@ -5,7 +5,7 @@ import { RoomList, JoinBox, NavbarTop, PageWrapper } from '../components'
 import { useHistory } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { updatedRoom } from '../redux/actions'
-import dakonan from '../assets/dakonan.png'
+// import dakonan from '../assets/dakonan.png'
 import stars from '../assets/stars.gif'
 
 const Room = () => {
@@ -15,9 +15,8 @@ const Room = () => {
   let rooms = useSelector(state => state.rooms.data)
   
   useEffect(() => {
-    console.log(rooms, 'di room page')
     dispatch(updatedRoom())
-  }, [rooms])
+  }, [rooms, dispatch])
 
   useEffect(() => {
       dispatch(updateRoom())
@@ -28,7 +27,7 @@ const Room = () => {
     if(!isLoggedIn) {
       history.push('/')
     }
-  }, [])
+  }, [history])
 
   const handleCreateRoom = (roomName) => {
     let isAlreadyUsed

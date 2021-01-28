@@ -11,7 +11,13 @@ const handleShow = () => setShow(true)
 
 return (
 <>
-  <div className="anchor-wrapper" onClick={handleShow}>
+  <div className="anchor-wrapper" style={{
+    color: 'white',
+    fontWeight: 'bold',
+    fontFamily: 'monospace',
+    fontSize: '1vw'
+    }} 
+    onClick={handleShow}>
     <h5>How To Play</h5>
   </div>
 
@@ -19,7 +25,7 @@ return (
   <div class="howtoplay row" style={{textAlign: 'center'}}>
     <div className="col-12 mt-4">
       <div className="col-12 mb-3">
-        <img src={logo} className="logo" style={{width: '3rem'}}/>
+        <img src={logo} className="logo" style={{width: '3rem'}} alt="how To play"  />
       </div>
       <div className="col-12" >
         <h1 className="mb-4" style={{color: '#e9c46a', webkitTextStroke: '1.5px black', fontSize: '70px'}}><strong>How to Play</strong></h1>

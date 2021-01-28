@@ -11,7 +11,7 @@ const RoomList = ({handleCreateRoom, rooms}) => {
   
   useEffect(() => {
     dispatch(updatedRoom())
-  }, [rooms])
+  }, [rooms, dispatch])
   
 
   return (

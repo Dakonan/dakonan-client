@@ -31,7 +31,7 @@ export default function Hole ({
       controls.start({ backgroundColor: bgColor })
     }, 500)
 
-  }, [pebbles])
+  }, [pebbles, bgColor, controls])
 
   return (
     <motion.div 
@@ -50,6 +50,7 @@ export default function Hole ({
           pebbles
           ? range(pebbles).map((_, idx) => (
             <motion.div
+              className="pebble-container"
               animate={pebblesOrganizer(idx, pebbles)}
               key={idx + "hole"}
             >

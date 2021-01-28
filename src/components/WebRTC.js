@@ -1,29 +1,26 @@
-import { useEffect, useRef, useState } from 'react'
+import React, {useEffect,useRef, useState} from 'react'
 import io from 'socket.io-client'
 import Peer from "simple-peer";
 import microphone from '../Icons/microphone.svg'
 import microphonestop from '../Icons/microphone-stop.svg'
-import { useHistory, useParams } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
 import rootServer from '../config'
 
-
-const socket = io(rootServer)
+// const socket = io(rootServer)
 // const socket = io('http://localhost:4000')
 
 const Video = (props) => {
   const ref = useRef();
-  const username = localStorage.username
+  // const username = localStorage.username
 
   useEffect(() => {
       props.peer.on("stream", stream => {
           ref.current.srcObject = stream;
       })
-  }, []);
+  }, [props.peer]);
 
   return (
-    <div>
-      <video style={{width: "80px", height: '80px'}} playsInline autoPlay ref={ref}></video>
-    </div>
+      <video playsInline autoPlay ref={ref}></video>
       // <StyledVideo playsInline autoPlay ref={ref} />
   );
 }
@@ -31,7 +28,7 @@ const Video = (props) => {
 
 const VideoCall = () => {
   const {name} = useParams()
-  const history = useHistory()
+  // const history = useHistory()
   const [userID, setUserID] = useState("");
   const [audioMuted, setAudioMuted] = useState(false)
   const [stream, setStream] = useState();
@@ -104,12 +101,17 @@ const VideoCall = () => {
             setPeers(peers);
           });
         });
-    }, []);
+    }, [roomName]);
   
     const createPeer = (userToSignal, callerID, stream) => {
       const peer = new Peer({
         initiator: true,
         trickle: false,
+        config: {
+          iceServers: [
+          { url: 'stun:stun.l.google.com:19302' },
+          { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username: 'webrtc@live.com' }
+        ]},
         stream
       });
   
@@ -128,12 +130,7 @@ const VideoCall = () => {
       const peer = new Peer({
         initiator: false,
         trickle: false,
-        config: {
-          iceServers: [
-          { url: 'stun:stun.l.google.com:19302' },
-          { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username: 'webrtc@live.com' }
-        ]},
-        stream,
+        stream
       });
   
       peer.on("signal", (signal) => {
@@ -144,16 +141,15 @@ const VideoCall = () => {
   
       return peer;
     };
-    const handleMoveRoom = () => {
-      let newUsers = peers.filter(peer => peer.peerID !== userID)
-      const payload = {
-        roomName,
-        newUsers
-      }
-      socketRef.current.emit("leave-room", payload)
-      history.push("/room")
-      // console.log("haloo")
-    };
+    // const handleMoveRoom = () => {
+    //   let newUsers = peers.filter(peer => peer.peerID !== userID)
+    //   const payload = {
+    //     roomName,
+    //     newUsers
+    //   }
+    //   socketRef.current.emit("leave-room", payload)
+    //   history.push("/room")
+    // };
   
     function toggleMuteAudio(){
       if(stream){
@@ -172,19 +168,21 @@ const VideoCall = () => {
         <img style={{width: "25px", position: "absolute", left: 0, bottom: 7}} src={microphone} alt="Mute audio"/>
       </span>
     }
+
     return (
-      <div style={{position: "absolute", zIndex: 100, top: "-15px", width: "700px", display: "flex", justifyContent: "space-between"}}>
-      <div>
-        <video style={{width: "170px", marginRight: "300px"}} muted ref={userVideo} autoPlay playsInline></video>
+      <>
+      <div className="vid-player">
+        <video muted ref={userVideo} autoPlay playsInline></video>
         {audioControl}
       </div>
+      <div className="vid-enemy">
       {peers.map((peer) => {
         if (peer.peerID !== userID) {
           return <Video key={peer.peerID} peer={peer.peer} />;
         }
       })}
-      {/* <Video p/> */}
-    </div>
+      </div>
+    </>
     )
 }
 

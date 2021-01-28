@@ -20,7 +20,7 @@ export default function BigHole ({ bgColor = "#f6f5f5", pebbles = 0 }) {
       controls.start({ backgroundColor: bgColor })
     }, 500)
 
-  }, [pebbles])
+  }, [pebbles, bgColor, controls])
 
   return (
     <motion.div 

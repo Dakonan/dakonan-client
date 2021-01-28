@@ -29,7 +29,7 @@ const ModalLogin = () => {
     </CustomButton>
 
     <Modal show={show} onHide={handleClose}>
-      <Modal.Header className="bg-dark d-flex justify-content-">
+      <Modal.Header className="bg-dark d-flex" style={{borderRadius: '25px 25px 0 0'}}>
         <AnchorWrapper onClick={() => handlePage('login')} className={page === 'login' ? " text-danger w-50 text-center" : "text-white w-50 text-center"}>
           LOGIN
         </AnchorWrapper>

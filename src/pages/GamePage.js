@@ -1,19 +1,24 @@
-import { useEffect, useState, useRef } from 'react'
-import { Board, StatusBar, NavbarTop, FinishAnnouncement, VideoCall } from '../components'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { Board, StatusBar, NavbarTop } from '../components'
+import {useDispatch, useSelector} from 'react-redux'
 import { makeMove, emptyHomes } from '../utils'
-import io from 'socket.io-client'
-import Peer from "simple-peer";
+// import io from 'socket.io-client'
+// import Peer from "simple-peer";
 import { gameStart, readyToRematch, updateGameDetail } from '../redux/actions'
-import {useParams, useHistory} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import fullPageImage from '../assets/GameContainer.png'
+import FinishAnnouncement from '../components/FinishAnnouncement'
 import WaitingRoom from './WaitingRoom'
-import microphone from '../Icons/microphone.svg'
-import microphonestop from '../Icons/microphone-stop.svg'
-import rootServer from '../config'
+import Swal from 'sweetalert2'
+// import microphone from '../Icons/microphone.svg'
+// import microphonestop from '../Icons/microphone-stop.svg'
+import VideoCall from '../components/WebRTC'
+// import rootServer from '../config'
 
-const socket = io(rootServer)
+// const socket = io(rootServer)
+
 const START_AMOUNT = 4
+
 const intialState = {
   player: 0,
   board: emptyHomes(Array(14).fill(START_AMOUNT)),
@@ -21,41 +26,41 @@ const intialState = {
   message: ''
 }
 
-const Video = (props) => {
-  const ref = useRef();
+// const Video = (props) => {
+//   const ref = useRef();
 
-  useEffect(() => {
-      props.peer.on("stream", stream => {
-        ref.current.srcObject = stream;
-      })
-  }, []);
+//   useEffect(() => {
+//       props.peer.on("stream", stream => {
+//           ref.current.srcObject = stream;
+//       })
+//   }, []);
 
-  return (
-    <video style={{width: "170px"}} playsInline autoPlay ref={ref}></video>
-      // <StyledVideo playsInline autoPlay ref={ref} />
-  );
-}
+//   return (
+//     <video style={{width: "170px"}} playsInline autoPlay ref={ref}></video>
+//       // <StyledVideo playsInline autoPlay ref={ref} />
+//   );
+// }
 
 const GamePage = () => {
   const dispatch = useDispatch()
-  const history = useHistory()
+  // const history = useHistory()
   const {name} = useParams()
   const username = localStorage.username
   const roomDetail = useSelector(state => state.rooms.detail)
   const loading = useSelector(state => state.rooms.loading)
   const [turn, setTurn] = useState(false)
-  const [userID, setUserID] = useState("");
-  const [audioMuted, setAudioMuted] = useState(false)
-  const [stream, setStream] = useState();
+  // const [userID, setUserID] = useState("");
+  // const [audioMuted, setAudioMuted] = useState(false)
+  // const [stream, setStream] = useState();
 
-  const [peers, setPeers] = useState([]);
-  const socketRef = useRef();
-  const userVideo = useRef();
-  const peersRef = useRef([]);
-  const roomName = name;
+  // const [peers, setPeers] = useState([]);
+  // const socketRef = useRef();
+  // const userVideo = useRef();
+  // const peersRef = useRef([]);
+  // const roomName = name;
 
   // useEffect(() => {
-  //   socketRef.current = io.connect(rootServer);
+  //   socketRef.current = io.connect("http://localhost:4000");
   //   socketRef.current.on("yourID", (id) => {
   //     setUserID(id);
   //   });
@@ -156,7 +161,7 @@ const GamePage = () => {
 
   useEffect(() => {
     dispatch(updateGameDetail())
-  }, [turn])
+  }, [turn, dispatch])
 
   function clickHandler (i) {
     const gameDetail = {...roomDetail.gameState}
@@ -168,6 +173,35 @@ const GamePage = () => {
   function HandleRematch () {
     dispatch(readyToRematch(intialState, name))
     // dispatch(gameStart(intialState, name))
+  }
+
+  function handleSurrender (username) {
+    const player = roomDetail.users.findIndex(name => {
+      return name === username
+    })
+    let message
+    if(player === 1) {
+      message = 'Player 1 wins!'
+    } else {
+      message = 'Player 2 wins!'
+    }
+
+    const newState = {...roomDetail.gameState}
+    newState.isOver = true
+    newState.message = message
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You will lose",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(gameStart(newState, name))
+      }
+    })
   }
 
   // const handleMoveRoom = () => {
@@ -200,13 +234,15 @@ const GamePage = () => {
   // }
 
   return (
-    <div key="game-page" className="bg-warning h-100" style={{  height: '170vh'}}>
+    <div className="bg-warning h-100" style={{  height: '170vh'}}>
     <NavbarTop username={username}></NavbarTop>
     <div className="App bg-warning h-100" style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       position: 'relative',
+      top: '11vh',
+      // backgroundColor:'blue',
       height: '100vh'
     }}>
       {
@@ -223,10 +259,10 @@ const GamePage = () => {
           message={roomDetail.gameState.message}
         />
         <div className="fullPageImage">
-          <img src={fullPageImage} style={{
-            maxWidth: '1095px',
+          <img src={fullPageImage} alt="game-page" style={{
+            maxWidth: '200vw',
             height: '90vh',
-            width: '200vw '
+            width: '70vw'
           }}/>
         </div>
 
@@ -235,14 +271,36 @@ const GamePage = () => {
           clickHandler={clickHandler}
           roomDetail={roomDetail}
         />
+
         <VideoCall></VideoCall>
+        <button 
+        onClick={() => handleSurrender(username)} 
+        className="btn btn-dark text-warning" 
+        style={{
+          textAlign: 'center',
+          fontFamily:"monospace",
+          fontWeight: 'bold',
+          fontSize: '1.2vw',
+          position: 'absolute', 
+          zIndex: 5,
+          right: '18vw',
+          bottom: '8vh',
+          height: '8vw',
+          width: '8vw',
+          borderRadius: '100%',
+          borderStyle: 'solid'
+        }}>
+          surrender
+        </button>
         </>
         :
+        <>
         <WaitingRoom></WaitingRoom>
+        </>
       }
     </div>
       {
-        roomDetail.name && roomDetail.gameState.isOver == true ?
+        roomDetail.name && roomDetail.gameState.isOver === true ?
         <div className="d-flex justify-content-center">
           <FinishAnnouncement handleRematch={HandleRematch} message={roomDetail.gameState.message}></FinishAnnouncement>
         </div>

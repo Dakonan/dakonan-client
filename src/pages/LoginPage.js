@@ -71,7 +71,7 @@ const LoginPage = () => {
             />
           </div>
           <div className="form-group">
-            <CustomButton className="btn-dark mt-2" type="submit">Login</CustomButton>
+            <CustomButton className="btn-block btn-dark mt-2" style={{borderRadius: '30px'}} type="submit">Login</CustomButton>
           </div>
         </form>
       </div>
