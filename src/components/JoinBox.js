@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import InputField from './InputField'
+import InputField from './inputField'
 import JoinCard from './JoinCard'
 import {useSelector} from 'react-redux'
 // import manblue from '../assets/manblue.png'

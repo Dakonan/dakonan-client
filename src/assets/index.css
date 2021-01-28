@@ -128,7 +128,8 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-} */
+}
+*/
 
 /* .fullPageImage {
   background-color: red;
@@ -450,6 +451,15 @@ section {
   left: 0;
   bottom: 0;
   z-index: 2;
+}
+
+.fire2 {
+  position: absolute;
+  height: 50vw;
+  width: 100%;
+  left: 0;
+  bottom: -10vh;
+  z-index: 0;
 }
 
 .manblue {

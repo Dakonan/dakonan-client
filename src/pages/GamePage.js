@@ -13,6 +13,7 @@ import Swal from 'sweetalert2'
 // import microphone from '../Icons/microphone.svg'
 // import microphonestop from '../Icons/microphone-stop.svg'
 import VideoCall from '../components/WebRTC'
+import fire from '../assets/fire.gif'
 // import rootServer from '../config'
 
 // const socket = io(rootServer)
@@ -236,15 +237,16 @@ const GamePage = () => {
   return (
     <div className="bg-warning h-100" style={{  height: '170vh'}}>
     <NavbarTop username={username}></NavbarTop>
-    <div className="App bg-warning h-100" style={{
+    <div className="App bg-danger h-100" style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       position: 'relative',
-      top: '11vh',
+      // top: '11vh',
       // backgroundColor:'blue',
       height: '100vh'
     }}>
+
       {
         !loading ?
         <h1>Loading</h1>
@@ -266,6 +268,7 @@ const GamePage = () => {
           }}/>
         </div>
 
+        <img src={fire} className="fire2" alt="main-page" />
         <Board
           board={roomDetail.gameState.board}
           clickHandler={clickHandler}
