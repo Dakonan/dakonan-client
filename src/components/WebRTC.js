@@ -100,6 +100,16 @@ const VideoCall = () => {
             peersRef.current = peers;
             setPeers(peers);
           });
+
+          socketRef.current.on("user-leave", (id) => {
+            const peerObj = peersRef.current.find((p) => p.peerID !== socketRef.current.id);
+            if (peerObj) {
+              peerObj.peer.destroy();
+            }
+            const peers = peersRef.current.filter((p) => p.peerID === socketRef.current.id);
+            peersRef.current = peers;
+            setPeers(peers);
+          });
         });
     }, [roomName]);
   
