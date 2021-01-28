@@ -40,13 +40,13 @@ const RoomCard = ({username}) => {
                   room.users.length > 0 ?
                   <div className="d-flex justify-content-center">
                     <div className="m-3">
-                      <p className="card-text m-0">{`player1`}</p>
+                      <p className="card-text m-0"><strong>{`player1`}</strong></p>
                       <p className="card-text m-0">{`${room.users[0]}`}</p>
                     </div>
                       {
                           room.users.length > 1 ?
                           <div className="m-3">
-                            <p className="card-text m-0">{`player2`}</p>
+                            <p className="card-text m-0"><strong>{`player2`}</strong></p>
                             <p className="card-text m-0">{`${room.users[1]}`}</p>
                           </div>
                           :

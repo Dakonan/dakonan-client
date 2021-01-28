@@ -1,7 +1,7 @@
 import BigHole from './BigHole'
 import Board from './Board'
 import Hole from './Hole'
-import InputField from './inputField'
+import InputField from './InputField'
 import JoinBox from './JoinBox'
 import ModalLogin from './ModalLogin'
 import NavbarTop from './Navbar'
@@ -12,8 +12,10 @@ import StatusBar from './StatusBar'
 import CustomButton from './CustomButton'
 import AnchorWrapper from './AnchorWrapper'
 import LeaderBoard from './LeaderBoard'
+import FinishAnnouncement from './FinishAnnouncement'
 
 export {
+  FinishAnnouncement,
   LeaderBoard,
   AnchorWrapper,
   CustomButton,

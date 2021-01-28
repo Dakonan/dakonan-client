@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from 'react'
-import {useParams, useHistory} from 'react-router-dom'
+import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import {Link, useHistory } from 'react-router-dom'
+import { leaveRoom } from '../redux/actions/index'
 import axios from 'axios'
 import bluefire from '../assets/bluefire.gif'
 import Swal from 'sweetalert2'
-import {leaveRoom} from '../redux/actions/index'
+import winGif from '../assets/win.gif'
+import loseGif from '../assets/lose.gif'
 
 const FinishAnnouncement = ({message, handleRematch}) => {
   const dispatch = useDispatch()
@@ -23,11 +25,14 @@ const FinishAnnouncement = ({message, handleRematch}) => {
         }
       })
         .then((res) => {
-          Swal.fire(
-            `Good Job, ${loginUser}`,
-            'Congrats You Win This Game',
-            'success'
-          )
+          Swal.fire({
+            title: 'Congrats!',
+            text: `You win this game, ${loginUser}!`,
+            imageUrl: winGif,
+            imageWidth: 400,
+            imageHeight: 250,
+            imageAlt: 'Custom image',
+          })
         })
         .catch((err) => {
           console.log(err, 'error post win')
@@ -42,9 +47,12 @@ const FinishAnnouncement = ({message, handleRematch}) => {
       })
         .then((res) => {
           Swal.fire({
-            icon: 'error',
-            title: `Oops, you lose, ${loginUser}`,
-            text: 'Try hard next time',
+            title: 'Ouch!',
+            text: `You lose this game, come back stronger, ${loginUser}!`,
+            imageUrl: loseGif,
+            imageWidth: 400,
+            imageHeight: 250,
+            imageAlt: 'Custom image',
           })
         })
         .catch((err) => {
@@ -61,11 +69,14 @@ const FinishAnnouncement = ({message, handleRematch}) => {
         }
       })
         .then((res) => {
-          Swal.fire(
-            `Good Job, ${loginUser}`,
-            'Congrats You Win This Game',
-            'success'
-          )
+          Swal.fire({
+            title: 'Congrats!',
+            text: `You win this game, ${loginUser}!`,
+            imageUrl: winGif,
+            imageWidth: 400,
+            imageHeight: 250,
+            imageAlt: 'Custom image',
+          })
         })
         .catch((err) => {
           console.log(err, 'error post win')
@@ -80,9 +91,12 @@ const FinishAnnouncement = ({message, handleRematch}) => {
       })
         .then((res) => {
           Swal.fire({
-            icon: 'error',
-            title: `Oops, you lose, ${loginUser}`,
-            text: 'Try hard next time',
+            title: 'Ouch!',
+            text: `You lose this game, come back stronger, ${loginUser}!`,
+            imageUrl: loseGif,
+            imageWidth: 400,
+            imageHeight: 250,
+            imageAlt: 'Custom image',
           })
         })
         .catch((err) => {

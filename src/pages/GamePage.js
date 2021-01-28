@@ -12,9 +12,9 @@ import WaitingRoom from './WaitingRoom'
 import microphone from '../Icons/microphone.svg'
 import microphonestop from '../Icons/microphone-stop.svg'
 import VideoCall from '../components/WebRTC'
+import rootServer from '../config'
 
-// const socket = io('https://dakonan-server.herokuapp.com')
-const socket = io('http://localhost:4000')
+const socket = io(rootServer)
 
 const START_AMOUNT = 4
 
@@ -211,9 +211,9 @@ const GamePage = () => {
       justifyContent: 'center',
       alignItems: 'center',
       position: 'relative',
-      top: '11vh',
+      // top: '11vh',
       // backgroundColor:'blue',
-      height: '90vh'
+      height: '100vh'
     }}>
       {
         !loading ?
