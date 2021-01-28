@@ -173,3 +173,7 @@ export const leaveRoom = (roomName, username) => (dispatch) => {
   socket.emit('leaveRoom', roomName, username)
   dispatch(getRoomDetail())
 }
+
+export const surenderUser = (roomName, username) => (dispatch) => {
+  socket.emit('leave-room')
+}

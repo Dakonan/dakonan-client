@@ -1,7 +1,7 @@
 import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {useHistory, useParams } from 'react-router-dom'
-import { leaveRoom } from '../redux/actions/index'
+import { leaveRoom, surenderUser } from '../redux/actions/index'
 import axios from 'axios'
 import bluefire from '../assets/bluefire.gif'
 import Swal from 'sweetalert2'
@@ -107,7 +107,7 @@ const FinishAnnouncement = ({message, handleRematch}) => {
     }
   }, [loginUser, roomDetail.gameState.message, roomDetail.users])  
   const handlePlayerLeave = (roomName, username) => {
-    dispatch(leaveRoom(roomName, username))
+    dispatch(surenderUser(roomName, username))
     history.push('/room')
   }
   return (
