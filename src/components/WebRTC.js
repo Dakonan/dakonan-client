@@ -3,21 +3,21 @@ import io from 'socket.io-client'
 import Peer from "simple-peer";
 import microphone from '../Icons/microphone.svg'
 import microphonestop from '../Icons/microphone-stop.svg'
-import { useHistory, useParams } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
+import rootServer from '../config'
 
-
-const socket = io('https://dakonan-server.herokuapp.com')
+// const socket = io(rootServer)
 // const socket = io('http://localhost:4000')
 
 const Video = (props) => {
   const ref = useRef();
-  const username = localStorage.username
+  // const username = localStorage.username
 
   useEffect(() => {
       props.peer.on("stream", stream => {
           ref.current.srcObject = stream;
       })
-  }, []);
+  }, [props.peer]);
 
   return (
       <video playsInline autoPlay ref={ref}></video>
@@ -28,7 +28,7 @@ const Video = (props) => {
 
 const VideoCall = () => {
   const {name} = useParams()
-  const history = useHistory()
+  // const history = useHistory()
   const [userID, setUserID] = useState("");
   const [audioMuted, setAudioMuted] = useState(false)
   const [stream, setStream] = useState();
@@ -39,7 +39,7 @@ const VideoCall = () => {
   const peersRef = useRef([]);
   const roomName = name;
   useEffect(() => {
-      socketRef.current = io.connect("https://dakonan-server.herokuapp.com");
+      socketRef.current = io.connect(rootServer);
       socketRef.current.on("yourID", (id) => {
         setUserID(id);
       });
@@ -101,7 +101,7 @@ const VideoCall = () => {
             setPeers(peers);
           });
         });
-    }, []);
+    }, [roomName]);
   
     const createPeer = (userToSignal, callerID, stream) => {
       const peer = new Peer({
@@ -141,16 +141,15 @@ const VideoCall = () => {
   
       return peer;
     };
-    const handleMoveRoom = () => {
-      let newUsers = peers.filter(peer => peer.peerID !== userID)
-      const payload = {
-        roomName,
-        newUsers
-      }
-      socketRef.current.emit("leave-room", payload)
-      history.push("/room")
-      // console.log("haloo")
-    };
+    // const handleMoveRoom = () => {
+    //   let newUsers = peers.filter(peer => peer.peerID !== userID)
+    //   const payload = {
+    //     roomName,
+    //     newUsers
+    //   }
+    //   socketRef.current.emit("leave-room", payload)
+    //   history.push("/room")
+    // };
   
     function toggleMuteAudio(){
       if(stream){

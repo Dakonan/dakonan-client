@@ -12,7 +12,7 @@ const leaderBoard = useSelector(state => state.rooms.leaderBoard)
 
 useEffect(() => {
   dispatch(getLeaderBoard())
-}, [show])
+}, [show, dispatch])
 
 return (
 <>

@@ -26,7 +26,7 @@ export default function Hole ({
       controls.start({ backgroundColor: bgColor })
     }, 500)
 
-  }, [pebbles])
+  }, [pebbles, bgColor, controls])
 
   return (
     <motion.div 

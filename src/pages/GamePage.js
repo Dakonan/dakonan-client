@@ -1,20 +1,21 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { Header, Board, StatusBar, NavbarTop } from '../components'
+import React, { useEffect, useState } from 'react'
+import { Board, StatusBar, NavbarTop } from '../components'
 import {useDispatch, useSelector} from 'react-redux'
 import { makeMove, emptyHomes } from '../utils'
-import io from 'socket.io-client'
-import Peer from "simple-peer";
+// import io from 'socket.io-client'
+// import Peer from "simple-peer";
 import { gameStart, readyToRematch, updateGameDetail } from '../redux/actions'
-import {useParams, useHistory} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import fullPageImage from '../assets/GameContainer.png'
 import FinishAnnouncement from '../components/FinishAnnouncement'
 import WaitingRoom from './WaitingRoom'
-import microphone from '../Icons/microphone.svg'
-import microphonestop from '../Icons/microphone-stop.svg'
+import Swal from 'sweetalert2'
+// import microphone from '../Icons/microphone.svg'
+// import microphonestop from '../Icons/microphone-stop.svg'
 import VideoCall from '../components/WebRTC'
-import rootServer from '../config'
+// import rootServer from '../config'
 
-const socket = io(rootServer)
+// const socket = io(rootServer)
 
 const START_AMOUNT = 4
 
@@ -42,21 +43,21 @@ const intialState = {
 
 const GamePage = () => {
   const dispatch = useDispatch()
-  const history = useHistory()
+  // const history = useHistory()
   const {name} = useParams()
   const username = localStorage.username
   const roomDetail = useSelector(state => state.rooms.detail)
   const loading = useSelector(state => state.rooms.loading)
   const [turn, setTurn] = useState(false)
-  const [userID, setUserID] = useState("");
-  const [audioMuted, setAudioMuted] = useState(false)
-  const [stream, setStream] = useState();
+  // const [userID, setUserID] = useState("");
+  // const [audioMuted, setAudioMuted] = useState(false)
+  // const [stream, setStream] = useState();
 
-  const [peers, setPeers] = useState([]);
-  const socketRef = useRef();
-  const userVideo = useRef();
-  const peersRef = useRef([]);
-  const roomName = name;
+  // const [peers, setPeers] = useState([]);
+  // const socketRef = useRef();
+  // const userVideo = useRef();
+  // const peersRef = useRef([]);
+  // const roomName = name;
 
   // useEffect(() => {
   //   socketRef.current = io.connect("http://localhost:4000");
@@ -160,7 +161,7 @@ const GamePage = () => {
 
   useEffect(() => {
     dispatch(updateGameDetail())
-  }, [turn])
+  }, [turn, dispatch])
 
   function clickHandler (i) {
     const gameDetail = {...roomDetail.gameState}
@@ -188,7 +189,19 @@ const GamePage = () => {
     const newState = {...roomDetail.gameState}
     newState.isOver = true
     newState.message = message
-    dispatch(gameStart(newState, name))
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You will lose",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(gameStart(newState, name))
+      }
+    })
   }
 
   // const handleMoveRoom = () => {
@@ -246,7 +259,7 @@ const GamePage = () => {
           message={roomDetail.gameState.message}
         />
         <div className="fullPageImage">
-          <img src={fullPageImage} style={{
+          <img src={fullPageImage} alt="game-page" style={{
             maxWidth: '200vw',
             height: '90vh',
             width: '70vw'
@@ -287,7 +300,7 @@ const GamePage = () => {
       }
     </div>
       {
-        roomDetail.name && roomDetail.gameState.isOver == true ?
+        roomDetail.name && roomDetail.gameState.isOver === true ?
         <div className="d-flex justify-content-center">
           <FinishAnnouncement handleRematch={HandleRematch} message={roomDetail.gameState.message}></FinishAnnouncement>
         </div>
