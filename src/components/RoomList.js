@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import InputField from './inputField'
 import RoomCard from './RoomCard'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import { updatedRoom } from '../redux/actions'
 
 const RoomList = ({handleCreateRoom, rooms}) => {
@@ -11,7 +11,7 @@ const RoomList = ({handleCreateRoom, rooms}) => {
   
   useEffect(() => {
     dispatch(updatedRoom())
-  }, [rooms])
+  }, [rooms, dispatch])
   
 
   return (

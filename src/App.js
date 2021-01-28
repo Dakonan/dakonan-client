@@ -1,10 +1,7 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import MainPage from './pages/MainPage'
-import RegisterPage from './pages/RegisterPage'
-import LoginPage from './pages/LoginPage'
 import Room from './pages/Room'
 import GamePage from './pages/GamePage'
-import WaitingRoom from './pages/WaitingRoom'
 import './App.css'
 
 function App() {

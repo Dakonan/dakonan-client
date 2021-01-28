@@ -5,7 +5,7 @@ export default function Pebble ({ bgColor = "black", isBigHole }) {
   const [ iamHere, removePebble ] = usePresence()
   useEffect(() => {
     !iamHere && setTimeout(removePebble, 400)
-  }, [iamHere])
+  }, [iamHere, removePebble])
   return (
     <motion.div 
       animate={{ 

@@ -1,6 +1,6 @@
 import { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {Link, useHistory, useParams } from 'react-router-dom'
+import {useHistory, useParams } from 'react-router-dom'
 import { leaveRoom } from '../redux/actions/index'
 import axios from 'axios'
 import bluefire from '../assets/bluefire.gif'
@@ -105,7 +105,7 @@ const FinishAnnouncement = ({message, handleRematch}) => {
         })
       }
     }
-  }, [])
+  }, [loginUser, roomDetail.gameState.message, roomDetail.users])  
   const handlePlayerLeave = (roomName, username) => {
     dispatch(leaveRoom(roomName, username))
     history.push('/room')
@@ -158,7 +158,7 @@ const FinishAnnouncement = ({message, handleRematch}) => {
           zIndex: '5'
         }}>Back to room</button>
       </div>
-      <img src={bluefire} class="bluefire" />
+      <img src={bluefire} class="bluefire" alt="bluefire" />
     </div>
   );
 }

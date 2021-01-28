@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import InputField from './inputField'
 import JoinCard from './JoinCard'
 import {useSelector} from 'react-redux'
-import manblue from '../assets/manblue.png'
+// import manblue from '../assets/manblue.png'
 
 const JoinBox = () => {
   const [searchRoom, setSearchRoom] = useState('')

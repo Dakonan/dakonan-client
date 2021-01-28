@@ -33,7 +33,8 @@ const WaitingRoom = () => {
       display: 'flex', justifyContent: 'center'
     }}>
     
-    <div className=" row container d-flex flex-column justify-content-center align-items-center bg-warning text-light" 
+    <div 
+    className=" row container d-flex flex-column justify-content-center align-items-center bg-warning text-light" 
     style={{
       borderRadius: '25px',
       border: '8px solid black',
@@ -67,7 +68,7 @@ const WaitingRoom = () => {
         <div className='row justify-content-center'>
         <h1 className='col-12' style={{color: 'black'}}><strong>WAITING FOR OTHER PLAYER</strong></h1>
         <div className='col-12'>
-          <img src={loadingnew} className="loadingnew" style={{
+          <img src={loadingnew} className="loadingnew" alt="" style={{
             maxHeight: '100px',
             marginTop: '-3vh',
             marginBottom: '-2vh'
