@@ -58,7 +58,7 @@ code {
   text-decoration: none;
   color: gold;
 }
-
+/* 
 /* board */
 .rectangle {
   display: flex;
@@ -128,7 +128,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 /* .fullPageImage {
   background-color: red;
@@ -416,8 +416,8 @@ section {
   margin-bottom: -100px;
 }
 .content .imgBox img {
-  width: 700px;
-  min-width: 200px;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -446,7 +446,7 @@ section {
 .fire {
   position: absolute;
   height: 35vw;
-  width: 100vw;
+  width: 100%;
   left: 0;
   bottom: 0;
   z-index: 2;
@@ -492,6 +492,27 @@ section {
   border-radius: 0px 0px 20px 20px;
 }
 
+.vid-player {
+  position: absolute;
+  z-index: 100;
+  left: 19.6vw;
+  bottom: 5.5vh;
+}
+.vid-player Video {
+  height: 15vh;
+  width: 11vw;
+}
+
+.vid-enemy {
+  position: absolute;
+  z-index: 100;
+  right: 19.6vw;
+  top: 4.1vh;
+}
+.vid-enemy Video {
+  height: 15vh;
+  width: 11vw;
+}
 /* how to play */
 
 .btn-howtoplay {

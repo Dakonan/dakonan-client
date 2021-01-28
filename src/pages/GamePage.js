@@ -25,20 +25,20 @@ const intialState = {
   message: ''
 }
 
-const Video = (props) => {
-  const ref = useRef();
+// const Video = (props) => {
+//   const ref = useRef();
 
-  useEffect(() => {
-      props.peer.on("stream", stream => {
-          ref.current.srcObject = stream;
-      })
-  }, []);
+//   useEffect(() => {
+//       props.peer.on("stream", stream => {
+//           ref.current.srcObject = stream;
+//       })
+//   }, []);
 
-  return (
-    <video style={{width: "170px"}} playsInline autoPlay ref={ref}></video>
-      // <StyledVideo playsInline autoPlay ref={ref} />
-  );
-}
+//   return (
+//     <video style={{width: "170px"}} playsInline autoPlay ref={ref}></video>
+//       // <StyledVideo playsInline autoPlay ref={ref} />
+//   );
+// }
 
 const GamePage = () => {
   const dispatch = useDispatch()
@@ -174,6 +174,23 @@ const GamePage = () => {
     // dispatch(gameStart(intialState, name))
   }
 
+  function handleSurrender (username) {
+    const player = roomDetail.users.findIndex(name => {
+      return name === username
+    })
+    let message
+    if(player === 1) {
+      message = 'Player 1 wins!'
+    } else {
+      message = 'Player 2 wins!'
+    }
+
+    const newState = {...roomDetail.gameState}
+    newState.isOver = true
+    newState.message = message
+    dispatch(gameStart(newState, name))
+  }
+
   // const handleMoveRoom = () => {
   //   let newUsers = peers.filter(peer => peer.peerID !== userID)
   //   const payload = {
@@ -211,7 +228,7 @@ const GamePage = () => {
       justifyContent: 'center',
       alignItems: 'center',
       position: 'relative',
-      // top: '11vh',
+      top: '11vh',
       // backgroundColor:'blue',
       height: '100vh'
     }}>
@@ -230,9 +247,9 @@ const GamePage = () => {
         />
         <div className="fullPageImage">
           <img src={fullPageImage} style={{
-            maxWidth: '1095px',
+            maxWidth: '200vw',
             height: '90vh',
-            width: '200vw '
+            width: '70vw'
           }}/>
         </div>
 
@@ -241,14 +258,32 @@ const GamePage = () => {
           clickHandler={clickHandler}
           roomDetail={roomDetail}
         />
-        {/* <p>{JSON.stringify(roomDetail)}</p> */}
-        {/* <button onClick={resetHandler}>
-          Reset
-        </button> */}
+
         <VideoCall></VideoCall>
+        <button 
+        onClick={() => handleSurrender(username)} 
+        className="btn btn-dark text-warning" 
+        style={{
+          textAlign: 'center',
+          fontFamily:"monospace",
+          fontWeight: 'bold',
+          fontSize: '1.2vw',
+          position: 'absolute', 
+          zIndex: 5,
+          right: '18vw',
+          bottom: '8vh',
+          height: '8vw',
+          width: '8vw',
+          borderRadius: '100%',
+          borderStyle: 'solid'
+        }}>
+          surrender
+        </button>
         </>
         :
+        <>
         <WaitingRoom></WaitingRoom>
+        </>
       }
     </div>
       {
