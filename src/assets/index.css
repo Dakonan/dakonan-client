@@ -416,8 +416,8 @@ section {
   margin-bottom: -100px;
 }
 .content .imgBox img {
-  width: 700px;
-  min-width: 200px;
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -446,7 +446,7 @@ section {
 .fire {
   position: absolute;
   height: 35vw;
-  width: 100vw;
+  width: 100%;
   left: 0;
   bottom: 0;
   z-index: 2;

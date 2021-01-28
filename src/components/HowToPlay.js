@@ -10,7 +10,13 @@ const handleShow = () => setShow(true)
 
 return (
 <>
-  <div className="anchor-wrapper" onClick={handleShow}>
+  <div className="anchor-wrapper" style={{
+    color: 'white',
+    fontWeight: 'bold',
+    fontFamily: 'monospace',
+    fontSize: '1vw'
+    }} 
+    onClick={handleShow}>
     <h5>How To Play</h5>
   </div>
 

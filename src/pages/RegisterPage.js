@@ -99,7 +99,7 @@ const RegisterPage = () => {
               }
             </div>
             <div className="form-group">
-              <CustomButton className="btn btn-dark mt-2" type="submit">
+              <CustomButton className="btn-block btn-dark mt-2" style={{borderRadius: '30px'}} type="submit">
                 Register
               </CustomButton>
             </div>

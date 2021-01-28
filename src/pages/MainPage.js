@@ -11,15 +11,14 @@ const MainPage = () => {
   return (
   <>
     <section>
-      <img src={fire} className="fire" />
+      <img src={fire} className="fire" alt="main-page" />
       <div className="circle"></div>
       <header className='headerMainPage'>
-        <a href="#"><img src={logo} className="logo"/></a>
+        <img src={logo} className="logo" alt="logo"/>
         <ul>
-          <li><AnchorWrapper><a href="#">
+          <li><AnchorWrapper>
             <HowToPlay></HowToPlay>
-            </a></AnchorWrapper></li>
-          <li><AnchorWrapper><a href="#">Leader Board</a></AnchorWrapper></li>
+            </AnchorWrapper></li>
         </ul>
       </header>
       <div className="content">
@@ -35,7 +34,7 @@ const MainPage = () => {
           <ModalLogin></ModalLogin>
         </motion.div>
         <div className="imgBox">
-            <img src={man} className="man" />
+            <img src={man} className="man" alt="main-body" />
         </div>            
       </div>
     </section>
