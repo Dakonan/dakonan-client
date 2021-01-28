@@ -45,6 +45,7 @@ export default function Hole ({
           pebbles
           ? range(pebbles).map((_, idx) => (
             <motion.div
+              className="pebble-container"
               animate={pebblesOrganizer(idx, pebbles)}
               key={idx + "hole"}
             >

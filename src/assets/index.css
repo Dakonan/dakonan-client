@@ -58,7 +58,7 @@ code {
   text-decoration: none;
   color: gold;
 }
-
+/* 
 /* board */
 .rectangle {
   display: flex;
@@ -128,7 +128,7 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 /* .fullPageImage {
   background-color: red;
@@ -495,7 +495,7 @@ section {
 .vid-player {
   position: absolute;
   z-index: 100;
-  left: 25vw;
+  left: 19.6vw;
   bottom: 5.5vh;
 }
 .vid-player Video {
@@ -506,10 +506,56 @@ section {
 .vid-enemy {
   position: absolute;
   z-index: 100;
-  right: 13vw;
+  right: 19.6vw;
   top: 4.1vh;
 }
 .vid-enemy Video {
   height: 15vh;
   width: 11vw;
 }
+/* how to play */
+
+.btn-howtoplay {
+  font-size: 1.2rem;
+  margin-right: 2rem;
+}
+
+.howtoplay {
+  width: 42vw;
+  /* margin: 5rem auto; */
+  border-radius: 1.5rem;
+  box-shadow: 2px 2px 16px 1px #aaa;
+  font-family: sans-serif;
+  border: 7px solid #264653;
+  background-color: #2a9d8f;
+}
+
+.howtoplay .even {
+  background-color: #f4a261;
+}
+
+.howtoplay .odd {
+  background-color: #e76f51;
+}
+
+.howtoplay table {
+  background-color: #000000;
+  color: white;
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  overflow: hidden;
+}
+
+.howtoplay th {
+  padding: 1.5rem 1rem 0.5rem;
+}
+
+.howtoplay td {
+  padding: 1rem 1rem;
+}
+
+/* .howtoplay td {
+  padding: 1rem 1rem;
+} */

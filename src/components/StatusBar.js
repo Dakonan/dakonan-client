@@ -12,12 +12,12 @@ const StatusBar = ({ player, isOver, message }) => {
   <div className="container-status" 
     style={{
     position: 'absolute',
-    top: '7.8vw',
+    top: '17vh',
     width: '50%',
-    zIndex: 3
+    zIndex: 1
     }}>
   
-    <div className="container bg-light" 
+    <div className="container bg-light turn-note" 
       style={{
         textAlign: 'center',
         width: '25vw',
@@ -25,13 +25,13 @@ const StatusBar = ({ player, isOver, message }) => {
         borderRadius: '10px',
         borderStyle: 'solid',
         fontFamily: 'monospace',
-        fontSize: 28,
+        fontSize: '1.5vw',
         fontWeight: 'bold'
         }}>
       {roomDetail.users[player]}'s turn.
     </div>
 
-    <div className="container bg-light" 
+    <div className="container bg-light game-note" 
       style={{
         textAlign: 'center',
         fontWeight: 'bold',
@@ -41,8 +41,8 @@ const StatusBar = ({ player, isOver, message }) => {
         borderRadius: '10px',
         borderStyle: 'solid',
         color: 'black',
-        marginTop: '25.6vh',
-        fontSize: 20
+        marginTop: '38vh',
+        fontSize: '1vw'
       }}
     > 
     <p className="m-0">{`Player1 (Pink) ${roomDetail.users[0]}`}</p>

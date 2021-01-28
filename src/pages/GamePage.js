@@ -12,9 +12,9 @@ import WaitingRoom from './WaitingRoom'
 import microphone from '../Icons/microphone.svg'
 import microphonestop from '../Icons/microphone-stop.svg'
 import VideoCall from '../components/WebRTC'
+import rootServer from '../config'
 
-// const socket = io('https://dakonan-server.herokuapp.com')
-const socket = io('http://localhost:4000')
+const socket = io(rootServer)
 
 const START_AMOUNT = 4
 
@@ -247,9 +247,9 @@ const GamePage = () => {
         />
         <div className="fullPageImage">
           <img src={fullPageImage} style={{
-            maxWidth: '1095px',
+            maxWidth: '200vw',
             height: '90vh',
-            width: '200vw '
+            width: '70vw'
           }}/>
         </div>
 
@@ -264,12 +264,13 @@ const GamePage = () => {
         onClick={() => handleSurrender(username)} 
         className="btn btn-dark text-warning" 
         style={{
+          textAlign: 'center',
           fontFamily:"monospace",
           fontWeight: 'bold',
-          fontSize: '1.5rem',
+          fontSize: '1.2vw',
           position: 'absolute', 
           zIndex: 5,
-          right: '25vw',
+          right: '18vw',
           bottom: '8vh',
           height: '8vw',
           width: '8vw',
@@ -280,7 +281,9 @@ const GamePage = () => {
         </button>
         </>
         :
+        <>
         <WaitingRoom></WaitingRoom>
+        </>
       }
     </div>
       {
