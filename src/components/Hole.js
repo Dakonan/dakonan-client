@@ -3,6 +3,8 @@ import { range } from 'lodash'
 import { useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { pebblesOrganizer } from '../helpers'
+import hitWood from '../assets/single-rock-hitting-wood-2.wav'
+import useSound from 'use-sound'
 
 const button = {
   rest: { scale: 1 },
@@ -16,11 +18,14 @@ export default function Hole ({
   onClick 
 }) {
   const controls = useAnimation()
+  const [playSound] =  useSound(hitWood, { volume: 5 })
+
   useEffect(() => {
     controls.start({
       backgroundColor: "#f4f5db", 
       transition: { duration: 0.4 }
     })
+    playSound()
     setTimeout(() => {
       controls.stop()
       controls.start({ backgroundColor: bgColor })

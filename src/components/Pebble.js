@@ -3,9 +3,13 @@ import { motion, usePresence } from 'framer-motion'
 
 export default function Pebble ({ bgColor = "black", isBigHole }) {
   const [ iamHere, removePebble ] = usePresence()
+
   useEffect(() => {
-    !iamHere && setTimeout(removePebble, 400)
+    !iamHere && delay(removePebble)
   }, [iamHere])
+  
+  const delay = fn =>  setTimeout(fn, 400) 
+  
   return (
     <motion.div 
       animate={{ 

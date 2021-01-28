@@ -42,7 +42,7 @@ const VideoCall = () => {
   const peersRef = useRef([]);
   const roomName = name;
   useEffect(() => {
-      socketRef.current = io.connect(rootURL);
+      socketRef.current = io.connect(rootServer);
       socketRef.current.on("yourID", (id) => {
         setUserID(id);
       });
