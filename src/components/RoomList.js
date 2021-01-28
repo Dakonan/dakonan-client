@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import InputField from './InputField'
+import InputField from './inputField'
 import RoomCard from './RoomCard'
 import {useDispatch } from 'react-redux'
 import { updatedRoom } from '../redux/actions'
