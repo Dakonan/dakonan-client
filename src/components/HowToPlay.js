@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import logo from '../assets/logo.png'
+import { RowWrapper } from '.'
 
 const HowToPlay = () => {
 const [show, setShow] = useState(false);
@@ -33,42 +34,42 @@ return (
         <h4 style={{color: '#e9c46a', webkitTextStroke: '1px black', fontSize: '30px'}}><strong>Gameplay</strong></h4>
         <table className="mb-5">
           <tbody>
-            <tr className="odd">
+            <RowWrapper className="odd">
               <td style={{textAlign: 'left', minWidth: '2em'}} >1</td>
               <td style={{textAlign: 'left'}} className="username">The game begins with one player picking up all of the pieces in any one of the pockets on his/her side.</td>
-            </tr>
-            <tr className="even">
+            </RowWrapper>
+            <RowWrapper className="even">
               <td style={{textAlign: 'left', minWidth: '2em'}} >2</td>
               <td style={{textAlign: 'left'}} className="username">Moving counter-clockwise, the player deposits one of the stones in each pocket until the stones run out.</td>
-            </tr>
-            <tr className="odd">
+            </RowWrapper>
+            <RowWrapper className="odd">
               <td style={{textAlign: 'left', minWidth: '2em'}}>3</td>
               <td style={{textAlign: 'left'}} className="username">If you run into your own Dakon (store), deposit one piece in it. If you run into your opponent's Dakon, skip it and continue moving to the next pocket.</td>
-            </tr>
-            <tr className="even">
+            </RowWrapper>
+            <RowWrapper className="even">
               <td style={{textAlign: 'left', minWidth: '2em'}} >4</td>
               <td style={{textAlign: 'left'}} className="username">If the last piece you drop is in your own Dakon, you take another turn.</td>
-            </tr>
-            <tr className="odd">
+            </RowWrapper>
+            <RowWrapper className="odd">
               <td style={{textAlign: 'left', minWidth: '2em'}}>5</td>
               <td style={{textAlign: 'left'}} className="username">If the last piece you drop is in an empty pocket on your side, you capture that piece and any pieces in the pocket directly opposite.</td>
-            </tr>
-            <tr className="even">
+            </RowWrapper>
+            <RowWrapper className="even">
               <td style={{textAlign: 'left', minWidth: '2em'}} >6</td>
               <td style={{textAlign: 'left'}} className="username">Always place all captured pieces in your Dakon (store).</td>
-            </tr>
-            <tr className="odd">
+            </RowWrapper>
+            <RowWrapper className="odd">
               <td style={{textAlign: 'left', minWidth: '2em'}}>7</td>
               <td style={{textAlign: 'left'}} className="username">The game ends when all six pockets on one side of the Dakon board are empty.</td>
-            </tr>
-            <tr className="even">
+            </RowWrapper>
+            <RowWrapper className="even">
               <td style={{textAlign: 'left', minWidth: '2em'}} >8</td>
               <td style={{textAlign: 'left'}} className="username">The player who still has pieces on his/her side of the board when the game ends capture all of those pieces.</td>
-            </tr>
-            <tr className="odd">
+            </RowWrapper>
+            <RowWrapper className="odd">
               <td style={{textAlign: 'left', minWidth: '2em'}}>9</td>
               <td style={{textAlign: 'left'}} className="username">Count all the pieces in each Dakon. The winner is the player with the most pieces.</td>
-            </tr>
+            </RowWrapper>
 
           </tbody>
         </table>

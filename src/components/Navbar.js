@@ -11,7 +11,7 @@ const NavbarTop = ({username}) => {
     history.push('/')
   }
   return (
-    <nav class="navbar navbar-light" style={{
+    <nav className="navbar navbar-light" style={{
       padding: '25px 60px',
       position: 'absolute',
       top: '0',
@@ -35,7 +35,7 @@ const NavbarTop = ({username}) => {
         <LeaderBoard></LeaderBoard>
         <h5>{`${username.toLowerCase()}`}</h5>
         <div onClick={() => logout()} className="btn-logout">
-        <i class="fas fa-sign-out-alt"></i>
+        <i className="fas fa-sign-out-alt"></i>
         <span className="tooltiptext">logout</span>
         </div>
       </div>

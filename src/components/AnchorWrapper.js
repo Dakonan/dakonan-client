@@ -6,7 +6,7 @@ const button = {
   pressed: { 
     scale: 2, 
     rotate: 360,
-    transition: { duration: 0.4 } }
+    transition: { duration: 1 } }
 };
 
 export default function AnchorWrapper ({
